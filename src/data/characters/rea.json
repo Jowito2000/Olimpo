@@ -1,0 +1,34 @@
+{
+  "id": "rea",
+  "name": "Rea",
+  "greekName": "Ῥέα",
+  "category": "titan",
+  "gender": "female",
+  "title": "Madre de los Olímpicos",
+  "description": "Rea es una titánide, hermana y esposa de Cronos. Es la madre de los seis dioses olímpicos originales. Salvó a Zeus de ser devorado por Cronos ocultándolo en Creta y entregando una piedra en su lugar.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Rea ocultó a Zeus recién nacido en una cueva del monte Dicte en Creta. Dio a Cronos una piedra envuelta en pañales que este devoró sin sospechar."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "cronos"
+  ],
+  "children": [
+    "zeus",
+    "hera",
+    "poseidon",
+    "hades",
+    "demeter",
+    "hestia"
+  ],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

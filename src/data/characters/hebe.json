@@ -1,0 +1,27 @@
+{
+  "id": "hebe",
+  "name": "Hebe",
+  "greekName": "Ἥβη",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa de la Juventud",
+  "description": "Hebe es la diosa de la juventud eterna. Sirve el néctar a los dioses del Olimpo. Se casó con Heracles tras su apoteosis.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Hebe es hija de Zeus y Hera. Servía el néctar y la ambrosía a los dioses hasta que fue reemplazada por Ganímedes."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "hera"
+  ],
+  "partners": [
+    "heracles"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos",
+    "heroes"
+  ]
+}

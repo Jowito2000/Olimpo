@@ -1,0 +1,29 @@
+{
+  "id": "jason",
+  "name": "Jasón",
+  "greekName": "Ἰάσων",
+  "category": "heroe",
+  "gender": "male",
+  "title": "Líder de los Argonautas",
+  "description": "Jasón es el líder de los Argonautas, que navegaron en el Argo hasta la Cólquide para recuperar el Vellocino de Oro. Con la ayuda de la hechicera Medea, logró su misión.",
+  "versions": [
+    {
+      "source": "Apolonio de Rodas - Argonáuticas",
+      "text": "Jasón reunió a los mayores héroes de Grecia para navegar en el Argo. En la Cólquide, Medea se enamoró de él y le ayudó a superar las pruebas del rey Eetes."
+    },
+    {
+      "source": "Eurípides - Medea",
+      "text": "Jasón abandona a Medea para casarse con la princesa de Corinto. Medea, enloquecida, mata a sus propios hijos y a la princesa."
+    }
+  ],
+  "parents": [
+    "eson"
+  ],
+  "partners": [
+    "medea"
+  ],
+  "children": [],
+  "trees": [
+    "sisifo"
+  ]
+}

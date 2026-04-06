@@ -1,0 +1,24 @@
+{
+  "id": "hemera",
+  "name": "Hemera",
+  "greekName": "Ἡμέρα",
+  "category": "primordial",
+  "gender": "female",
+  "title": "El Día",
+  "description": "Hemera es la personificación del Día. Cada mañana disipa las brumas de su madre Nix.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Hemera es hija de Érebo y Nix."
+    }
+  ],
+  "parents": [
+    "erebo",
+    "nix"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

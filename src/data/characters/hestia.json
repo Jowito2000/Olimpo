@@ -1,0 +1,28 @@
+{
+  "id": "hestia",
+  "name": "Hestia",
+  "greekName": "Ἑστία",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa del Hogar",
+  "description": "Hestia es la diosa del hogar, la familia y el fuego sagrado. La primogénita de Cronos y la primera en ser devorada. Juró virginidad eterna y cedió su asiento en el Olimpo a Dioniso.",
+  "versions": [
+    {
+      "source": "Himno homérico a Hestia",
+      "text": "Hestia rechazó las propuestas de Poseidón y Apolo y juró por la cabeza de Zeus mantenerse virgen eternamente."
+    },
+    {
+      "source": "Versión romana (Vesta)",
+      "text": "Identificada con Vesta. Las Vestales, sacerdotisas vírgenes, mantenían el fuego sagrado de Roma."
+    }
+  ],
+  "parents": [
+    "cronos",
+    "rea"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

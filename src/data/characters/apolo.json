@@ -1,0 +1,30 @@
+{
+  "id": "apolo",
+  "name": "Apolo",
+  "greekName": "Ἀπόλλων",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios de la Luz y las Artes",
+  "description": "Apolo es el dios del sol, la música, la poesía, la profecía, la medicina y el tiro con arco. Gemelo de Artemisa. Patrón del oráculo de Delfos. Uno de los dioses más venerados.",
+  "versions": [
+    {
+      "source": "Himno homérico a Apolo",
+      "text": "Apolo nació en la isla de Delos. Nada más nacer pidió un arco y una lira. Mató a la serpiente Pitón en Delfos y estableció su oráculo allí."
+    },
+    {
+      "source": "Homero - Ilíada",
+      "text": "Apolo apoya a los troyanos en la guerra. Envía una plaga contra los griegos cuando Agamenón se niega a devolver a Criseida."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "leto"
+  ],
+  "partners": [],
+  "children": [
+    "asclepio"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

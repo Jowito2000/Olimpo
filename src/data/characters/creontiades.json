@@ -1,0 +1,19 @@
+{
+  "id": "creontiades",
+  "name": "Creontiades",
+  "greekName": "Κρεοντιάδης",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Hijo de Heracles y Mégara",
+  "description": "Creontiades es uno de los hijos de Heracles y Mégara. Pereció junto a sus hermanos durante la locura de Heracles.",
+  "versions": [],
+  "parents": [
+    "heracles",
+    "megara"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

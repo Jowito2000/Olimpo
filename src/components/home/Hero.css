@@ -1,0 +1,361 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(212, 168, 67, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(107, 33, 168, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 80%, rgba(8, 145, 178, 0.04) 0%, transparent 40%),
+    linear-gradient(180deg, var(--color-bg) 0%, rgba(10, 10, 15, 0.95) 100%);
+  z-index: 0;
+}
+
+/* Anillos orbitales decorativos */
+.hero__rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 168, 67, 0.06);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero__ring--1 {
+  width: 400px;
+  height: 400px;
+  animation: ringPulse 8s ease-in-out infinite, ringSpin 30s linear infinite;
+}
+
+.hero__ring--2 {
+  width: 600px;
+  height: 600px;
+  border-style: dashed;
+  border-color: rgba(212, 168, 67, 0.04);
+  animation: ringPulse 8s ease-in-out 2s infinite, ringSpin 45s linear reverse infinite;
+}
+
+.hero__ring--3 {
+  width: 850px;
+  height: 850px;
+  animation: ringPulse 8s ease-in-out 4s infinite, ringSpin 60s linear infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes ringSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Contenido principal */
+.hero__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Decoración griega superior */
+.hero__greek-border {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: var(--space-lg);
+  animation: fadeInDown 1s ease 0.3s backwards;
+}
+
+.hero__greek-border span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-gold-dark);
+  opacity: 0.5;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.hero__greek-border span:nth-child(1) { animation-delay: 0s; }
+.hero__greek-border span:nth-child(2) { animation-delay: 0.2s; }
+.hero__greek-border span:nth-child(3) { animation-delay: 0.4s; width: 30px; }
+.hero__greek-border span:nth-child(4) { animation-delay: 0.2s; }
+.hero__greek-border span:nth-child(5) { animation-delay: 0s; }
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; transform: scaleX(1); }
+  50% { opacity: 0.8; transform: scaleX(1.3); }
+}
+
+.hero__greek {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  letter-spacing: 0.5em;
+  margin-bottom: var(--space-sm);
+  color: var(--color-gold-dark);
+  animation: fadeInDown 0.8s ease 0.2s backwards;
+}
+
+/* Título con letras animadas individualmente */
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-md);
+  line-height: 1;
+}
+
+.hero__title-letter {
+  display: inline-block;
+  background: linear-gradient(
+    180deg,
+    var(--color-gold-light) 0%,
+    var(--color-gold) 50%,
+    var(--color-gold-dark) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: letterReveal 0.8s ease backwards, letterFloat 6s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.5);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes letterFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Línea decorativa animada bajo el título */
+.hero__line {
+  width: 0;
+  height: 2px;
+  margin: 0 auto var(--space-lg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+  animation: lineExpand 1s ease 0.6s forwards;
+}
+
+@keyframes lineExpand {
+  to { width: 200px; }
+}
+
+.hero__subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xl);
+  animation: fadeInUp 0.8s ease 0.6s backwards;
+}
+
+.hero__description {
+  max-width: 540px;
+  margin: 0 auto var(--space-2xl);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  animation: fadeInUp 0.8s ease 0.8s backwards;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 1s backwards;
+}
+
+.hero__btn {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: var(--space-md) var(--space-2xl);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.hero__btn--primary {
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+  color: var(--color-bg);
+}
+
+.hero__btn--primary:hover {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  box-shadow: 0 0 30px rgba(212, 168, 67, 0.3), 0 0 60px rgba(212, 168, 67, 0.1);
+  transform: translateY(-3px);
+  color: var(--color-bg);
+}
+
+/* Shine realista diagonal con ida y vuelta */
+.hero__btn-shine {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 300%;
+  height: 300%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    120deg,
+    transparent 46%,
+    rgba(255, 255, 255, 0.15) 48%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.15) 52%,
+    transparent 54%
+  );
+
+  filter: blur(4px);
+  opacity: 0.8;
+
+  animation: btnShine 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes btnShine {
+  0% {
+    transform: translate(-60%, -60%) rotate(0deg);
+  }
+  100% {
+    transform: translate(60%, 60%) rotate(0deg);
+  }
+}
+
+
+.hero__btn--secondary {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-border);
+}
+
+.hero__btn--secondary:hover {
+  border-color: var(--color-gold);
+  background: var(--color-gold-muted);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(212, 168, 67, 0.1);
+}
+
+/* Scroll indicator */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 50%;
+  translate: -50% 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  animation: fadeInUp 1s ease 1.5s backwards;
+}
+
+.hero__scroll-indicator span {
+  display: block;
+  width: 22px;
+  height: 34px;
+  border: 2px solid var(--color-gold-dark);
+  border-radius: 11px;
+  position: relative;
+}
+
+.hero__scroll-indicator span::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 8px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  animation: scrollBounce 2s infinite;
+}
+
+.hero__scroll-indicator p {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+@keyframes scrollBounce {
+  0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.3; transform: translateX(-50%) translateY(10px); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    translate: -50% 20px;
+  }
+  to {
+    opacity: 1;
+    translate: -50% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .hero__ring--3 {
+    display: none;
+  }
+}

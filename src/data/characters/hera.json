@@ -1,0 +1,35 @@
+{
+  "id": "hera",
+  "name": "Hera",
+  "greekName": "Ἥρα",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Reina de los Dioses",
+  "description": "Hera es la diosa del matrimonio, la familia y el parto. Esposa y hermana de Zeus. Conocida por sus celos y su venganza contra las amantes de Zeus y los hijos ilegítimos de este, especialmente Heracles.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Hera apoya activamente a los griegos en la Guerra de Troya por el rencor que guarda contra Paris y Troya desde el Juicio de Paris."
+    },
+    {
+      "source": "Versión romana (Juno)",
+      "text": "Identificada con Juno, protectora del Estado romano y de las mujeres."
+    }
+  ],
+  "parents": [
+    "cronos",
+    "rea"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "ares",
+    "hefesto",
+    "hebe",
+    "ilitía"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

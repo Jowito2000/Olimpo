@@ -1,0 +1,30 @@
+{
+  "id": "tea",
+  "name": "Tea",
+  "greekName": "Θεία",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide del Brillo",
+  "description": "Tea es la titánide de la vista y el brillo resplandeciente. Madre de Helios, Selene y Eos.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Tea se unió a Hiperión y dio a luz a Helios, Selene y Eos."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "hiperion"
+  ],
+  "children": [
+    "helios",
+    "selene",
+    "eos"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

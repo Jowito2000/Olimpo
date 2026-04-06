@@ -1,0 +1,30 @@
+{
+  "id": "japeto",
+  "name": "Jápeto",
+  "greekName": "Ἰαπετός",
+  "category": "titan",
+  "gender": "male",
+  "title": "Titán de la Mortalidad",
+  "description": "Jápeto es el titán de la mortalidad y la vida mortal. Padre de Atlas, Prometeo, Epimeteo y Menecio. A través de Prometeo y Epimeteo, está vinculado a la creación de la humanidad.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Jápeto se unió a la oceánide Clímene y engendró a Atlas, Menecio, Prometeo y Epimeteo."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "clímene"
+  ],
+  "children": [
+    "atlas",
+    "prometeo",
+    "epimeteo"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "erebo",
+  "name": "Érebo",
+  "greekName": "Ἔρεβος",
+  "category": "primordial",
+  "gender": "male",
+  "title": "La Oscuridad",
+  "description": "Érebo es la personificación de la oscuridad profunda y las sombras. Junto con Nix engendró a Éter (la Luz celestial) y Hemera (el Día).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Érebo nació de Caos. Unido a Nix engendró a Éter y Hemera."
+    }
+  ],
+  "parents": [
+    "caos"
+  ],
+  "partners": [
+    "nix"
+  ],
+  "children": [
+    "eter",
+    "hemera"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

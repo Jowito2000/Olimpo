@@ -1,0 +1,30 @@
+{
+  "id": "hermes",
+  "name": "Hermes",
+  "greekName": "Ἑρμῆς",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Mensajero de los Dioses",
+  "description": "Hermes es el dios mensajero, patrón de los viajeros, los comerciantes, los ladrones y los oradores. Guía de las almas al inframundo (psicopompo). Hijo de Zeus y la pléyade Maya.",
+  "versions": [
+    {
+      "source": "Himno homérico a Hermes",
+      "text": "Recién nacido, Hermes robó el ganado sagrado de Apolo. Para apaciguarlo, le regaló la lira que acababa de inventar con un caparazón de tortuga."
+    },
+    {
+      "source": "Versión romana (Mercurio)",
+      "text": "Identificado con Mercurio, dios del comercio y los mensajes en Roma."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "maia"
+  ],
+  "partners": [],
+  "children": [
+    "pan"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

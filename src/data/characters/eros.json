@@ -1,0 +1,30 @@
+{
+  "id": "eros",
+  "name": "Eros",
+  "greekName": "Ἔρως",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios del Amor",
+  "description": "Eros (en esta versión) es hijo de Afrodita y Ares. Dios del amor romántico y el deseo. Dispara flechas de oro (que causan amor) y de plomo (que causan rechazo).",
+  "versions": [
+    {
+      "source": "Apolonio de Rodas - Argonáuticas",
+      "text": "Afrodita pide a Eros que dispare una flecha a Medea para que se enamore de Jasón."
+    },
+    {
+      "source": "Apuleyo - El asno de oro (Cupido y Psique)",
+      "text": "Eros (Cupido) se enamora de la mortal Psique. Tras muchas pruebas, Psique se convierte en inmortal y se casan."
+    }
+  ],
+  "parents": [
+    "ares",
+    "afrodita"
+  ],
+  "partners": [
+    "psique"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

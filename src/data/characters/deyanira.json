@@ -1,0 +1,29 @@
+{
+  "id": "deyanira",
+  "name": "Deyanira",
+  "greekName": "Δηιάνειρα",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Segunda Esposa de Heracles",
+  "description": "Deyanira es hija de Eneo y Altea. Se casó con Heracles tras ganar un combate contra el río Aqueloo. Sin quererlo, causó la muerte de Heracles al darle una túnica envenenada con la sangre del centauro Neso.",
+  "versions": [
+    {
+      "source": "Sófocles - Las Traquinias",
+      "text": "Deyanira envía a Heracles una túnica impregnada con la sangre de Neso, creyendo que era un filtro de amor. La túnica envenena a Heracles, quien se inmola en una pira en el monte Eta."
+    }
+  ],
+  "parents": [
+    "eneo",
+    "altea"
+  ],
+  "partners": [
+    "heracles"
+  ],
+  "children": [
+    "hilo",
+    "macaria"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

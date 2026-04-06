@@ -1,0 +1,109 @@
+.char-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.char-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-gold);
+}
+
+.char-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+
+.char-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  transform: scale(1.2);
+  transform-origin: center top;
+  transition: transform var(--transition-slow);
+}
+.char-card:hover .char-card__image {
+  transform: scale(1.08);
+}
+
+.char-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 50%,
+    rgba(10, 10, 15, 0.8) 100%
+  );
+}
+
+.char-card__info {
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+}
+
+.char-card__category {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+}
+
+/* Colores por categoría */
+.char-card[data-category='primordial'] .char-card__category {
+  background: rgba(107, 33, 168, 0.2);
+  color: #a855f7;
+}
+.char-card[data-category='titan'] .char-card__category {
+  background: rgba(180, 83, 9, 0.2);
+  color: #f59e0b;
+}
+.char-card[data-category='olimpico'] .char-card__category {
+  background: rgba(202, 138, 4, 0.2);
+  color: #fbbf24;
+}
+.char-card[data-category='heroe'] .char-card__category {
+  background: rgba(8, 145, 178, 0.2);
+  color: #22d3ee;
+}
+.char-card[data-category='mortal'] .char-card__category {
+  background: rgba(101, 163, 13, 0.2);
+  color: #a3e635;
+}
+.char-card[data-category='ninfa'] .char-card__category {
+  background: rgba(219, 39, 119, 0.2);
+  color: #f472b6;
+}
+.char-card[data-category='monstruo'] .char-card__category {
+  background: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+}
+
+.char-card__name {
+  font-size: 1.1rem;
+  color: var(--color-gold-light);
+  margin-bottom: 2px;
+}
+
+.char-card__greek {
+  font-size: 0.8rem;
+  margin-bottom: var(--space-xs);
+}
+
+.char-card__title {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}

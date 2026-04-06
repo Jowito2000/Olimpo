@@ -1,0 +1,34 @@
+{
+  "id": "ares",
+  "name": "Ares",
+  "greekName": "Ἄρης",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios de la Guerra",
+  "description": "Ares es el dios de la guerra, la violencia y el derramamiento de sangre. A diferencia de Atenea (estrategia), representa la brutalidad del combate. Fue amante de Afrodita pese a estar ella casada con Hefesto.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Ares lucha del lado troyano pero es herido por Diomedes con ayuda de Atenea. Incluso Zeus expresa su desprecio por su hijo belicoso."
+    },
+    {
+      "source": "Homero - Odisea",
+      "text": "Hefesto atrapa a Ares y Afrodita en una red irrompible mientras yacen juntos, exponiéndolos ante todos los dioses."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "hera"
+  ],
+  "partners": [
+    "afrodita"
+  ],
+  "children": [
+    "eros",
+    "fobos",
+    "deimos"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

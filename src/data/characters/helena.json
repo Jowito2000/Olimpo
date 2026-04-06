@@ -1,0 +1,31 @@
+{
+  "id": "helena",
+  "name": "Helena",
+  "greekName": "Ἑλένη",
+  "category": "mortal",
+  "gender": "female",
+  "title": "La Mujer más Bella del Mundo",
+  "description": "Helena de Troya, hija de Zeus y Leda, fue considerada la mujer más bella del mundo. Su rapto (o huida) con Paris desencadenó la Guerra de Troya.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Helena vive en Troya con Paris. Siente remordimiento y añoranza por su esposo Menelao y Esparta."
+    },
+    {
+      "source": "Eurípides - Helena",
+      "text": "En esta versión, Helena nunca fue a Troya. Hermes la llevó a Egipto y puso un fantasma en su lugar. Los griegos y troyanos lucharon diez años por un fantasma."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "leda"
+  ],
+  "partners": [
+    "menelao",
+    "paris"
+  ],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

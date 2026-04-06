@@ -1,0 +1,27 @@
+{
+  "id": "tanatos",
+  "name": "Tánatos",
+  "greekName": "Θάνατος",
+  "category": "primordial",
+  "gender": "male",
+  "title": "La Muerte",
+  "description": "Tánatos es la personificación de la muerte no violenta. Hermano gemelo de Hipnos (el Sueño). Fue encadenado por Sísifo.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Tánatos es hijo de Nix. Tiene un corazón de hierro y un alma de bronce."
+    },
+    {
+      "source": "Eurípides - Alcestis",
+      "text": "Heracles lucha contra Tánatos para salvar a Alcestis de la muerte."
+    }
+  ],
+  "parents": [
+    "nix"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

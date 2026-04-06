@@ -1,0 +1,26 @@
+{
+  "id": "glauco-corinto",
+  "name": "Glauco",
+  "greekName": "Γλαῦκος",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Príncipe de Corinto",
+  "description": "Glauco es hijo de Sísifo y padre de Belerofonte. Fue devorado por sus propias yeguas, enloquecidas por Afrodita.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Glauco alimentaba a sus yeguas con carne humana para hacerlas más feroces en las carreras. Afrodita las enloqueció y lo devoraron."
+    }
+  ],
+  "parents": [
+    "sisifo",
+    "merope"
+  ],
+  "partners": [],
+  "children": [
+    "belerofonte"
+  ],
+  "trees": [
+    "sisifo"
+  ]
+}

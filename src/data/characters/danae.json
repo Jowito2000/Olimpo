@@ -1,0 +1,25 @@
+{
+  "id": "danae",
+  "name": "Dánae",
+  "greekName": "Δανάη",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Madre de Perseo",
+  "description": "Dánae es una princesa de Argos, hija del rey Acrisio. Su padre la encerró en una torre de bronce al conocer una profecía que decía que su nieto lo mataría. Zeus la visitó como lluvia de oro.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Acrisio arrojó a Dánae y al bebé Perseo al mar en un cofre de madera. Fueron rescatados por Dictis en la isla de Sérifos."
+    }
+  ],
+  "parents": [],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "perseo"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "persefone",
+  "name": "Perséfone",
+  "greekName": "Περσεφόνη",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Reina del Inframundo",
+  "description": "Perséfone es la diosa de la primavera y reina del inframundo. Hija de Zeus y Deméter. Fue raptada por Hades. Al comer semillas de granada en el inframundo, quedó obligada a pasar parte del año allí, originando las estaciones.",
+  "versions": [
+    {
+      "source": "Himno homérico a Deméter",
+      "text": "Perséfone fue raptada por Hades mientras recogía flores. Zeus negoció que pasara dos tercios del año con su madre y un tercio con Hades."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "demeter"
+  ],
+  "partners": [
+    "hades"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

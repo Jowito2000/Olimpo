@@ -1,0 +1,29 @@
+{
+  "id": "mnemosine",
+  "name": "Mnemósine",
+  "greekName": "Μνημοσύνη",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide de la Memoria",
+  "description": "Mnemósine es la titánide de la memoria. Zeus se unió a ella durante nueve noches consecutivas y engendró a las nueve Musas.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus se unió a Mnemósine en Pieria durante nueve noches. Ella dio a luz a las nueve Musas: Clío, Euterpe, Talía, Melpómene, Terpsícore, Erato, Polimnia, Urania y Calíope."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "musas"
+  ],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

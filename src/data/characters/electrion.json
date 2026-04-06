@@ -1,0 +1,26 @@
+{
+  "id": "electrion",
+  "name": "Electrión",
+  "greekName": "Ἠλεκτρύων",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Rey de Micenas",
+  "description": "Electrión es hijo de Perseo y Andrómeda. Rey de Micenas y padre de Alcmena, con lo que es abuelo de Heracles.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Electrión fue asesinado accidentalmente por Anfitrión (esposo de Alcmena), quien fue exiliado de Micenas."
+    }
+  ],
+  "parents": [
+    "perseo",
+    "andromeda"
+  ],
+  "partners": [],
+  "children": [
+    "alcmena"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

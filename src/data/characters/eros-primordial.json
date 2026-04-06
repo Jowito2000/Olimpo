@@ -1,0 +1,27 @@
+{
+  "id": "eros-primordial",
+  "name": "Eros",
+  "greekName": "Ἔρως",
+  "category": "primordial",
+  "gender": "male",
+  "title": "El Amor Primordial",
+  "description": "Eros primordial es la fuerza cósmica del amor y la atracción que permite la creación. No confundir con Eros hijo de Afrodita. Este Eros es una fuerza fundamental del universo.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Eros nació de Caos junto con Gea y Tártaro. Es el más hermoso de los dioses inmortales y subyuga la mente y el juicio."
+    },
+    {
+      "source": "Platón - El Banquete",
+      "text": "Se debate si Eros es primordial o hijo de Afrodita. Diferentes oradores dan versiones distintas."
+    }
+  ],
+  "parents": [
+    "caos"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

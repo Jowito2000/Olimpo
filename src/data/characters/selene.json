@@ -1,0 +1,24 @@
+{
+  "id": "selene",
+  "name": "Selene",
+  "greekName": "Σελήνη",
+  "category": "titan",
+  "gender": "female",
+  "title": "La Luna",
+  "description": "Selene es la titánide de la Luna. Conduce su carro plateado por el cielo nocturno. Se enamoró perdidamente del mortal Endimión.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Selene es hija de Hiperión y Tea, hermana de Helios y Eos."
+    }
+  ],
+  "parents": [
+    "hiperion",
+    "tea"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

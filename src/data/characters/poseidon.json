@@ -1,0 +1,35 @@
+{
+  "id": "poseidon",
+  "name": "Poseidón",
+  "greekName": "Ποσειδῶν",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios del Mar",
+  "description": "Poseidón es el dios del mar, los terremotos y los caballos. Gobierna los océanos con su tridente. Disputó con Atenea el patronazgo de Atenas y perdió.",
+  "versions": [
+    {
+      "source": "Homero - Odisea",
+      "text": "Poseidón persiguió a Odiseo durante diez años por haber cegado a su hijo, el cíclope Polifemo."
+    },
+    {
+      "source": "Versión romana (Neptuno)",
+      "text": "Identificado con Neptuno, dios del mar en el panteón romano."
+    }
+  ],
+  "parents": [
+    "cronos",
+    "rea"
+  ],
+  "partners": [
+    "anfitrite"
+  ],
+  "children": [
+    "triton",
+    "teseo",
+    "polifemo",
+    "orion"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

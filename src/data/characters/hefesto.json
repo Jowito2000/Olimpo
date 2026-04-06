@@ -1,0 +1,30 @@
+{
+  "id": "hefesto",
+  "name": "Hefesto",
+  "greekName": "Ἥφαιστος",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios de la Forja",
+  "description": "Hefesto es el dios del fuego, la metalurgia y los artesanos. Nació deforme y fue arrojado del Olimpo. Forjó las armas y armaduras de los dioses, incluido el rayo de Zeus y la armadura de Aquiles.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Hefesto forjó la magnífica armadura de Aquiles, incluyendo un escudo con escenas del cosmos entero."
+    },
+    {
+      "source": "Hesíodo",
+      "text": "Hera lo engendró sola por despecho, sin padre, como respuesta al nacimiento de Atenea de la cabeza de Zeus. Otras versiones lo hacen hijo de Zeus y Hera."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "hera"
+  ],
+  "partners": [
+    "afrodita"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

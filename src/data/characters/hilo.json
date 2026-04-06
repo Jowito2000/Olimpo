@@ -1,0 +1,19 @@
+{
+  "id": "hilo",
+  "name": "Hilo",
+  "greekName": "Ὕλλος",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Hijo de Heracles y Deyanira",
+  "description": "Hilo es el hijo mayor de Heracles y Deyanira. Tras la muerte de su padre, lideró a los Heráclidas en su intento por regresar al Peloponeso.",
+  "versions": [],
+  "parents": [
+    "heracles",
+    "deyanira"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

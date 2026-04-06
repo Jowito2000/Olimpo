@@ -1,0 +1,322 @@
+.tree-view {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--navbar-height) - 80px);
+  min-height: 500px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tree-view--fullscreen {
+  height: 100vh;
+  border-radius: 0;
+  border: none;
+  background: var(--color-bg);
+}
+
+/* ─── Toolbar ──────────────────────────────────────────────────────── */
+.tree-view__toolbar {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.tree-view__btn-group {
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.tree-view__btn {
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  pointer-events: auto;
+}
+
+.tree-view__btn:hover {
+  color: var(--color-gold-light);
+  border-color: var(--color-border-hover);
+}
+
+.tree-view__btn--icon {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ─── Collapsible info panel ───────────────────────────────────────── */
+.tree-view__info {
+  position: absolute;
+  top: 36px;
+  left: var(--space-sm);
+  z-index: 10;
+  background: rgba(10, 10, 15, 0.92);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  max-width: 280px;
+}
+
+.tree-view__info-hint {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-sm);
+  line-height: 1.4;
+}
+
+.tree-view__info-section {
+  margin-bottom: var(--space-xs);
+}
+
+.tree-view__info-section:last-child {
+  margin-bottom: 0;
+}
+
+.tree-view__info-title {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+}
+
+.tree-view__info-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.tree-view__info-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  color: var(--color-text-secondary);
+}
+
+.tree-view__info-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── SVG canvas ───────────────────────────────────────────────────── */
+.tree-view__svg {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.tree-view__svg:active {
+  cursor: grabbing;
+}
+
+/* ─── Links ─────────────────────────────────────────────────────────── */
+.tree-link {
+  fill: none;
+  stroke: rgba(212, 168, 67, 0.25);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tree-link--marriage {
+  stroke: rgba(212, 168, 67, 0.45);
+  stroke-width: 2;
+  stroke-dasharray: 6, 3;
+}
+
+/* ─── Union symbol on marriage links ────────────────────────────────── */
+.tree-union-sym {
+  pointer-events: none;
+}
+
+/* ─── Cross-link lines (sibling partnerships) ──────────────────────── */
+.tree-cross-link {
+  fill: none;
+  stroke: rgba(212, 168, 67, 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 8, 4;
+  stroke-linecap: round;
+}
+
+.tree-cross-sym {
+  pointer-events: none;
+}
+
+/* ─── Node base ─────────────────────────────────────────────────────── */
+.tree-node {
+  cursor: pointer;
+}
+
+.tree-node__bg {
+  fill-opacity: 0.15;
+  stroke-width: 2.5;
+  stroke-opacity: 0.7;
+  transition: stroke-opacity 0.2s, filter 0.2s;
+}
+
+.tree-node:hover .tree-node__bg {
+  stroke-opacity: 1;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* ─── Group dotted border ──────────────────────────────────────────── */
+.tree-node__bg--group {
+  stroke-dasharray: 2, 6;
+  stroke-width: 3;
+  fill-opacity: 0.1;
+}
+
+.tree-node--group:hover .tree-node__bg--group {
+  stroke-dasharray: none;
+  stroke-width: 2.5;
+}
+
+/* ─── Images ────────────────────────────────────────────────────────── */
+.tree-node__image,
+.tree-node__partner-image {
+  pointer-events: none;
+}
+
+/* ─── Name labels ───────────────────────────────────────────────────── */
+.tree-node__name,
+.tree-node__partner-name {
+  fill: var(--color-text);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ─── Single-partner union bar & symbol ─────────────────────────────── */
+.tree-node__union-bar {
+  stroke: rgba(212, 168, 67, 0.45);
+  stroke-width: 2;
+}
+
+.tree-node--union:hover .tree-node__union-bar {
+  stroke: rgba(212, 168, 67, 0.8);
+}
+
+.tree-node__union-symbol {
+  fill: rgba(212, 168, 67, 0.75);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.tree-node--union:hover .tree-node__union-symbol {
+  fill: var(--color-gold-light);
+}
+
+/* ─── Partner circle (single-partner mode) ──────────────────────────── */
+.tree-node__partner-bg {
+  fill-opacity: 0.15;
+  stroke-width: 2.5;
+  stroke-opacity: 0.7;
+  transition: stroke-opacity 0.2s, filter 0.2s;
+}
+
+.tree-node:hover .tree-node__partner-bg {
+  stroke-opacity: 1;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* ─── Union header nodes (short dashes) ─────────────────────────────── */
+.tree-node--header .tree-node__bg {
+  stroke-dasharray: 6, 3;
+}
+
+.tree-node--header:hover .tree-node__bg {
+  stroke-dasharray: none;
+}
+
+/* ─── Junction markers (cross-link union headers) ──────────────────── */
+.tree-node__bg--junction {
+  fill-opacity: 0.25;
+  stroke-width: 2;
+  stroke-dasharray: 4, 2;
+}
+
+.tree-node--junction:hover .tree-node__bg--junction {
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 8px rgba(212, 168, 67, 0.5));
+}
+
+.tree-node__junction-sym {
+  pointer-events: none;
+}
+
+/* ─── Click targets ─────────────────────────────────────────────────── */
+.tree-node__click-target {
+  fill: transparent;
+}
+
+/* ─── "Ver ficha" hover link ────────────────────────────────────────── */
+.tree-node__link {
+  fill: var(--color-gold);
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+}
+
+.tree-node__link:hover {
+  fill: var(--color-gold-light);
+  text-decoration: underline;
+}
+
+/* ─── Expand / collapse indicator ───────────────────────────────────── */
+.tree-node__expand,
+.tree-node__expand-text {
+  pointer-events: none;
+}
+
+/* ─── Legend items (reused in info panel) ───────────────────────────── */
+.tree-view__legend-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #6b21a8;
+  background: rgba(107, 33, 168, 0.15);
+}
+
+.tree-view__legend-circle--group {
+  border-style: dotted;
+  border-width: 3px;
+}
+
+.tree-view__legend-line {
+  display: inline-block;
+  width: 16px;
+  height: 0;
+  border-top: 2px solid rgba(212, 168, 67, 0.4);
+}
+
+.tree-view__legend-line--union {
+  border-top-style: dashed;
+}

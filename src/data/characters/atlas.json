@@ -1,0 +1,32 @@
+{
+  "id": "atlas",
+  "name": "Atlas",
+  "greekName": "Ἄτλας",
+  "category": "titan",
+  "gender": "male",
+  "title": "El que Sostiene el Cielo",
+  "description": "Atlas fue condenado por Zeus a sostener la bóveda celeste sobre sus hombros por toda la eternidad como castigo por luchar del lado de los Titanes en la Titanomaquia.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Atlas sostiene el ancho cielo con su cabeza y sus manos incansables, en los confines de la tierra."
+    },
+    {
+      "source": "Los doce trabajos de Heracles",
+      "text": "Heracles pidió a Atlas que recogiera las manzanas de oro del jardín de las Hespérides. Atlas dejó el cielo a Heracles temporalmente."
+    }
+  ],
+  "parents": [
+    "japeto",
+    "clímene"
+  ],
+  "partners": [],
+  "children": [
+    "maia",
+    "calipso"
+  ],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

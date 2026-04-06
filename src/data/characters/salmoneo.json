@@ -1,0 +1,23 @@
+{
+  "id": "salmoneo",
+  "name": "Salmoneo",
+  "greekName": "Σαλμωνεύς",
+  "category": "mortal",
+  "gender": "male",
+  "title": "El que Imitó a Zeus",
+  "description": "Salmoneo es hijo de Eolo. Se atrevió a imitar los truenos y rayos de Zeus, quien lo fulminó y destruyó su ciudad.",
+  "versions": [
+    {
+      "source": "Virgilio - Eneida",
+      "text": "Salmoneo arrastraba cadenas de bronce con su carro y lanzaba antorchas para imitar los truenos y rayos de Zeus. Fue castigado en el Tártaro."
+    }
+  ],
+  "parents": [
+    "eolo"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "sisifo"
+  ]
+}

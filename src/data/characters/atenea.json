@@ -1,0 +1,28 @@
+{
+  "id": "atenea",
+  "name": "Atenea",
+  "greekName": "Ἀθηνᾶ",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa de la Sabiduría",
+  "description": "Atenea es la diosa de la sabiduría, la estrategia militar y las artes. Nació completamente armada de la cabeza de Zeus, después de que este se tragara a Metis. Patrona de Atenas y protectora de héroes como Odiseo y Perseo.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus se tragó a Metis embarazada tras una profecía. Atenea nació de su cabeza con armadura completa, lanzando un grito de guerra."
+    },
+    {
+      "source": "Versión romana (Minerva)",
+      "text": "Identificada con Minerva, diosa de la sabiduría y las artes en Roma."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "metis"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

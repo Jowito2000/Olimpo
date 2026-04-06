@@ -1,0 +1,30 @@
+{
+  "id": "dioniso",
+  "name": "Dioniso",
+  "greekName": "Διόνυσος",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios del Vino",
+  "description": "Dioniso es el dios del vino, la fertilidad, el teatro y el éxtasis ritual. Hijo de Zeus y la mortal Sémele. Nació dos veces: primero del vientre de su madre y después del muslo de Zeus.",
+  "versions": [
+    {
+      "source": "Eurípides - Las Bacantes",
+      "text": "Dioniso regresa a Tebas para establecer su culto. Penteo se opone y Dioniso lo castiga haciendo que su propia madre lo despedace en un frenesí báquico."
+    },
+    {
+      "source": "Misterios órficos (Dioniso Zagreo)",
+      "text": "Zagreo era hijo de Zeus y Perséfone. Los Titanes lo despedazaron y devoraron. Zeus lo resucitó como Dioniso."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "semele"
+  ],
+  "partners": [
+    "ariadna"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

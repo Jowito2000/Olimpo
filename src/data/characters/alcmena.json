@@ -1,0 +1,28 @@
+{
+  "id": "alcmena",
+  "name": "Alcmena",
+  "greekName": "Ἀλκμήνη",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Madre de Heracles",
+  "description": "Alcmena es una princesa de Micenas, la mujer mortal más bella y sabia de su tiempo. Zeus la sedujo adoptando la forma de su esposo Anfitrión.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Zeus alargó la noche a tres veces su duración normal para estar con Alcmena. Esa misma noche Anfitrión también se unió a ella, por lo que Heracles (hijo de Zeus) e Ificles (hijo de Anfitrión) nacieron como gemelos."
+    }
+  ],
+  "parents": [
+    "electrion"
+  ],
+  "partners": [
+    "zeus",
+    "anfitrion"
+  ],
+  "children": [
+    "heracles"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

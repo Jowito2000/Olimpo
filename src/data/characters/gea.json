@@ -1,0 +1,46 @@
+{
+  "id": "gea",
+  "name": "Gea",
+  "greekName": "Γαῖα",
+  "category": "primordial",
+  "gender": "female",
+  "title": "La Madre Tierra",
+  "description": "Gea es la personificación de la Tierra y una de las deidades primordiales. Madre de los Titanes, los Cíclopes y los Hecatónquiros con Urano. Conspiró con Cronos para derrocar a Urano cuando este encarcelaba a sus hijos.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Gea surgió de Caos y engendró a Urano (el Cielo) por sí misma. Juntos engendraron a los doce Titanes, los tres Cíclopes y los tres Hecatónquiros."
+    },
+    {
+      "source": "Homero",
+      "text": "Gea es invocada en juramentos como garante, pues la Tierra lo ve y lo sabe todo."
+    }
+  ],
+  "parents": [
+    "caos"
+  ],
+  "partners": [
+    "urano",
+    "ponto",
+    "tartaro"
+  ],
+  "children": [
+    "urano",
+    "ponto",
+    "cronos",
+    "rea",
+    "oceano",
+    "tetis",
+    "hiperion",
+    "tea",
+    "ceo",
+    "febe",
+    "mnemosine",
+    "temis",
+    "crío",
+    "japeto"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

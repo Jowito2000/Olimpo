@@ -1,0 +1,25 @@
+{
+  "id": "creteo",
+  "name": "Creteo",
+  "greekName": "Κρηθεύς",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Fundador de Yolco",
+  "description": "Creteo es hijo de Eolo y fundador de la ciudad de Yolco. Padre de Esón (y por tanto abuelo de Jasón).",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Creteo se casó con Tiro y engendró a Esón, Feres y Amitaón."
+    }
+  ],
+  "parents": [
+    "eolo"
+  ],
+  "partners": [],
+  "children": [
+    "eson"
+  ],
+  "trees": [
+    "sisifo"
+  ]
+}

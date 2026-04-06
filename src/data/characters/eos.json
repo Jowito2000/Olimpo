@@ -1,0 +1,24 @@
+{
+  "id": "eos",
+  "name": "Eos",
+  "greekName": "Ἠώς",
+  "category": "titan",
+  "gender": "female",
+  "title": "La Aurora",
+  "description": "Eos es la titánide de la Aurora. Cada mañana abre las puertas del cielo para que su hermano Helios pueda pasar con su carro. Conocida por sus numerosos amantes mortales.",
+  "versions": [
+    {
+      "source": "Homero",
+      "text": "Homero la describe como \"la de rosados dedos\" (rhododaktylos), uno de los epítetos más famosos de la literatura griega."
+    }
+  ],
+  "parents": [
+    "hiperion",
+    "tea"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

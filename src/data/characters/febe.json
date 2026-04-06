@@ -1,0 +1,29 @@
+{
+  "id": "febe",
+  "name": "Febe",
+  "greekName": "Φοίβη",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide de la Luna Brillante",
+  "description": "Febe es la titánide de la luna brillante y el intelecto. Abuela de Apolo y Artemisa. Su nombre (\"la brillante\") fue heredado por Apolo como epíteto (Febo Apolo).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Febe se unió a Ceo y engendraron a Leto y a Asteria."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "ceo"
+  ],
+  "children": [
+    "leto",
+    "asteria"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

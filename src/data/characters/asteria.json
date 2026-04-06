@@ -1,0 +1,26 @@
+{
+  "id": "asteria",
+  "name": "Asteria",
+  "greekName": "Ἀστερία",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide de las Estrellas",
+  "description": "Asteria es la titánide de las estrellas y la adivinación nocturna. Para escapar de Zeus, se transformó en codorniz y se arrojó al mar, convirtiéndose en la isla de Ortigia (más tarde Delos).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Asteria se unió a Perses y engendró a Hécate, diosa de la brujería."
+    }
+  ],
+  "parents": [
+    "ceo",
+    "febe"
+  ],
+  "partners": [],
+  "children": [
+    "hecate"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

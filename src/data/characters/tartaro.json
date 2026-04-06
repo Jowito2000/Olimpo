@@ -1,0 +1,27 @@
+{
+  "id": "tartaro",
+  "name": "Tártaro",
+  "greekName": "Τάρταρος",
+  "category": "primordial",
+  "gender": "male",
+  "title": "El Abismo",
+  "description": "Tártaro es tanto un lugar como una deidad primordial. Es el abismo más profundo del inframundo, donde Zeus encarceló a los Titanes tras derrotarlos. Con Gea engendró a Tifón, el monstruo más terrible.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Tártaro se encuentra tan lejos bajo la tierra como el cielo está sobre ella. Un yunque de bronce tardaría nueve días en caer desde la superficie hasta el Tártaro."
+    }
+  ],
+  "parents": [
+    "caos"
+  ],
+  "partners": [
+    "gea"
+  ],
+  "children": [
+    "tifon"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

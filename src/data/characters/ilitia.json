@@ -1,0 +1,24 @@
+{
+  "id": "ilitia",
+  "name": "Ilitía",
+  "greekName": "Εἰλείθυια",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa del Parto",
+  "description": "Ilitía es la diosa del parto. Hera la retuvo para impedir el nacimiento de Apolo y Artemisa, retrasándolo nueve días.",
+  "versions": [
+    {
+      "source": "Himno homérico a Apolo",
+      "text": "Las diosas enviaron a Iris para sobornar a Ilitía con un collar de oro para que acudiera a Delos y permitiera dar a luz a Leto."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "hera"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

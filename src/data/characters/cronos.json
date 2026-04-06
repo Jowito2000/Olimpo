@@ -1,0 +1,38 @@
+{
+  "id": "cronos",
+  "name": "Cronos",
+  "greekName": "Κρόνος",
+  "category": "titan",
+  "gender": "male",
+  "title": "Rey de los Titanes",
+  "description": "Cronos es el menor de los Titanes y el líder de la primera generación divina. Castró a su padre Urano con una hoz y se convirtió en rey del cosmos. Temeroso de una profecía que decía que uno de sus hijos lo destronaría, devoraba a cada uno al nacer. Rea logró salvar a Zeus, quien finalmente lo derrocó.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Cronos castró a Urano instigado por Gea. Reinó durante la Edad de Oro. Devoró a Hestia, Deméter, Hera, Hades y Poseidón. Rea salvó a Zeus dándole una piedra envuelta en pañales."
+    },
+    {
+      "source": "Versión romana (Saturno)",
+      "text": "Identificado con Saturno. En Roma se celebraban las Saturnales en su honor, recordando la Edad de Oro bajo su reinado."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "rea"
+  ],
+  "children": [
+    "zeus",
+    "hera",
+    "poseidon",
+    "hades",
+    "demeter",
+    "hestia"
+  ],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

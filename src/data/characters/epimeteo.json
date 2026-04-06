@@ -1,0 +1,28 @@
+{
+  "id": "epimeteo",
+  "name": "Epimeteo",
+  "greekName": "Ἐπιμηθεύς",
+  "category": "titan",
+  "gender": "male",
+  "title": "El que Piensa Después",
+  "description": "Epimeteo es hermano de Prometeo. Pese a las advertencias de su hermano, aceptó a Pandora como regalo de Zeus, desatando todos los males sobre la humanidad.",
+  "versions": [
+    {
+      "source": "Hesíodo - Trabajos y días",
+      "text": "Prometeo advirtió a Epimeteo que no aceptara regalos de Zeus, pero Epimeteo aceptó a Pandora. Cuando ella abrió la tinaja, todos los males se esparcieron por el mundo."
+    }
+  ],
+  "parents": [
+    "japeto",
+    "clímene"
+  ],
+  "partners": [
+    "pandora"
+  ],
+  "children": [
+    "pirra"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

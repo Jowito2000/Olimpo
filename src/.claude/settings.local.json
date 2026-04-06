@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /f/ProyectosClaude/olimpo-mitologia -type f \\\\\\(-name *.txt -o -name *.md \\\\\\))"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "hipnos",
+  "name": "Hipnos",
+  "greekName": "Ὕπνος",
+  "category": "primordial",
+  "gender": "male",
+  "title": "El Sueño",
+  "description": "Hipnos es la personificación del sueño. Hermano gemelo de Tánatos. Vive en una cueva donde nunca brilla el sol.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Hera soborna a Hipnos para que duerma a Zeus, permitiéndole intervenir en la Guerra de Troya."
+    }
+  ],
+  "parents": [
+    "nix"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

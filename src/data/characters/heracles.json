@@ -1,0 +1,42 @@
+{
+  "id": "heracles",
+  "name": "Heracles",
+  "greekName": "Ἡρακλῆς",
+  "category": "heroe",
+  "gender": "male",
+  "title": "El Mayor de los Héroes",
+  "description": "Heracles (Hércules en Roma) es el mayor héroe de la mitología griega. Hijo de Zeus y la mortal Alcmena. Famoso por los Doce Trabajos que realizó como penitencia. Fue el único héroe que alcanzó la divinidad completa tras su muerte.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Heracles realizó los Doce Trabajos impuestos por Euristeo: el león de Nemea, la Hidra de Lerna, la cierva de Cerinea, el jabalí de Erimanto, los establos de Augías, las aves del Estínfalo, el toro de Creta, las yeguas de Diomedes, el cinturón de Hipólita, los bueyes de Gerión, las manzanas de las Hespérides y Cerbero."
+    },
+    {
+      "source": "Eurípides - Heracles",
+      "text": "Hera enloquece a Heracles y este mata a su esposa Mégara y a sus hijos en un ataque de locura."
+    },
+    {
+      "source": "Versión romana (Hércules)",
+      "text": "Hércules fue venerado en Roma como dios del triunfo y el comercio. Su culto en el Ara Máxima era uno de los más antiguos de Roma."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "alcmena"
+  ],
+  "partners": [
+    "megara",
+    "deyanira",
+    "hebe"
+  ],
+  "children": [
+    "terimaco",
+    "creontiades",
+    "deicoonte",
+    "hilo",
+    "macaria"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "hiperion",
+  "name": "Hiperión",
+  "greekName": "Ὑπερίων",
+  "category": "titan",
+  "gender": "male",
+  "title": "El que Camina en las Alturas",
+  "description": "Hiperión es el titán de la luz. Con su hermana Tea engendró a Helios (el Sol), Selene (la Luna) y Eos (la Aurora).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Hiperión se unió a Tea y engendraron al gran Helios, a la brillante Selene y a Eos."
+    },
+    {
+      "source": "Homero",
+      "text": "A veces Homero usa \"Hiperión\" como epíteto del propio Helios."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "tea"
+  ],
+  "children": [
+    "helios",
+    "selene",
+    "eos"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

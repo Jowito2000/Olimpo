@@ -1,0 +1,24 @@
+{
+  "id": "triton",
+  "name": "Tritón",
+  "greekName": "Τρίτων",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Mensajero del Mar",
+  "description": "Tritón es un dios marino, hijo de Poseidón y Anfitrite. Tiene cola de pez y sopla una caracola que calma o agita las olas.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Tritón habita en un palacio dorado en las profundidades del mar junto a sus padres."
+    }
+  ],
+  "parents": [
+    "poseidon",
+    "anfitrite"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "urano",
+  "name": "Urano",
+  "greekName": "Οὐρανός",
+  "category": "primordial",
+  "gender": "male",
+  "title": "El Cielo Estrellado",
+  "description": "Urano es la personificación del Cielo. Fue el primer rey del cosmos. Odiaba a sus hijos y los encarcelaba en el interior de Gea (la Tierra), hasta que Cronos lo castró con una hoz de adamantino que le dio su madre.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Urano nacía cada noche para cubrir a Gea. Encarcelaba a los Cíclopes y Hecatónquiros en el Tártaro. Cronos lo castró y de su sangre nacieron los Gigantes, las Erinias y Afrodita (de la espuma del mar)."
+    }
+  ],
+  "parents": [
+    "gea"
+  ],
+  "partners": [
+    "gea"
+  ],
+  "children": [
+    "cronos",
+    "rea",
+    "oceano",
+    "tetis",
+    "hiperion",
+    "tea",
+    "ceo",
+    "febe",
+    "mnemosine",
+    "temis",
+    "crío",
+    "japeto",
+    "afrodita"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

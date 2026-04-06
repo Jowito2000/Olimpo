@@ -1,0 +1,25 @@
+{
+  "id": "eson",
+  "name": "Esón",
+  "greekName": "Αἴσων",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Padre de Jasón",
+  "description": "Esón es el padre de Jasón y legítimo rey de Yolco, destronado por su hermanastro Pelias.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Pelias usurpó el trono de Yolco que le correspondía a Esón. Esón confió a Jasón al centauro Quirón para que lo criara en secreto."
+    }
+  ],
+  "parents": [
+    "creteo"
+  ],
+  "partners": [],
+  "children": [
+    "jason"
+  ],
+  "trees": [
+    "sisifo"
+  ]
+}

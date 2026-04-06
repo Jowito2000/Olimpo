@@ -1,0 +1,31 @@
+{
+  "id": "caos",
+  "name": "Caos",
+  "greekName": "Χάος",
+  "category": "primordial",
+  "gender": "unknown",
+  "title": "El Vacío Primordial",
+  "description": "Caos es el primer ser que existió, el vacío primordial del que surgió todo lo demás. No es un dios con forma, sino el abismo infinito y oscuro que precedió a la creación. De Caos nacieron Gea (la Tierra), Tártaro (el Abismo), Eros (el Amor), Érebo (la Oscuridad) y Nix (la Noche).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "En el principio solo existía Caos. De él surgieron Gea, Tártaro, Eros, Érebo y Nix."
+    },
+    {
+      "source": "Ovidio - Metamorfosis",
+      "text": "Caos era una masa informe y confusa, donde todos los elementos estaban mezclados sin orden."
+    }
+  ],
+  "parents": [],
+  "partners": [],
+  "children": [
+    "gea",
+    "tartaro",
+    "eros-primordial",
+    "erebo",
+    "nix"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

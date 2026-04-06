@@ -1,0 +1,27 @@
+{
+  "id": "belerofonte",
+  "name": "Belerofonte",
+  "greekName": "Βελλεροφῶν",
+  "category": "heroe",
+  "gender": "male",
+  "title": "Jinete de Pegaso",
+  "description": "Belerofonte es un héroe corintio que domó al caballo alado Pegaso con ayuda de una brida de oro de Atenea. Mató a la Quimera y realizó otras hazañas, pero su orgullo lo llevó a intentar volar al Olimpo, siendo derribado por Zeus.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "La historia de Belerofonte es narrada por su nieto Glauco. Enviado a Licia con una carta sellada que pedía su muerte, superó todas las pruebas mortales."
+    },
+    {
+      "source": "Píndaro",
+      "text": "Belerofonte intentó volar al Olimpo sobre Pegaso. Zeus envió un tábano que picó al caballo, derribando a Belerofonte, quien cayó y quedó lisiado, vagando solo hasta su muerte."
+    }
+  ],
+  "parents": [
+    "glauco-corinto"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "sisifo"
+  ]
+}

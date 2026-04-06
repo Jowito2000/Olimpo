@@ -1,0 +1,27 @@
+{
+  "id": "anfitrite",
+  "name": "Anfitrite",
+  "greekName": "Ἀμφιτρίτη",
+  "category": "ninfa",
+  "gender": "female",
+  "title": "Reina del Mar",
+  "description": "Anfitrite es una nereida, esposa de Poseidón y reina del mar. Al principio huyó de Poseidón, pero un delfín la convenció de aceptar su propuesta.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Anfitrite huyó a los confines del océano cuando Poseidón la cortejó. Un delfín la encontró y la convenció. En agradecimiento, Poseidón colocó al delfín entre las constelaciones."
+    }
+  ],
+  "parents": [
+    "nereo"
+  ],
+  "partners": [
+    "poseidon"
+  ],
+  "children": [
+    "triton"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

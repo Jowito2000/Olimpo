@@ -1,0 +1,56 @@
+{
+  "id": "zeus",
+  "name": "Zeus",
+  "greekName": "Ζεύς",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Rey de los Dioses",
+  "description": "Zeus es el dios del cielo, el rayo y el trueno, y rey de los dioses del Olimpo. Hijo menor de Cronos y Rea, derrocó a su padre y se repartió el mundo con sus hermanos: él tomó el cielo, Poseidón el mar y Hades el inframundo.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus fue criado en secreto en Creta. Al crecer, obligó a Cronos a regurgitar a sus hermanos. Lideró a los Olímpicos en la Titanomaquia y derrotó a los Titanes con la ayuda de los Cíclopes y los Hecatónquiros."
+    },
+    {
+      "source": "Homero - Ilíada",
+      "text": "Zeus gobierna desde el Olimpo y mantiene el equilibrio entre dioses y mortales durante la Guerra de Troya, aunque su esposa Hera y otros dioses intervienen constantemente."
+    },
+    {
+      "source": "Versión romana (Júpiter)",
+      "text": "Identificado con Júpiter, el dios supremo del panteón romano. Júpiter Óptimo Máximo era el protector del Estado romano."
+    }
+  ],
+  "parents": [
+    "cronos",
+    "rea"
+  ],
+  "partners": [
+    "hera",
+    "leto",
+    "metis",
+    "mnemosine",
+    "demeter",
+    "maia",
+    "semele",
+    "alcmena",
+    "danae",
+    "leda"
+  ],
+  "children": [
+    "atenea",
+    "apolo",
+    "artemisa",
+    "ares",
+    "hermes",
+    "dioniso",
+    "persefone",
+    "heracles",
+    "perseo",
+    "helena",
+    "hefesto"
+  ],
+  "trees": [
+    "olimpicos",
+    "heroes"
+  ]
+}

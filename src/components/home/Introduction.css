@@ -1,0 +1,110 @@
+.intro {
+  padding: var(--space-3xl) 0;
+}
+
+/* Scroll reveal para el contenido */
+.intro__content {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.intro__content--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro__title {
+  margin-bottom: var(--space-2xl);
+}
+
+.intro__text {
+  text-align: center;
+}
+
+.intro__text p {
+  margin-bottom: var(--space-lg);
+  font-size: 1.05rem;
+}
+
+.intro__text strong {
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
+/* Stats con scroll reveal escalonado */
+.intro__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+  cursor: pointer;
+}
+
+@keyframes statReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.intro__stat {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base),
+              scale var(--transition-base),
+              translate var(--transition-base);
+}
+
+.intro__stats--visible .intro__stat {
+  animation: statReveal 0.6s ease forwards;
+}
+
+.intro__stat:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-gold);
+  scale: 1.04;
+  translate: 0 -4px;
+}
+
+.intro__stat-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.intro__stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .intro__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .intro__stats {
+    grid-template-columns: 1fr;
+  }
+}

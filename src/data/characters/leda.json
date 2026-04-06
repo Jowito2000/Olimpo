@@ -1,0 +1,25 @@
+{
+  "id": "leda",
+  "name": "Leda",
+  "greekName": "Λήδα",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Reina de Esparta",
+  "description": "Leda es reina de Esparta. Zeus la sedujo en forma de cisne. De esa unión nacieron Helena y Pólux (de huevos divinos) y Clitemnestra y Cástor (mortales).",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Leda puso dos huevos: de uno nacieron Helena y Pólux (hijos de Zeus) y del otro Clitemnestra y Cástor (hijos de Tindáreo)."
+    }
+  ],
+  "parents": [],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "helena"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

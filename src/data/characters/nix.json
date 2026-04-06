@@ -1,0 +1,30 @@
+{
+  "id": "nix",
+  "name": "Nix",
+  "greekName": "Νύξ",
+  "category": "primordial",
+  "gender": "female",
+  "title": "La Noche",
+  "description": "Nix es la personificación de la Noche, una de las deidades primordiales más poderosas. Incluso Zeus la temía. Por sí misma engendró a Tánatos (Muerte), Hipnos (Sueño) y las Moiras (el Destino).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Nix engendró sola a Moros, Ker, Tánatos, Hipnos, los Sueños, Némesis, las Hespérides, las Moiras, las Keres y Eris."
+    }
+  ],
+  "parents": [
+    "caos"
+  ],
+  "partners": [
+    "erebo"
+  ],
+  "children": [
+    "eter",
+    "hemera",
+    "tanatos",
+    "hipnos"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

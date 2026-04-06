@@ -1,0 +1,27 @@
+{
+  "id": "temis",
+  "name": "Temis",
+  "greekName": "Θέμις",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide de la Justicia",
+  "description": "Temis es la titánide de la justicia divina, la ley y el orden. Fue la segunda esposa de Zeus y madre de las Horas y las Moiras.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus tomó a Temis como segunda esposa. Ella engendró a las Horas (Eunomía, Dice, Eirene) y a las Moiras (Cloto, Láquesis, Átropos)."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "semele",
+  "name": "Sémele",
+  "greekName": "Σεμέλη",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Madre de Dioniso",
+  "description": "Sémele es una princesa tebana, hija de Cadmo y Harmonía. Amante de Zeus, fue engañada por Hera para pedir a Zeus que se mostrara en su forma divina, lo que la fulminó.",
+  "versions": [
+    {
+      "source": "Eurípides - Las Bacantes",
+      "text": "Zeus rescató al bebé Dioniso del vientre de Sémele y lo cosió en su muslo hasta su nacimiento. Más tarde, Dioniso descendió al Hades y la rescató, convirtiéndola en la diosa Tione."
+    }
+  ],
+  "parents": [
+    "cadmo"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "dioniso"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

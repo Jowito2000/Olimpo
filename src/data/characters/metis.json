@@ -1,0 +1,29 @@
+{
+  "id": "metis",
+  "name": "Metis",
+  "greekName": "Μῆτις",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide de la Astucia",
+  "description": "Metis es la oceánide de la sabiduría y la astucia. Primera esposa de Zeus. Una profecía decía que su hijo sería más poderoso que Zeus, por lo que este la tragó estando embarazada de Atenea.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus se tragó a Metis por consejo de Gea y Urano. Atenea nació luego de la cabeza de Zeus."
+    }
+  ],
+  "parents": [
+    "oceano",
+    "tetis"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "atenea"
+  ],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

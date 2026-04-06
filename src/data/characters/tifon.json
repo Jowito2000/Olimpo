@@ -1,0 +1,24 @@
+{
+  "id": "tifon",
+  "name": "Tifón",
+  "greekName": "Τυφῶν",
+  "category": "monstruo",
+  "gender": "male",
+  "title": "El Terror de los Dioses",
+  "description": "Tifón es el monstruo más terrible de la mitología griega. Hijo de Gea y Tártaro. Tan inmenso que su cabeza tocaba las estrellas. Los dioses huyeron aterrorizados a Egipto. Solo Zeus se atrevió a enfrentarlo.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "De los hombros de Tifón nacían cien cabezas de serpiente. Zeus lo derrotó con sus rayos y lo sepultó bajo el monte Etna, cuyos volcanes son sus resuellos."
+    }
+  ],
+  "parents": [
+    "gea",
+    "tartaro"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

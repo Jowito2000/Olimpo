@@ -1,0 +1,27 @@
+{
+  "id": "eneas",
+  "name": "Eneas",
+  "greekName": "Αἰνείας",
+  "category": "heroe",
+  "gender": "male",
+  "title": "El Troyano Fundador",
+  "description": "Eneas es un héroe troyano, hijo de Afrodita y Anquises. Tras la caída de Troya, huyó y según la tradición romana, fundó la estirpe que daría origen a Roma.",
+  "versions": [
+    {
+      "source": "Virgilio - Eneida",
+      "text": "Eneas lleva a su padre Anquises a hombros y a su hijo Ascanio de la mano mientras Troya arde. Viaja hasta Italia donde funda Lavinium."
+    },
+    {
+      "source": "Homero - Ilíada",
+      "text": "Eneas lucha valientemente en Troya. Poseidón lo salva de Aquiles profetizando que gobernará a los troyanos en el futuro."
+    }
+  ],
+  "parents": [
+    "afrodita"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "asclepio",
+  "name": "Asclepio",
+  "greekName": "Ἀσκληπιός",
+  "category": "heroe",
+  "gender": "male",
+  "title": "Dios de la Medicina",
+  "description": "Asclepio es el dios de la medicina. Hijo de Apolo y la mortal Corónide. Aprendió el arte de curar del centauro Quirón y llegó a resucitar muertos, por lo que Zeus lo fulminó.",
+  "versions": [
+    {
+      "source": "Píndaro",
+      "text": "Asclepio resucitó a Hipólito. Zeus, temiendo que la frontera entre mortales e inmortales se borrara, lo mató con un rayo. Apolo, furioso, mató a los Cíclopes en venganza."
+    }
+  ],
+  "parents": [
+    "apolo"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

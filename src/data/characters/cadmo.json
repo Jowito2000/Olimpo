@@ -1,0 +1,23 @@
+{
+  "id": "cadmo",
+  "name": "Cadmo",
+  "greekName": "Κάδμος",
+  "category": "heroe",
+  "gender": "male",
+  "title": "Fundador de Tebas",
+  "description": "Cadmo es el fundador legendario de Tebas. Se le atribuye la introducción del alfabeto fenicio en Grecia. Mató a un dragón sagrado de Ares y sembró sus dientes, de los que nacieron guerreros (Espartoi).",
+  "versions": [
+    {
+      "source": "Ovidio - Metamorfosis",
+      "text": "Cadmo buscaba a su hermana Europa (raptada por Zeus). El oráculo de Delfos le dijo que siguiera a una vaca y fundara una ciudad donde se detuviera: así nació Tebas."
+    }
+  ],
+  "parents": [],
+  "partners": [],
+  "children": [
+    "semele"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "clímene",
+  "name": "Clímene",
+  "greekName": "Κλυμένη",
+  "category": "ninfa",
+  "gender": "female",
+  "title": "Oceánide",
+  "description": "Clímene es una oceánide, hija de Océano y Tetis. Esposa de Jápeto y madre de Atlas, Prometeo, Epimeteo y Menecio.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Clímene se unió a Jápeto y engendró a Atlas, Menecio, Prometeo y Epimeteo."
+    }
+  ],
+  "parents": [
+    "oceano",
+    "tetis"
+  ],
+  "partners": [
+    "japeto"
+  ],
+  "children": [
+    "atlas",
+    "prometeo",
+    "epimeteo"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

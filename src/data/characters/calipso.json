@@ -1,0 +1,23 @@
+{
+  "id": "calipso",
+  "name": "Calipso",
+  "greekName": "Καλυψώ",
+  "category": "ninfa",
+  "gender": "female",
+  "title": "Ninfa de Ogigia",
+  "description": "Calipso es una ninfa (o diosa menor), hija de Atlas. Retuvo a Odiseo en su isla Ogigia durante siete años, ofreciéndole la inmortalidad si se quedaba con ella.",
+  "versions": [
+    {
+      "source": "Homero - Odisea",
+      "text": "Zeus ordena a Calipso liberar a Odiseo. Ella obedece a regañadientes, ayudándole a construir una balsa."
+    }
+  ],
+  "parents": [
+    "atlas"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

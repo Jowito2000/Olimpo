@@ -1,0 +1,31 @@
+{
+  "id": "sisifo",
+  "name": "Sísifo",
+  "greekName": "Σίσυφος",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Rey de Corinto",
+  "description": "Sísifo es el fundador y primer rey de Corinto (Éfira). Famoso por su astucia, engañó a la Muerte (Tánatos) dos veces. Como castigo eterno, fue condenado a empujar una enorme roca cuesta arriba que siempre vuelve a caer antes de llegar a la cima.",
+  "versions": [
+    {
+      "source": "Homero - Odisea",
+      "text": "Odiseo ve a Sísifo en el Hades empujando su roca, que siempre vuelve a rodar hacia abajo por su propio peso."
+    },
+    {
+      "source": "Tradición mitológica",
+      "text": "Sísifo encadenó a Tánatos cuando este vino a buscarlo, impidiendo que muriera nadie. Ares liberó a Tánatos. Luego Sísifo engañó a Perséfone para regresar al mundo de los vivos."
+    }
+  ],
+  "parents": [
+    "eolo"
+  ],
+  "partners": [
+    "merope"
+  ],
+  "children": [
+    "glauco-corinto"
+  ],
+  "trees": [
+    "sisifo"
+  ]
+}

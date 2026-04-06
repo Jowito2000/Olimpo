@@ -1,0 +1,28 @@
+{
+  "id": "helios",
+  "name": "Helios",
+  "greekName": "Ἥλιος",
+  "category": "titan",
+  "gender": "male",
+  "title": "El Sol",
+  "description": "Helios es el titán del Sol. Cada día conduce su carro dorado tirado por cuatro caballos a través del cielo de este a oeste. Es el que todo lo ve desde las alturas.",
+  "versions": [
+    {
+      "source": "Homero - Odisea",
+      "text": "Los compañeros de Odiseo matan las vacas sagradas de Helios en la isla de Trinacia, provocando su destrucción."
+    },
+    {
+      "source": "Ovidio - Metamorfosis",
+      "text": "Faetón, hijo de Helios, intentó conducir el carro del sol y perdió el control, casi destruyendo la Tierra."
+    }
+  ],
+  "parents": [
+    "hiperion",
+    "tea"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "teseo",
+  "name": "Teseo",
+  "greekName": "Θησεύς",
+  "category": "heroe",
+  "gender": "male",
+  "title": "El Héroe de Atenas",
+  "description": "Teseo es el gran héroe de Atenas. Mató al Minotauro en el Laberinto de Creta. Unificó las comunidades del Ática bajo Atenas.",
+  "versions": [
+    {
+      "source": "Plutarco - Vidas paralelas",
+      "text": "Teseo es presentado como el fundador de la democracia ateniense."
+    },
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Teseo tiene doble paternidad: Egeo (mortal) y Poseidón (divino)."
+    }
+  ],
+  "parents": [
+    "poseidon"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

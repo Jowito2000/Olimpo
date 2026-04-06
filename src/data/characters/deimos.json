@@ -1,0 +1,24 @@
+{
+  "id": "deimos",
+  "name": "Deimos",
+  "greekName": "Δεῖμος",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "El Espanto",
+  "description": "Deimos es la personificación del espanto y el horror en la batalla. Hijo de Ares y Afrodita. Hermano de Fobos.",
+  "versions": [
+    {
+      "source": "Hesíodo - Escudo de Heracles",
+      "text": "Deimos y Fobos están representados en el escudo de Heracles."
+    }
+  ],
+  "parents": [
+    "ares",
+    "afrodita"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

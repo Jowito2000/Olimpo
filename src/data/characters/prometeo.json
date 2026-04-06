@@ -1,0 +1,30 @@
+{
+  "id": "prometeo",
+  "name": "Prometeo",
+  "greekName": "Προμηθεύς",
+  "category": "titan",
+  "gender": "male",
+  "title": "El que Piensa Antes",
+  "description": "Prometeo es el titán que robó el fuego de los dioses para dárselo a la humanidad. Zeus lo castigó encadenándolo a una roca en el Cáucaso, donde un águila le devoraba el hígado cada día, que se regeneraba por la noche.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Prometeo engañó a Zeus en el sacrificio de Mecona, reservando la mejor carne para los humanos y dando a los dioses huesos cubiertos de grasa."
+    },
+    {
+      "source": "Esquilo - Prometeo encadenado",
+      "text": "Prometeo no solo dio el fuego sino también la civilización, la escritura, las matemáticas y la medicina a los humanos."
+    }
+  ],
+  "parents": [
+    "japeto",
+    "clímene"
+  ],
+  "partners": [],
+  "children": [
+    "deucalion"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

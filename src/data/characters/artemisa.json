@@ -1,0 +1,28 @@
+{
+  "id": "artemisa",
+  "name": "Artemisa",
+  "greekName": "Ἄρτεμις",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa de la Caza",
+  "description": "Artemisa es la diosa de la caza, los animales salvajes, la naturaleza y la luna. Hermana gemela de Apolo. Diosa virgen que castiga severamente a quienes atentan contra su pureza.",
+  "versions": [
+    {
+      "source": "Calímaco - Himno a Artemisa",
+      "text": "Siendo niña, Artemisa pidió a Zeus permanecer virgen eternamente, tener un arco y flechas, y ser la señora de las montañas."
+    },
+    {
+      "source": "Versión romana (Diana)",
+      "text": "Identificada con Diana, diosa de la caza y la luna en el panteón romano."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "leto"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

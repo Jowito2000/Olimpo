@@ -1,0 +1,25 @@
+{
+  "id": "deucalion",
+  "name": "Deucalión",
+  "greekName": "Δευκαλίων",
+  "category": "mortal",
+  "gender": "male",
+  "title": "El Noé Griego",
+  "description": "Deucalión es hijo de Prometeo. Junto con su esposa Pirra (hija de Epimeteo y Pandora), sobrevivió al diluvio universal enviado por Zeus. Repoblaron la tierra arrojando piedras que se convertían en personas.",
+  "versions": [
+    {
+      "source": "Ovidio - Metamorfosis",
+      "text": "Zeus decidió destruir la humanidad con un diluvio. Deucalión y Pirra, los únicos justos, sobrevivieron en un arca. El oráculo de Temis les dijo que arrojaran los huesos de su madre (las piedras de Gea)."
+    }
+  ],
+  "parents": [
+    "prometeo"
+  ],
+  "partners": [
+    "pirra"
+  ],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

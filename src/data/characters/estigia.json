@@ -1,0 +1,24 @@
+{
+  "id": "estigia",
+  "name": "Estigia",
+  "greekName": "Στύξ",
+  "category": "titan",
+  "gender": "female",
+  "title": "Río del Juramento",
+  "description": "Estigia es una oceánide que personifica el río del inframundo. Fue la primera en acudir en ayuda de Zeus contra los Titanes. Los dioses juran por sus aguas.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus honró a Estigia haciendo que los dioses juraran por sus aguas. Quien rompe un juramento por Estigia yace sin aliento durante un año."
+    }
+  ],
+  "parents": [
+    "oceano",
+    "tetis"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

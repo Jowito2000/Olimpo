@@ -1,0 +1,24 @@
+{
+  "id": "fobos",
+  "name": "Fobos",
+  "greekName": "Φόβος",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "El Terror",
+  "description": "Fobos es la personificación del terror y el miedo paralizante. Hijo de Ares y Afrodita. Acompaña a su padre en la batalla.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Fobos y Deimos acompañan a Ares al campo de batalla, sembrando el pánico entre los guerreros."
+    }
+  ],
+  "parents": [
+    "ares",
+    "afrodita"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

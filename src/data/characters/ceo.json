@@ -1,0 +1,29 @@
+{
+  "id": "ceo",
+  "name": "Ceo",
+  "greekName": "Κοῖος",
+  "category": "titan",
+  "gender": "male",
+  "title": "Titán de la Inteligencia",
+  "description": "Ceo es el titán de la inteligencia y el eje celeste del norte. Con Febe engendró a Leto (madre de Apolo y Artemisa) y a Asteria.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Ceo se unió a Febe y engendraron a Leto y Asteria."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "febe"
+  ],
+  "children": [
+    "leto",
+    "asteria"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

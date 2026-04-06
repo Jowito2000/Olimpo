@@ -1,0 +1,26 @@
+{
+  "id": "eolo",
+  "name": "Eolo",
+  "greekName": "Αἴολος",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Rey de Tesalia",
+  "description": "Eolo es hijo de Helén y ancestro de la rama eólica de los griegos. Padre de Sísifo, Atamante, Creteo y Salmoneo, entre otros.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Eolo tuvo siete hijos y cinco hijas. No confundir con Eolo el señor de los vientos de la Odisea."
+    }
+  ],
+  "parents": [],
+  "partners": [],
+  "children": [
+    "sisifo",
+    "atamante",
+    "creteo",
+    "salmoneo"
+  ],
+  "trees": [
+    "sisifo"
+  ]
+}

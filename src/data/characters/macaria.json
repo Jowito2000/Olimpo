@@ -1,0 +1,19 @@
+{
+  "id": "macaria",
+  "name": "Macaria",
+  "greekName": "Μακαρία",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Hija de Heracles y Deyanira",
+  "description": "Macaria es hija de Heracles y Deyanira. Se sacrificó voluntariamente para asegurar la victoria de los atenienses en la guerra contra Euristeo.",
+  "versions": [],
+  "parents": [
+    "heracles",
+    "deyanira"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

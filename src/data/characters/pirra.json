@@ -1,0 +1,26 @@
+{
+  "id": "pirra",
+  "name": "Pirra",
+  "greekName": "Πύρρα",
+  "category": "mortal",
+  "gender": "female",
+  "title": "La Primera Mujer después del Diluvio",
+  "description": "Pirra es hija de Epimeteo y Pandora. Junto con Deucalión, sobrevivió al diluvio y repobló la tierra.",
+  "versions": [
+    {
+      "source": "Ovidio - Metamorfosis",
+      "text": "Las piedras arrojadas por Deucalión se convertían en hombres, y las de Pirra en mujeres."
+    }
+  ],
+  "parents": [
+    "epimeteo",
+    "pandora"
+  ],
+  "partners": [
+    "deucalion"
+  ],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

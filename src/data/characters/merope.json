@@ -1,0 +1,27 @@
+{
+  "id": "merope",
+  "name": "Mérope",
+  "greekName": "Μερόπη",
+  "category": "ninfa",
+  "gender": "female",
+  "title": "Pléyade y Reina de Corinto",
+  "description": "Mérope es una de las siete Pléyades, hija de Atlas. Es la única Pléyade que se casó con un mortal: Sísifo.",
+  "versions": [
+    {
+      "source": "Tradición mitológica",
+      "text": "Mérope brilla menos que sus hermanas en el cielo porque se avergüenza de haberse casado con un mortal."
+    }
+  ],
+  "parents": [
+    "atlas"
+  ],
+  "partners": [
+    "sisifo"
+  ],
+  "children": [
+    "glauco-corinto"
+  ],
+  "trees": [
+    "sisifo"
+  ]
+}

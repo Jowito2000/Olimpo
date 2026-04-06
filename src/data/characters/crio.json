@@ -1,0 +1,24 @@
+{
+  "id": "crio",
+  "name": "Crío",
+  "greekName": "Κρεῖος",
+  "category": "titan",
+  "gender": "male",
+  "title": "Titán del Frío",
+  "description": "Crío es el titán asociado con las constelaciones y el frío del invierno. Con Euribia engendró a Astreo, Palante y Perses.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Crío se unió a Euribia y engendraron a Astreo, Palante y Perses."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

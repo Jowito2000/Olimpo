@@ -1,0 +1,27 @@
+{
+  "id": "maia",
+  "name": "Maya",
+  "greekName": "Μαῖα",
+  "category": "ninfa",
+  "gender": "female",
+  "title": "La Mayor de las Pléyades",
+  "description": "Maya es la mayor de las siete Pléyades, hijas de Atlas. Se unió a Zeus en secreto en una cueva y engendró a Hermes.",
+  "versions": [
+    {
+      "source": "Himno homérico a Hermes",
+      "text": "Maya vivía en una cueva del monte Cilene en Arcadia. Zeus la visitaba de noche mientras Hera dormía."
+    }
+  ],
+  "parents": [
+    "atlas"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "hermes"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

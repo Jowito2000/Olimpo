@@ -1,0 +1,28 @@
+{
+  "id": "perseo",
+  "name": "Perseo",
+  "greekName": "Περσεύς",
+  "category": "heroe",
+  "gender": "male",
+  "title": "El Matador de Medusa",
+  "description": "Perseo es hijo de Zeus y Dánae. Mató a la gorgona Medusa con ayuda de Atenea y Hermes. Rescató a Andrómeda de un monstruo marino. Es el ancestro legendario de la dinastía persiana y de Heracles.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Acrisio encerró a Dánae en una torre de bronce, pero Zeus la visitó como lluvia de oro. Perseo fue enviado a matar a Medusa. Con sandalias aladas, la capa de invisibilidad de Hades y la hoz de Hermes, le cortó la cabeza."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "danae"
+  ],
+  "partners": [
+    "andromeda"
+  ],
+  "children": [
+    "electrion"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

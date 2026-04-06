@@ -1,0 +1,24 @@
+{
+  "id": "eter",
+  "name": "Éter",
+  "greekName": "Αἰθήρ",
+  "category": "primordial",
+  "gender": "male",
+  "title": "La Luz Celestial",
+  "description": "Éter es la personificación de la luz celestial pura, el aire superior que respiran los dioses.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Éter es hijo de Érebo y Nix."
+    }
+  ],
+  "parents": [
+    "erebo",
+    "nix"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

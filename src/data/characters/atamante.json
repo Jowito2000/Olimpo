@@ -1,0 +1,23 @@
+{
+  "id": "atamante",
+  "name": "Atamante",
+  "greekName": "Ἀθάμας",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Rey de Orcómeno",
+  "description": "Atamante es hijo de Eolo y rey de Orcómeno. Padre de Frixo y Hele (de Néfele) y de Learco y Melicertes (de Ino). Hera lo enloqueció como castigo.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Ino convenció a Atamante de sacrificar a Frixo. El carnero alado con el vellocino de oro rescató a Frixo y Hele. Hele cayó al mar (Helesponto). Frixo llegó a la Cólquide."
+    }
+  ],
+  "parents": [
+    "eolo"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "sisifo"
+  ]
+}

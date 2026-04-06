@@ -1,0 +1,27 @@
+{
+  "id": "nereo",
+  "name": "Nereo",
+  "greekName": "Νηρεύς",
+  "category": "primordial",
+  "gender": "male",
+  "title": "El Viejo del Mar",
+  "description": "Nereo es el dios marino más antiguo, conocido como \"el Viejo del Mar\". Padre de las cincuenta Nereidas, incluida Tetis (madre de Aquiles) y Anfitrite (esposa de Poseidón).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Nereo es hijo de Ponto y Gea. Es veraz y no miente, por lo que se le llama \"el Anciano\". Engendró a las cincuenta Nereidas con Doris."
+    }
+  ],
+  "parents": [
+    "ponto",
+    "gea"
+  ],
+  "partners": [],
+  "children": [
+    "anfitrite",
+    "tetis-nereida"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "hecate",
+  "name": "Hécate",
+  "greekName": "Ἑκάτη",
+  "category": "titan",
+  "gender": "female",
+  "title": "Diosa de la Hechicería",
+  "description": "Hécate es la diosa de la magia, la hechicería, las encrucijadas y la noche. Hija de Asteria y Perses. Zeus la honró sobre todos los demás titanes y le permitió conservar sus dominios.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Zeus honró a Hécate por encima de todos. Ella tiene poder sobre la tierra, el mar y el cielo. Concede prosperidad y victoria a quien la invoca."
+    }
+  ],
+  "parents": [
+    "asteria"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "titanes"
+  ]
+}

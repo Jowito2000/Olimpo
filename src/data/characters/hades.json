@@ -1,0 +1,30 @@
+{
+  "id": "hades",
+  "name": "Hades",
+  "greekName": "ᾍδης",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Rey del Inframundo",
+  "description": "Hades es el dios del inframundo y de los muertos. Aunque no es malvado, es temido por todos. Raptó a Perséfone para convertirla en su reina, lo que provocó el mito de las estaciones.",
+  "versions": [
+    {
+      "source": "Himno homérico a Deméter",
+      "text": "Hades raptó a Perséfone mientras recogía flores. Deméter la buscó desesperadamente y provocó un invierno eterno hasta que Zeus intervino."
+    },
+    {
+      "source": "Versión romana (Plutón)",
+      "text": "Identificado con Plutón (\"el Rico\"), nombre que los griegos también usaban como eufemismo para evitar pronunciar su verdadero nombre."
+    }
+  ],
+  "parents": [
+    "cronos",
+    "rea"
+  ],
+  "partners": [
+    "persefone"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

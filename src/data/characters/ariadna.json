@@ -1,0 +1,27 @@
+{
+  "id": "ariadna",
+  "name": "Ariadna",
+  "greekName": "Ἀριάδνη",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Princesa de Creta",
+  "description": "Ariadna es hija del rey Minos de Creta. Ayudó a Teseo a escapar del Laberinto dándole un ovillo de hilo. Teseo la abandonó en Naxos, donde Dioniso la encontró y se casó con ella.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Ariadna dio a Teseo un ovillo de hilo para que pudiera encontrar la salida del Laberinto tras matar al Minotauro."
+    },
+    {
+      "source": "Ovidio - Metamorfosis",
+      "text": "Dioniso convirtió su corona en una constelación (Corona Borealis) tras su muerte."
+    }
+  ],
+  "parents": [],
+  "partners": [
+    "dioniso"
+  ],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "pan",
+  "name": "Pan",
+  "greekName": "Πάν",
+  "category": "olimpico",
+  "gender": "male",
+  "title": "Dios de los Pastores",
+  "description": "Pan es el dios de los pastores, los rebaños, los bosques y la naturaleza salvaje. Tiene patas, cuernos y barba de cabra. Su grito causa \"pánico\" (la palabra viene de su nombre).",
+  "versions": [
+    {
+      "source": "Himno homérico a Pan",
+      "text": "Pan es hijo de Hermes. Cuando nació, su nodriza huyó aterrorizada al ver su aspecto. Hermes lo llevó al Olimpo donde todos los dioses se alegraron."
+    }
+  ],
+  "parents": [
+    "hermes"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "deicoonte",
+  "name": "Deicoonte",
+  "greekName": "Δηϊκόων",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Hijo de Heracles y Mégara",
+  "description": "Deicoonte es uno de los hijos de Heracles y Mégara. Murió a manos de su padre enloquecido por Hera.",
+  "versions": [],
+  "parents": [
+    "heracles",
+    "megara"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

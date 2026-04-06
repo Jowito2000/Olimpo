@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(ls F:ProyectosClaudeolimpo-mitologiapublicimagespersonajesAlcmena*)",
+      "Bash(find /f/ProyectosClaude/olimpo-mitologia/src/data/trees -type f -name *.ts -o -name *.tsx)",
+      "Bash(npx vite:*)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(wc -l src/assets/tree_json/*.json)",
+      "Bash(node -e ':*)",
+      "Bash(node _migrate.cjs)",
+      "Bash(ls F:/ProyectosClaude/olimpo-mitologia/src/data/characters/*.json)",
+      "Bash(curl -s http://localhost:5173/personaje/zeus)",
+      "Bash(curl -s http://localhost:5173/)"
+    ]
+  }
+}

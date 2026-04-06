@@ -1,0 +1,28 @@
+{
+  "id": "demeter",
+  "name": "Deméter",
+  "greekName": "Δημήτηρ",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa de la Agricultura",
+  "description": "Deméter es la diosa de la agricultura, la cosecha y la fertilidad de la tierra. Cuando Hades raptó a su hija Perséfone, Deméter sumió al mundo en un invierno eterno hasta su retorno parcial.",
+  "versions": [
+    {
+      "source": "Himno homérico a Deméter",
+      "text": "Deméter vagó por la tierra buscando a Perséfone disfrazada de anciana. Llegó a Eleusis, donde fundó los Misterios Eleusinos."
+    }
+  ],
+  "parents": [
+    "cronos",
+    "rea"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "persefone"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

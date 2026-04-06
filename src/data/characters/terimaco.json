@@ -1,0 +1,19 @@
+{
+  "id": "terimaco",
+  "name": "Terímaco",
+  "greekName": "Θηρίμαχος",
+  "category": "mortal",
+  "gender": "male",
+  "title": "Hijo de Heracles y Mégara",
+  "description": "Terímaco es uno de los hijos de Heracles y Mégara. Fue asesinado por su propio padre durante el ataque de locura provocado por Hera.",
+  "versions": [],
+  "parents": [
+    "heracles",
+    "megara"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "heroes"
+  ]
+}

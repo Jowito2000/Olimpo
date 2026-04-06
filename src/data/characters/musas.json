@@ -1,0 +1,24 @@
+{
+  "id": "musas",
+  "name": "Las Musas",
+  "greekName": "Μοῦσαι",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosas de las Artes",
+  "description": "Las nueve Musas son hijas de Zeus y Mnemósine. Cada una preside un arte: Clío (historia), Euterpe (música), Talía (comedia), Melpómene (tragedia), Terpsícore (danza), Erato (poesía amorosa), Polimnia (himnos), Urania (astronomía) y Calíope (poesía épica).",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Hesíodo invoca a las Musas al inicio de la Teogonía. Ellas le enseñaron el canto en el monte Helicón."
+    }
+  ],
+  "parents": [
+    "zeus",
+    "mnemosine"
+  ],
+  "partners": [],
+  "children": [],
+  "trees": [
+    "olimpicos"
+  ]
+}

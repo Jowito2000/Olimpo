@@ -1,0 +1,30 @@
+{
+  "id": "tetis",
+  "name": "Tetis",
+  "greekName": "Τηθύς",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide del Mar",
+  "description": "Tetis es la titánide del mar y las aguas. Esposa de Océano, es madre de los ríos y las Oceánides. No confundir con Tetis (Thetis), la nereida madre de Aquiles.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Tetis y Océano engendraron a todos los ríos y a las tres mil ninfas Oceánides."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "oceano"
+  ],
+  "children": [
+    "metis",
+    "estigia",
+    "clímene"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

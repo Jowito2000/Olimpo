@@ -1,0 +1,34 @@
+{
+  "id": "oceano",
+  "name": "Océano",
+  "greekName": "Ὠκεανός",
+  "category": "titan",
+  "gender": "male",
+  "title": "El Río que Rodea el Mundo",
+  "description": "Océano es el titán que personifica el gran río que rodea todo el mundo. Con Tetis engendró a los tres mil ríos (Potamoi) y las tres mil Oceánides. No participó en la Titanomaquia.",
+  "versions": [
+    {
+      "source": "Homero - Ilíada",
+      "text": "Océano es llamado \"origen de los dioses\" y \"origen de todas las cosas\"."
+    },
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Océano y Tetis engendraron a todos los ríos del mundo y a las tres mil Oceánides."
+    }
+  ],
+  "parents": [
+    "urano",
+    "gea"
+  ],
+  "partners": [
+    "tetis"
+  ],
+  "children": [
+    "metis",
+    "estigia",
+    "clímene"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

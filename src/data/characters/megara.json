@@ -1,0 +1,27 @@
+{
+  "id": "megara",
+  "name": "Mégara",
+  "greekName": "Μεγάρα",
+  "category": "mortal",
+  "gender": "female",
+  "title": "Primera Esposa de Heracles",
+  "description": "Mégara es hija del rey Creonte de Tebas. Fue entregada en matrimonio a Heracles como recompensa por defender la ciudad. En un ataque de locura provocado por Hera, Heracles mató a Mégara y a sus hijos.",
+  "versions": [
+    {
+      "source": "Eurípides - Heracles",
+      "text": "Hera enloquece a Heracles y este mata a Mégara y a sus hijos. Al recuperar la cordura, Heracles decide exiliarse y realizar los Doce Trabajos como penitencia."
+    }
+  ],
+  "parents": [],
+  "partners": [
+    "heracles"
+  ],
+  "children": [
+    "terimaco",
+    "creontiades",
+    "deicoonte"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}

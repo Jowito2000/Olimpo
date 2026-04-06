@@ -1,0 +1,37 @@
+{
+  "id": "afrodita",
+  "name": "Afrodita",
+  "greekName": "Ἀφροδίτη",
+  "category": "olimpico",
+  "gender": "female",
+  "title": "Diosa del Amor",
+  "description": "Afrodita es la diosa del amor, la belleza y el deseo. Su origen es debatido: nació de la espuma del mar formada por los genitales de Urano, o es hija de Zeus y Dione.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Afrodita nació de la espuma del mar (aphros) formada alrededor de los genitales de Urano cuando Cronos los arrojó al mar."
+    },
+    {
+      "source": "Homero - Ilíada",
+      "text": "Homero la presenta como hija de Zeus y Dione. Protege a los troyanos y es herida por Diomedes cuando intenta salvar a Eneas."
+    },
+    {
+      "source": "Versión romana (Venus)",
+      "text": "Identificada con Venus. Madre de Eneas y por tanto ancestro mítico de Roma y de la familia Julio-Claudia."
+    }
+  ],
+  "parents": [
+    "urano"
+  ],
+  "partners": [
+    "hefesto",
+    "ares"
+  ],
+  "children": [
+    "eros",
+    "eneas"
+  ],
+  "trees": [
+    "olimpicos"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "pandora",
+  "name": "Pandora",
+  "greekName": "Πανδώρα",
+  "category": "mortal",
+  "gender": "female",
+  "title": "La Primera Mujer",
+  "description": "Pandora es la primera mujer mortal, creada por Hefesto por orden de Zeus como castigo a la humanidad por el robo del fuego de Prometeo. Cada dios le otorgó un don. Abrió la tinaja que contenía todos los males del mundo.",
+  "versions": [
+    {
+      "source": "Hesíodo - Trabajos y días",
+      "text": "Pandora abrió la tinaja (no caja, como suele decirse) y todos los males se esparcieron por el mundo. Solo la Esperanza quedó dentro."
+    }
+  ],
+  "parents": [],
+  "partners": [
+    "epimeteo"
+  ],
+  "children": [
+    "pirra"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

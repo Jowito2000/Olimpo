@@ -1,0 +1,68 @@
+:root {
+  /* Colores principales */
+  --color-bg: #0a0a0f;
+  --color-bg-secondary: #12121a;
+  --color-bg-card: #1a1a2e;
+  --color-bg-hover: #22223a;
+  --color-surface: #16213e;
+
+  /* Dorados */
+  --color-gold: #d4a843;
+  --color-gold-light: #f0d47a;
+  --color-gold-dark: #a67c00;
+  --color-gold-muted: rgba(212, 168, 67, 0.15);
+
+  /* Texto */
+  --color-text: #e8e6e3;
+  --color-text-secondary: #9a9a9a;
+  --color-text-muted: #5a5a6e;
+
+  /* Categorías */
+  --color-primordial: #6b21a8;
+  --color-titan: #b45309;
+  --color-olimpico: #ca8a04;
+  --color-heroe: #0891b2;
+  --color-mortal: #65a30d;
+  --color-ninfa: #db2777;
+  --color-monstruo: #dc2626;
+
+  /* Bordes y líneas */
+  --color-border: rgba(212, 168, 67, 0.2);
+  --color-border-hover: rgba(212, 168, 67, 0.5);
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 20px rgba(212, 168, 67, 0.15);
+
+  /* Tipografía */
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-greek: 'Noto Serif', 'Times New Roman', serif;
+
+  /* Espaciado */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Transiciones */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Layout */
+  --max-width: 1200px;
+  --navbar-height: 64px;
+}

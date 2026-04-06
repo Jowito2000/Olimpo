@@ -1,0 +1,30 @@
+{
+  "id": "leto",
+  "name": "Leto",
+  "greekName": "Λητώ",
+  "category": "titan",
+  "gender": "female",
+  "title": "Titánide de la Maternidad",
+  "description": "Leto es hija de los titanes Ceo y Febe. Amante de Zeus, madre de los gemelos Apolo y Artemisa. Hera, celosa, la persiguió por toda la Tierra impidiendo que diera a luz, hasta que encontró refugio en la isla de Delos.",
+  "versions": [
+    {
+      "source": "Himno homérico a Apolo",
+      "text": "Leto vagó por toda la Tierra buscando un lugar para dar a luz. Ninguna tierra la acogía por temor a Hera, hasta que la isla flotante de Delos la aceptó."
+    }
+  ],
+  "parents": [
+    "ceo",
+    "febe"
+  ],
+  "partners": [
+    "zeus"
+  ],
+  "children": [
+    "apolo",
+    "artemisa"
+  ],
+  "trees": [
+    "titanes",
+    "olimpicos"
+  ]
+}

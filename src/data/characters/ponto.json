@@ -1,0 +1,27 @@
+{
+  "id": "ponto",
+  "name": "Ponto",
+  "greekName": "Πόντος",
+  "category": "primordial",
+  "gender": "male",
+  "title": "El Mar Primordial",
+  "description": "Ponto es la personificación del Mar, nacido de Gea sin padre. Es padre de Nereo (el Viejo del Mar) y otros seres marinos.",
+  "versions": [
+    {
+      "source": "Hesíodo - Teogonía",
+      "text": "Gea engendró a Ponto sin unión amorosa. Ponto engendró con Gea a Nereo, Taumante, Forcis, Ceto y Euribia."
+    }
+  ],
+  "parents": [
+    "gea"
+  ],
+  "partners": [
+    "gea"
+  ],
+  "children": [
+    "nereo"
+  ],
+  "trees": [
+    "titanes"
+  ]
+}

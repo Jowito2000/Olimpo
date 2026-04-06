@@ -1,0 +1,25 @@
+{
+  "id": "andromeda",
+  "name": "Andrómeda",
+  "greekName": "Ἀνδρομέδα",
+  "category": "mortal",
+  "gender": "female",
+  "title": "La Princesa Encadenada",
+  "description": "Andrómeda es una princesa etíope que fue encadenada a una roca como sacrificio a un monstruo marino. Perseo la rescató y se casó con ella.",
+  "versions": [
+    {
+      "source": "Apolodoro - Biblioteca",
+      "text": "Su madre Casiopea presumió de ser más bella que las Nereidas. Poseidón envió al monstruo Ceto. Perseo la rescató mostrando la cabeza de Medusa al monstruo."
+    }
+  ],
+  "parents": [],
+  "partners": [
+    "perseo"
+  ],
+  "children": [
+    "electrion"
+  ],
+  "trees": [
+    "heroes"
+  ]
+}
