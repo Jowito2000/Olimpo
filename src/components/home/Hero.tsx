@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import FloatingParticles from './FloatingParticles';
 import './Hero.css';
 
@@ -8,14 +10,13 @@ export default function Hero() {
       <FloatingParticles />
       <div className="hero__overlay"></div>
 
-      {/* Anillos decorativos animados */}
       <div className="hero__rings" aria-hidden="true">
         <div className="hero__ring hero__ring--1"></div>
         <div className="hero__ring hero__ring--2"></div>
         <div className="hero__ring hero__ring--3"></div>
       </div>
 
-      <div className="hero__content container">
+      <div className="hero__content w-full max-w-[1200px] mx-auto px-6">
         <div className="hero__greek-border" aria-hidden="true">
           <span></span><span></span><span></span><span></span><span></span>
         </div>
@@ -35,11 +36,11 @@ export default function Hero() {
           Desde el Caos primordial hasta las haza&ntilde;as de Heracles.
         </p>
         <div className="hero__actions">
-          <Link to="/arboles" className="hero__btn hero__btn--primary">
+          <Link href="/arboles" className="hero__btn hero__btn--primary">
             <span className="hero__btn-text">Explorar &Aacute;rboles</span>
             <span className="hero__btn-shine"></span>
           </Link>
-          <Link to="/personajes" className="hero__btn hero__btn--secondary">
+          <Link href="/personajes" className="hero__btn hero__btn--secondary">
             Ver Personajes
           </Link>
         </div>

@@ -1,5 +1,6 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
-import './FloatingParticles.css';
 
 interface Particle {
   x: number;
@@ -33,7 +34,6 @@ export default function FloatingParticles() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Crear partículas
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -54,13 +54,11 @@ export default function FloatingParticles() {
         p.x += p.speedX;
         p.y += p.speedY;
 
-        // Wrap around
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        // Pulso de opacidad
         p.opacity += (Math.random() - 0.5) * 0.01;
         p.opacity = Math.max(0.05, Math.min(0.6, p.opacity));
 
@@ -79,7 +77,6 @@ export default function FloatingParticles() {
         ctx.fill();
       });
 
-      // Líneas de conexión entre partículas cercanas
       ctx.shadowBlur = 0;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
@@ -112,7 +109,7 @@ export default function FloatingParticles() {
   return (
     <canvas
       ref={canvasRef}
-      className="floating-particles"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       aria-hidden="true"
     />
   );

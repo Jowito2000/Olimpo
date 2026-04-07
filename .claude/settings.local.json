@@ -12,7 +12,17 @@
       "Bash(node _migrate.cjs)",
       "Bash(ls F:/ProyectosClaude/olimpo-mitologia/src/data/characters/*.json)",
       "Bash(curl -s http://localhost:5173/personaje/zeus)",
-      "Bash(curl -s http://localhost:5173/)"
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(rm -rf node_modules package-lock.json)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(npx next:*)",
+      "Bash(mkdir -p src/components/pages)",
+      "Bash(mv src/pages/CharactersPage.tsx src/components/pages/)",
+      "Bash(mv src/pages/CharacterDetailPage.tsx src/pages/CharacterDetailPage.css src/components/pages/)",
+      "Bash(mv src/pages/GlossaryPage.tsx src/pages/GlossaryPage.css src/components/pages/)",
+      "Bash(mv src/pages/TimelinePage.tsx src/pages/TimelinePage.css src/components/pages/)"
     ]
   }
 }

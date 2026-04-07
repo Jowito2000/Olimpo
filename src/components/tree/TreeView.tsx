@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import * as d3 from 'd3';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { getCharacter, categories } from '../../data';
 import { getImageUrl, getCharacterImage } from '../../utils/images';
 import type { TreeData, TreeNode } from '../../types';
@@ -193,7 +195,7 @@ export default function TreeView({ tree }: Props) {
     expandAll: () => void;
     centerAll: () => void;
   } | null>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
@@ -770,7 +772,7 @@ export default function TreeView({ tree }: Props) {
       nodeEnter.filter(d => !isJunction(d) && !isDualHeader(d))
         .append('clipPath')
         .attr('id', d => `cp-${nodeKey(d)}`)
-        .append('circle').attr('cx', pCx).attr('r', NODE_RADIUS - 3);
+        .append('circle').attr('class', 'tree-node__clip').attr('cx', pCx).attr('r', 0);
 
       nodeEnter.filter(d => !isJunction(d) && !isDualHeader(d))
         .append('image')
@@ -823,7 +825,7 @@ export default function TreeView({ tree }: Props) {
 
       withP.append('clipPath')
         .attr('id', d => `cpp-${nodeKey(d)}`)
-        .append('circle').attr('cx', SINGLE_PARTNER_GAP).attr('r', NODE_RADIUS - 3);
+        .append('circle').attr('class', 'tree-node__partner-clip').attr('cx', SINGLE_PARTNER_GAP).attr('r', 0);
 
       withP.append('image').attr('class', 'tree-node__partner-image')
         .attr('href', d => getImage(d.data.singlePartner!))
@@ -860,7 +862,7 @@ export default function TreeView({ tree }: Props) {
         .attr('fill', d => getCategoryColor(d.data.partnerLeftId!))
         .attr('stroke', d => getCategoryColor(d.data.partnerLeftId!));
       withDual.append('clipPath').attr('id', d => `cpl-${nodeKey(d)}`)
-        .append('circle').attr('cx', -UNION_GAP).attr('r', NODE_RADIUS - 3);
+        .append('circle').attr('class', 'tree-node__partner-clip--left').attr('cx', -UNION_GAP).attr('r', 0);
       withDual.append('image').attr('class', 'tree-node__partner-image')
         .attr('href', d => getImage(d.data.partnerLeftId!))
         .attr('x', -UNION_GAP - (NODE_RADIUS - 3) * 1.4).attr('y', -(NODE_RADIUS - 3))
@@ -876,7 +878,7 @@ export default function TreeView({ tree }: Props) {
         .attr('fill', d => getCategoryColor(d.data.partnerRightId!))
         .attr('stroke', d => getCategoryColor(d.data.partnerRightId!));
       withDual.append('clipPath').attr('id', d => `cpr-${nodeKey(d)}`)
-        .append('circle').attr('cx', UNION_GAP).attr('r', NODE_RADIUS - 3);
+        .append('circle').attr('class', 'tree-node__partner-clip--right').attr('cx', UNION_GAP).attr('r', 0);
       withDual.append('image').attr('class', 'tree-node__partner-image')
         .attr('href', d => getImage(d.data.partnerRightId!))
         .attr('x', UNION_GAP - (NODE_RADIUS - 3) * 1.4).attr('y', -(NODE_RADIUS - 3))
@@ -912,7 +914,7 @@ export default function TreeView({ tree }: Props) {
         .attr('x', pCx).attr('dy', -NODE_RADIUS - 8)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
-        .on('click', (e, d) => { e.stopPropagation(); navigate(`/personaje/${d.data.id}`); });
+        .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.id}`); });
 
       // Partner ficha link (single-partner mode)
       nodeEnter.filter(d => !!d.data.singlePartner && !!getCharacter(d.data.singlePartner!))
@@ -920,7 +922,7 @@ export default function TreeView({ tree }: Props) {
         .attr('x', HALF_GAP).attr('dy', -NODE_RADIUS - 8)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
-        .on('click', (e, d) => { e.stopPropagation(); navigate(`/personaje/${d.data.singlePartner}`); });
+        .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.singlePartner}`); });
 
       // Partner ficha links (Dual mode)
       nodeEnter.filter(d => !!d.data.partnerLeftId && !!getCharacter(d.data.partnerLeftId!))
@@ -928,13 +930,13 @@ export default function TreeView({ tree }: Props) {
         .attr('x', -UNION_GAP).attr('dy', -NODE_RADIUS - 8)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
-        .on('click', (e, d) => { e.stopPropagation(); navigate(`/personaje/${d.data.partnerLeftId}`); });
+        .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.partnerLeftId}`); });
       nodeEnter.filter(d => !!d.data.partnerRightId && !!getCharacter(d.data.partnerRightId!))
         .append('text').attr('class', 'tree-node__link')
         .attr('x', UNION_GAP).attr('dy', -NODE_RADIUS - 8)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
-        .on('click', (e, d) => { e.stopPropagation(); navigate(`/personaje/${d.data.partnerRightId}`); });
+        .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.partnerRightId}`); });
 
       // Union header ficha link (non-junction only)
       nodeEnter.filter(d => !!d.data.isUnionHeader && !isJunction(d) && !isDualHeader(d) && !!getCharacter(d.data.unionPartnerId!))
@@ -942,7 +944,7 @@ export default function TreeView({ tree }: Props) {
         .attr('x', 0).attr('dy', -NODE_RADIUS - 8)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
-        .on('click', (e, d) => { e.stopPropagation(); navigate(`/personaje/${d.data.unionPartnerId}`); });
+        .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.unionPartnerId}`); });
 
       // Group link
       nodeEnter.filter(d => !!d.data.isGroup)
@@ -1009,13 +1011,22 @@ export default function TreeView({ tree }: Props) {
       nodeUpdate.select<SVGCircleElement>('.tree-node__bg')
         .transition().duration(duration)
         .attr('r', d => nodeRadius(d));
+      nodeUpdate.select<SVGCircleElement>('.tree-node__clip')
+        .transition().duration(duration)
+        .attr('r', d => nodeRadius(d) - 3);
 
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-bg')
         .transition().duration(duration).attr('r', NODE_RADIUS);
+      nodeUpdate.select<SVGCircleElement>('.tree-node__partner-clip')
+        .transition().duration(duration).attr('r', NODE_RADIUS - 3);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-bg--left')
         .transition().duration(duration).attr('r', NODE_RADIUS);
+      nodeUpdate.select<SVGCircleElement>('.tree-node__partner-clip--left')
+        .transition().duration(duration).attr('r', NODE_RADIUS - 3);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-bg--right')
         .transition().duration(duration).attr('r', NODE_RADIUS);
+      nodeUpdate.select<SVGCircleElement>('.tree-node__partner-clip--right')
+        .transition().duration(duration).attr('r', NODE_RADIUS - 3);
 
       nodeUpdate.select('.tree-node__expand')
         .style('display', d => hasHiddenChildren(d) ? 'block' : 'none');
@@ -1039,9 +1050,13 @@ export default function TreeView({ tree }: Props) {
         .attr('transform', `translate(${source.x ?? 0},${source.y ?? 0})`)
         .remove();
       nodeExit.select('.tree-node__bg').attr('r', 0);
+      nodeExit.select('.tree-node__clip').attr('r', 0);
       nodeExit.select('.tree-node__partner-bg').attr('r', 0);
+      nodeExit.select('.tree-node__partner-clip').attr('r', 0);
       nodeExit.select('.tree-node__partner-bg--left').attr('r', 0);
+      nodeExit.select('.tree-node__partner-clip--left').attr('r', 0);
       nodeExit.select('.tree-node__partner-bg--right').attr('r', 0);
+      nodeExit.select('.tree-node__partner-clip--right').attr('r', 0);
 
       // Save positions
       nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
@@ -1174,7 +1189,7 @@ export default function TreeView({ tree }: Props) {
     const sc = initialZoom[tree.id] ?? 1.0;
     svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
 
-  }, [tree, navigate, getCategoryColor, getImage, getName]);
+  }, [tree, router, getCategoryColor, getImage, getName]);
 
   /* ─── Fullscreen listener ───────────────────────────────────────────── */
   useEffect(() => {

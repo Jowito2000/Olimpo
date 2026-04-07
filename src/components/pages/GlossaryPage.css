@@ -1,0 +1,83 @@
+/* Letter buttons */
+.glossary-page__letter-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.glossary-page__letter-btn:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+  color: var(--color-gold-light);
+}
+
+.glossary-page__letter-btn--active {
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+  background: var(--color-gold-muted);
+}
+
+.glossary-page__letter-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: transparent;
+}
+
+/* Card stagger animation */
+@keyframes fancyCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-filter .glossary-card {
+  animation: fancyCardIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-filter .glossary-card:nth-child(1) { animation-delay: 0.05s; }
+.animate-filter .glossary-card:nth-child(2) { animation-delay: 0.09s; }
+.animate-filter .glossary-card:nth-child(3) { animation-delay: 0.13s; }
+.animate-filter .glossary-card:nth-child(4) { animation-delay: 0.17s; }
+.animate-filter .glossary-card:nth-child(5) { animation-delay: 0.21s; }
+.animate-filter .glossary-card:nth-child(6) { animation-delay: 0.25s; }
+.animate-filter .glossary-card:nth-child(7) { animation-delay: 0.29s; }
+.animate-filter .glossary-card:nth-child(8) { animation-delay: 0.33s; }
+.animate-filter .glossary-card:nth-child(9) { animation-delay: 0.37s; }
+.animate-filter .glossary-card:nth-child(10) { animation-delay: 0.41s; }
+.animate-filter .glossary-card:nth-child(11) { animation-delay: 0.45s; }
+.animate-filter .glossary-card:nth-child(12) { animation-delay: 0.49s; }
+.animate-filter .glossary-card:nth-child(n+13) { animation-delay: 0.53s; }
+
+/* Glossary card */
+.glossary-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.glossary-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-md), var(--shadow-gold);
+}
