@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { categories, treeList } from '@/data';
 import { getCharacterImage } from '@/utils/images';
 import type { Character } from '@/types';
@@ -34,10 +35,13 @@ export default function CharacterDetailPage({ character, parentCharacters, child
               className="detail-page__image-wrapper"
               style={{ '--cat-color': categoryInfo?.color ?? '#9a9a9a' } as React.CSSProperties}
             >
-              <img
+              <Image
                 src={getCharacterImage(character)}
                 alt={character.name}
-                className="w-full h-full object-cover object-[center_0%]"
+                fill
+                priority
+                sizes="(max-width: 768px) 250px, 280px"
+                className="object-cover object-[center_0%]"
               />
             </div>
           </div>
@@ -158,10 +162,13 @@ function FamilyGroup({ label, characters }: FamilyGroupProps) {
             href={`/personaje/${char.id}`}
             className="flex items-center gap-2 px-4 py-2 bg-bg-card border border-border-base rounded-lg no-underline transition-all duration-150 hover:border-gold hover:bg-bg-hover hover:-translate-y-0.5"
           >
-            <img
+            <Image
               src={getCharacterImage(char)}
               alt={char.name}
-              className="w-9 h-9 rounded-full object-cover border border-border-base"
+              width={36}
+              height={36}
+              sizes="36px"
+              className="rounded-full object-cover border border-border-base"
               loading="lazy"
             />
             <span className="text-[0.85rem] text-gold-light font-display">{char.name}</span>

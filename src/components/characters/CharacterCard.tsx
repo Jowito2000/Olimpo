@@ -6,9 +6,10 @@ import './CharacterCard.css';
 
 interface Props {
   character: Character;
+  priority?: boolean;
 }
 
-export default function CharacterCard({ character }: Props) {
+export default function CharacterCard({ character, priority = false }: Props) {
   return (
     <Link
       href={`/personaje/${character.id}`}
@@ -22,7 +23,8 @@ export default function CharacterCard({ character }: Props) {
           fill
           sizes="(max-width: 640px) 50vw, 200px"
           className="object-cover object-[center_10%] scale-120 origin-top transition-transform duration-[400ms]"
-          loading="lazy"
+          priority={priority}
+          loading={priority ? undefined : 'lazy'}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-[rgba(10,10,15,0.8)]"></div>
       </div>

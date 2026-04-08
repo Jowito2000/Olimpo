@@ -111,8 +111,8 @@ export default function CharactersPage({ characters }: Props) {
           key={`${activeCategory}-${activeTree}-${search}`}
           className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-6 max-sm:grid-cols-2 max-sm:gap-4 animate-filter-chars"
         >
-          {filtered.map(character => (
-            <CharacterCard key={character.id} character={character} />
+          {filtered.map((character, index) => (
+            <CharacterCard key={character.id} character={character} priority={index < 8} />
           ))}
         </div>
 
