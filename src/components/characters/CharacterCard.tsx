@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Character } from '../../types';
 import { getCharacterImage } from '../../utils/images';
 import './CharacterCard.css';
@@ -15,10 +16,12 @@ export default function CharacterCard({ character }: Props) {
       data-category={character.category}
     >
       <div className="relative w-full aspect-square overflow-hidden bg-bg-secondary">
-        <img
+        <Image
           src={getCharacterImage(character)}
           alt={character.name}
-          className="w-full h-full object-cover object-[center_10%] scale-120 origin-top transition-transform duration-[400ms] group-hover:scale-108"
+          fill
+          sizes="(max-width: 640px) 50vw, 200px"
+          className="object-cover object-[center_10%] scale-120 origin-top transition-transform duration-[400ms]"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-[rgba(10,10,15,0.8)]"></div>

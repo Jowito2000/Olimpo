@@ -226,13 +226,18 @@ export default function TreeView({ tree }: Props) {
     return map[cat] ?? '#9a9a9a';
   }, [metaMap, tree.nodeMeta]);
 
+  const optimizeImage = useCallback((rawPath: string): string => {
+    return `/_next/image?url=${encodeURIComponent(rawPath)}&w=96&q=80`;
+  }, []);
+
   const getImage = useCallback((id: string): string => {
     const baseId = id.split(/(_dup|:|_2)/)[0] ?? id;
     const char = getCharacter(baseId);
-    if (char) return getCharacterImage(char);
-    const metaName = tree.nodeMeta?.[baseId]?.name ?? metaMap.get(baseId)?.name;
-    return getImageUrl(baseId, metaName ?? baseId);
-  }, [metaMap, tree.nodeMeta]);
+    const rawPath = char
+      ? getCharacterImage(char)
+      : getImageUrl(baseId, tree.nodeMeta?.[baseId]?.name ?? metaMap.get(baseId)?.name ?? baseId);
+    return optimizeImage(rawPath);
+  }, [metaMap, tree.nodeMeta, optimizeImage]);
 
   const getName = useCallback((id: string): string => {
     const baseId = id.split(/(_dup|:|_2)/)[0] ?? id;
@@ -778,7 +783,7 @@ export default function TreeView({ tree }: Props) {
         .append('image')
         .attr('class', 'tree-node__image')
         .attr('href', d => d.data.isGroup && d.data.groupImage
-          ? `/images/personajes/${d.data.groupImage}`
+          ? optimizeImage(`/images/personajes/${d.data.groupImage}`)
           : getImage(pId(d)))
         .attr('x', d => pCx(d) - (NODE_RADIUS - 3) * 1.4)
         .attr('y', -(NODE_RADIUS - 3))
@@ -1189,7 +1194,7 @@ export default function TreeView({ tree }: Props) {
     const sc = initialZoom[tree.id] ?? 1.0;
     svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
 
-  }, [tree, router, getCategoryColor, getImage, getName]);
+  }, [tree, router, getCategoryColor, getImage, getName, optimizeImage]);
 
   /* ─── Fullscreen listener ───────────────────────────────────────────── */
   useEffect(() => {
