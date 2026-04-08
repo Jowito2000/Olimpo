@@ -1,9 +1,12 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { glossaryTerms } from '@/data';
-import { GlossaryCategory } from '@/types';
+import type { GlossaryCategory, GlossaryTerm } from '@/types';
 import './GlossaryPage.css';
+
+interface Props {
+  terms: GlossaryTerm[];
+}
 
 const CATEGORIES: { id: GlossaryCategory | 'all', label: string }[] = [
   { id: 'all', label: 'Todos' },
@@ -15,7 +18,7 @@ const CATEGORIES: { id: GlossaryCategory | 'all', label: string }[] = [
   { id: 'objeto', label: 'Objetos' }
 ];
 
-export default function GlossaryPage() {
+export default function GlossaryPage({ terms: glossaryTerms }: Props) {
   const [search, setSearch] = useState('');
   const [activeLetter, setActiveLetter] = useState<string | 'all'>('all');
   const [activeCategory, setActiveCategory] = useState<GlossaryCategory | 'all'>('all');

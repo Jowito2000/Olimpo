@@ -1,16 +1,20 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { getAllCharacters, categories, treeList } from '@/data';
+import { categories, treeList } from '@/data';
 import CharacterCard from '@/components/characters/CharacterCard';
-import type { CharacterCategory, TreeId } from '@/types';
+import type { Character, CharacterCategory, TreeId } from '@/types';
 
-export default function CharactersPage() {
+interface Props {
+  characters: Character[];
+}
+
+export default function CharactersPage({ characters }: Props) {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<CharacterCategory | 'all'>('all');
   const [activeTree, setActiveTree] = useState<TreeId | 'all'>('all');
 
-  const allCharacters = useMemo(() => getAllCharacters(), []);
+  const allCharacters = characters;
 
   const filtered = useMemo(() => {
     return allCharacters.filter(c => {

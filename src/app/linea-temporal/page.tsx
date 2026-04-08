@@ -1,5 +1,7 @@
 import TimelinePage from '@/components/pages/TimelinePage';
+import { getAllTimelineEvents } from '@/lib/queries';
 
-export default function Page() {
-  return <TimelinePage />;
+export default async function Page() {
+  const events = await getAllTimelineEvents();
+  return <TimelinePage events={events} />;
 }

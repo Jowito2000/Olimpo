@@ -2,13 +2,17 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { timelineEvents } from '@/data';
+import type { TimelineEvent } from '@/types';
 import './TimelinePage.css';
 
-export default function TimelinePage() {
+interface Props {
+  events: TimelineEvent[];
+}
+
+export default function TimelinePage({ events }: Props) {
   const [detailLevel, setDetailLevel] = useState<number>(3);
 
-  const filteredEvents = timelineEvents.filter(e => e.level <= detailLevel);
+  const filteredEvents = events.filter(e => e.level <= detailLevel);
   return (
     <main className="timeline-page">
       <div className="w-full max-w-[1200px] mx-auto px-6">
