@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? 'jowito2000@gmail.com';
 
@@ -79,20 +79,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST ?? 'smtp.gmail.com',
-      port: Number(process.env.SMTP_PORT ?? 587),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const subject = `[Olimpo] Sugerencia — ${data.contextoNombre}: ${data.campo || data.tipo}`;
 
-    await transporter.sendMail({
-      from: `"Olimpo Sugerencias" <${process.env.SMTP_USER}>`,
+    await resend.emails.send({
+      from: 'Olimpo Sugerencias <onboarding@resend.dev>',
       to: CONTACT_EMAIL,
       replyTo: data.emailContacto || undefined,
       subject,
