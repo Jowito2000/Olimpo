@@ -2,39 +2,23 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { getCharacter, categories, treeList } from '@/data';
+import { categories, treeList } from '@/data';
 import { getCharacterImage } from '@/utils/images';
+import type { Character } from '@/types';
+import SuggestionButton from '@/components/suggestion/SuggestionButton';
 import './CharacterDetailPage.css';
 
 interface Props {
-  characterId: string;
+  character: Character;
+  parentCharacters: Character[];
+  childCharacters: Character[];
+  partnerCharacters: Character[];
 }
 
-export default function CharacterDetailPage({ characterId }: Props) {
+export default function CharacterDetailPage({ character, parentCharacters, childCharacters, partnerCharacters }: Props) {
   const [activeVersion, setActiveVersion] = useState(0);
 
-  const character = characterId ? getCharacter(characterId) : null;
-
-  if (!character) {
-    return (
-      <main className="pt-[calc(64px+2rem)] min-h-screen pb-16">
-        <div className="w-full max-w-[1200px] mx-auto px-6">
-          <div className="text-center py-24">
-            <h1 className="mb-4">Personaje no encontrado</h1>
-            <p className="mb-8">El personaje &laquo;{characterId}&raquo; no existe en la base de datos.</p>
-            <Link href="/personajes" className="detail-page__back-link">
-              &larr; Volver al &iacute;ndice
-            </Link>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
   const categoryInfo = categories.find(c => c.id === character.category);
-  const parentCharacters = character.parents.map(id => getCharacter(id)).filter(Boolean);
-  const childCharacters = character.children.map(id => getCharacter(id)).filter(Boolean);
-  const partnerCharacters = character.partners.map(id => getCharacter(id)).filter(Boolean);
 
   return (
     <main className="pt-[calc(64px+2rem)] min-h-screen pb-16">
@@ -132,6 +116,11 @@ export default function CharacterDetailPage({ characterId }: Props) {
           </div>
         </section>
 
+        <SuggestionButton
+          context={{ tipo: 'character', character }}
+          variant="floating"
+        />
+
         {/* Foto Completa */}
         <section className="mb-16">
           <h2 className="text-[1.3rem] mb-6 pb-2 border-b border-border-base">Imagen Completa del personaje</h2>
@@ -155,7 +144,7 @@ export default function CharacterDetailPage({ characterId }: Props) {
 
 interface FamilyGroupProps {
   label: string;
-  characters: ReturnType<typeof getCharacter>[];
+  characters: Character[];
 }
 
 function FamilyGroup({ label, characters }: FamilyGroupProps) {
@@ -163,7 +152,7 @@ function FamilyGroup({ label, characters }: FamilyGroupProps) {
     <div>
       <h3 className="font-display text-[0.85rem] text-gold-dark uppercase tracking-wider mb-4">{label}</h3>
       <div className="flex flex-wrap gap-4">
-        {characters.map(char => char && (
+        {characters.map(char => (
           <Link
             key={char.id}
             href={`/personaje/${char.id}`}
