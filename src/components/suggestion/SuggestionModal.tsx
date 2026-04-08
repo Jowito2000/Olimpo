@@ -176,12 +176,12 @@ export default function SuggestionModal({ context, onClose }: Props) {
   const modal = (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4"
+      className="fixed inset-0 z-[1010] flex items-end sm:items-center justify-center p-0 sm:p-4 sm:pt-20"
       style={{ background: 'rgba(7,7,15,0.85)', backdropFilter: 'blur(6px)' }}
       onMouseDown={e => { if (e.target === overlayRef.current) onClose(); }}
     >
       <div
-        className="relative w-full sm:max-w-2xl max-h-[95dvh] sm:max-h-[90dvh] bg-bg-card border border-border-base rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col shadow-lg"
+        className="relative w-full sm:max-w-2xl max-h-[calc(100dvh-5rem)] sm:max-h-[80dvh] bg-bg-card border border-border-base rounded-t-2xl sm:rounded-2xl overflow-hidden flex flex-col shadow-lg"
         style={{ boxShadow: '0 0 40px rgba(212,168,67,0.08)' }}
       >
         {/* Header */}
