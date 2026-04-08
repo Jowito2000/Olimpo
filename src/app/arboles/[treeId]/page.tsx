@@ -6,6 +6,10 @@ interface Props {
   params: Promise<{ treeId: string }>;
 }
 
+export function generateStaticParams() {
+  return ['titanes', 'olimpicos', 'heroes', 'sisifo'].map(treeId => ({ treeId }));
+}
+
 export default async function Page({ params }: Props) {
   const { treeId } = await params;
   const tree = await getTreeData(treeId);

@@ -1,9 +1,14 @@
 import { notFound } from 'next/navigation';
 import CharacterDetailPage from '@/components/pages/CharacterDetailPage';
-import { getCharacterFull } from '@/lib/queries';
+import { getCharacterFull, getAllCharacters } from '@/lib/queries';
 
 interface Props {
   params: Promise<{ characterId: string }>;
+}
+
+export async function generateStaticParams() {
+  const characters = await getAllCharacters();
+  return characters.map(c => ({ characterId: c.id }));
 }
 
 export default async function Page({ params }: Props) {
