@@ -227,7 +227,7 @@ export default function TreeView({ tree }: Props) {
   }, [metaMap, tree.nodeMeta]);
 
   const optimizeImage = useCallback((rawPath: string): string => {
-    return `/_next/image?url=${encodeURIComponent(rawPath)}&w=96&q=80`;
+    return `/_next/image?url=${encodeURIComponent(rawPath)}&w=256&q=90`;
   }, []);
 
   const getImage = useCallback((id: string): string => {
