@@ -22,7 +22,7 @@ const securityHeaders = [
   // - styles: same origin + inline + Google Fonts
   // - fonts: same origin + Google Fonts CDN
   // - images: same origin + data URIs (used by D3 / inline SVGs)
-  // - connect: same origin + Supabase (for any API calls)
+  // - connect: same origin (API routes like /api/sugerencia)
   {
     key: 'Content-Security-Policy',
     value: [
@@ -31,7 +31,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob:",
-      `connect-src 'self' ${process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''}`,
+      "connect-src 'self'",
       "frame-ancestors 'self'",
     ]
       .join('; ')

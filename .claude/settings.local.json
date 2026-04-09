@@ -31,7 +31,8 @@
       "Bash(grep -oE '\"[^\"]+\"$')",
       "Bash(grep \"\\\\.json$\")",
       "Bash(echo \"EXIT: $?\")",
-      "Bash(echo \"TS exit: $?\")"
+      "Bash(echo \"TS exit: $?\")",
+      "Bash(npm uninstall:*)"
     ]
   }
 }
