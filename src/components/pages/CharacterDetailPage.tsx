@@ -66,10 +66,10 @@ export default function CharacterDetailPage({ character, parentCharacters, child
                   return (
                     <Link
                       key={treeId}
-                      href={`/arboles/${treeId}`}
+                      href={`/arboles/${treeId}?nodo=${character.id}`}
                       className="text-[0.75rem] px-2.5 py-0.5 bg-gold-muted border border-border-base rounded text-gold capitalize transition-all duration-150 hover:border-gold hover:bg-[rgba(212,168,67,0.25)]"
                     >
-                      {treeInfo?.icon} {treeInfo?.name ?? treeId}
+                      {treeInfo?.icon ?? treeId}
                     </Link>
                   );
                 })}

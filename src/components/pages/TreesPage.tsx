@@ -9,6 +9,7 @@ import type { TreeData, TreeNode } from '@/types';
 
 interface Props {
   tree: TreeData;
+  focusId?: string;
 }
 
 function preloadTreeImages(tree: TreeData) {
@@ -45,7 +46,7 @@ function preloadTreeImages(tree: TreeData) {
   visit(tree.root);
 }
 
-export default function TreesPage({ tree }: Props) {
+export default function TreesPage({ tree, focusId }: Props) {
   const treeInfo = treeList.find(t => t.id === tree.id);
   const treeName = treeInfo?.name ?? tree.id;
 
@@ -56,7 +57,7 @@ export default function TreesPage({ tree }: Props) {
   return (
     <div>
       <p className="text-center text-[0.78rem] text-text-muted mb-2">{tree.description}</p>
-      <TreeView tree={tree} key={tree.id} />
+      <TreeView tree={tree} focusId={focusId} key={tree.id} />
       <SuggestionButton
         context={{ tipo: 'tree', treeId: tree.id, treeName }}
         variant="floating"

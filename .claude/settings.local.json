@@ -22,7 +22,14 @@
       "Bash(mv src/pages/CharactersPage.tsx src/components/pages/)",
       "Bash(mv src/pages/CharacterDetailPage.tsx src/pages/CharacterDetailPage.css src/components/pages/)",
       "Bash(mv src/pages/GlossaryPage.tsx src/pages/GlossaryPage.css src/components/pages/)",
-      "Bash(mv src/pages/TimelinePage.tsx src/pages/TimelinePage.css src/components/pages/)"
+      "Bash(mv src/pages/TimelinePage.tsx src/pages/TimelinePage.css src/components/pages/)",
+      "Bash(xargs grep:*)",
+      "Bash(find:*)",
+      "Bash(grep -l \"eris\\\\|eurinome\\\\|aglaya\\\\|eufrosine\\\\|talia-gracia\" \"F:/ProyectosClaude/Olimpo/src/assets/tree_json/\"*)",
+      "Bash(xargs -I {} sh -c 'echo \"=== {} ===\" && grep -o \"\\\\\"id\\\\\":\\\\s*\\\\\"[^\\\\\"]*\\\\\"\" \"{}\" | sort | uniq')",
+      "Bash(grep -hoE '\"id\"\\\\s*:\\\\s*\"[^\"]+\"' src/assets/tree_json/*.json)",
+      "Bash(grep -oE '\"[^\"]+\"$')",
+      "Bash(grep \"\\\\.json$\")"
     ]
   }
 }

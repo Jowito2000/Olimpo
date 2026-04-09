@@ -5,6 +5,7 @@ import { getTreeData } from '@/lib/queries';
 
 interface Props {
   params: Promise<{ treeId: string }>;
+  searchParams: Promise<{ nodo?: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,11 +23,12 @@ export function generateStaticParams() {
   return ['titanes', 'olimpicos', 'heroes', 'sisifo'].map(treeId => ({ treeId }));
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params, searchParams }: Props) {
   const { treeId } = await params;
+  const { nodo } = await searchParams;
   const tree = await getTreeData(treeId);
 
   if (!tree) notFound();
 
-  return <TreesPage tree={tree} />;
+  return <TreesPage tree={tree} focusId={nodo} />;
 }

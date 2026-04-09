@@ -1,0 +1,48 @@
+Los JSON son la única fuente de verdad. El seed.ts los lee y los vuelca en Supabase. Es decir:                            
+                                                                                                                            
+  JSON files → seed.ts → Supabase DB
+       ↓                                                                                                                    
+    Tree JSON → graphToTree() → D3 renderiza                                                                                
+                                                                                                                            
+  Para añadir un personaje nuevo:                                                                                           
+                                                                                                                            
+  1. Crear src/data/characters/{id}.json:                                                                                   
+  {                                                                                                                         
+    "id": "medusa",                                                                                                         
+    "name": "Medusa",                                                                                                       
+    "greekName": "Μέδουσα",                                                                                                 
+    "category": "monstruo",                                                                                                 
+    "gender": "female",                                                                                                     
+    "title": "La Gorgona mortal",                                                                                           
+    "description": "...",
+    "versions": [],
+    "parents": [],
+    "partners": [],
+    "children": [],
+    "trees": ["olimpicos"]
+  }
+
+  2. Añadir el barrel import en src/data/characters/index.ts:
+  import medusa from './medusa.json';
+  // y añadirlo al array allModules
+
+  3. Añadir nodo + edges en src/assets/tree_json/olimpicos.json:
+  // En nodes:
+  { "id": "medusa", "type": "individuo", "label": "Medusa", "category": "monstruo", "gender": "female" }
+
+  // En edges (nodo de unión con su pareja + hijos):
+  { "source": "medusa",          "target": "union_medusa_poseidon", "type": "partner" }
+  { "source": "poseidon",        "target": "union_medusa_poseidon", "type": "partner" }
+  { "source": "union_medusa_poseidon", "target": "pegaso",          "type": "child"   }
+
+  4. Sincronizar la DB:
+  npx prisma db seed
+
+  ---
+  Lo que el algoritmo hace automáticamente:
+  - Detecta la posición del nodo en el árbol por sus edges
+  - Renderiza el nodo con la imagen y enlace del personaje
+  - Maneja nodos con múltiples parejas y múltiples uniones
+
+  Una regla importante: el nodo tiene que ser alcanzable desde el nodo raíz del árbol (Zeus para olimpicos, Caos para
+  titanes, etc.) a través de edges. Si lo añades pero no lo conectas, no aparecerá aunque esté en el JSON.

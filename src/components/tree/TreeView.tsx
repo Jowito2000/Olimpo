@@ -185,15 +185,16 @@ function flattenToLayout(
 
 /* ─── Component ──────────────────────────────────────────────────────── */
 
-interface Props { tree: TreeData; }
+interface Props { tree: TreeData; focusId?: string; }
 
-export default function TreeView({ tree }: Props) {
+export default function TreeView({ tree, focusId }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const actionsRef = useRef<{
     collapseAll: () => void;
     expandAll: () => void;
     centerAll: () => void;
+    focusNode: (id: string) => void;
   } | null>(null);
   const router = useRouter();
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -1169,6 +1170,111 @@ export default function TreeView({ tree }: Props) {
         .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
     }
 
+    function focusNode(charId: string) {
+      // 1. Find the node, searching both visible (children) and collapsed (_children)
+      function findInHierarchy(node: HNode): HNode | null {
+        if (
+          node.data.personId === charId ||
+          node.data.singlePartner === charId ||
+          node.data.unionPartnerId === charId ||
+          node.data.partnerLeftId === charId ||
+          node.data.partnerRightId === charId
+        ) return node;
+        for (const c of [...(node.children ?? []), ...(node._children ?? [])] as HNode[]) {
+          const found = findInHierarchy(c);
+          if (found) return found;
+        }
+        return null;
+      }
+      const target = findInHierarchy(root);
+      if (!target) return;
+
+      // 2. Expand all collapsed ancestors on the path to target
+      let changed = false;
+      let child: HNode = target;
+      let ancestor: HNode | null = target.parent as HNode | null;
+      while (ancestor) {
+        if (ancestor._children?.includes(child)) {
+          ancestor.children = ancestor._children;
+          ancestor._children = undefined;
+          changed = true;
+        }
+        child = ancestor;
+        ancestor = ancestor.parent as HNode | null;
+      }
+      if (changed) update(root);
+
+      // 3. Compute character's absolute X in tree space (accounts for partner offsets)
+      let charAbsX = target.x;
+      let charCxOffset = 0;
+      if (target.data.singlePartner === charId) {
+        charCxOffset = HALF_GAP;
+        charAbsX = target.x + HALF_GAP;
+      } else if (target.data.partnerLeftId === charId) {
+        charCxOffset = -UNION_GAP;
+        charAbsX = target.x - UNION_GAP;
+      } else if (target.data.partnerRightId === charId) {
+        charCxOffset = UNION_GAP;
+        charAbsX = target.x + UNION_GAP;
+      } else if (target.data.personId === charId && target.data.singlePartner) {
+        charCxOffset = -SINGLE_PARTNER_GAP;
+        charAbsX = target.x - SINGLE_PARTNER_GAP;
+      }
+
+      // 4. Pan & zoom to center the character node
+      const svgW = svgRef.current!.clientWidth;
+      const svgH = svgRef.current!.clientHeight;
+      const scale = 1.3;
+      const tx = svgW / 2 - charAbsX * scale;
+      const ty = svgH / 2.5 - target.y * scale;
+      svg.transition().duration(700)
+        .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+
+      // 5. Pulsing gold ring on the character circle
+      g.selectAll('.focus-highlight').remove();
+      (g.selectAll<SVGGElement, HNode>('g.tree-node') as d3.Selection<SVGGElement, HNode, SVGGElement, unknown>)
+        .filter(d =>
+          d.data.personId === charId ||
+          d.data.singlePartner === charId ||
+          d.data.unionPartnerId === charId ||
+          d.data.partnerLeftId === charId ||
+          d.data.partnerRightId === charId
+        )
+        .each(function(d) {
+          let cx = charCxOffset;
+          if (d !== target) {
+            if (d.data.singlePartner === charId) cx = HALF_GAP;
+            else if (d.data.partnerLeftId === charId) cx = -UNION_GAP;
+            else if (d.data.partnerRightId === charId) cx = UNION_GAP;
+            else if (d.data.personId === charId && d.data.singlePartner) cx = -SINGLE_PARTNER_GAP;
+            else cx = 0;
+          }
+          const ring = d3.select(this)
+            .append('circle')
+            .attr('class', 'focus-highlight')
+            .attr('cx', cx)
+            .attr('r', NODE_RADIUS + 8)
+            .attr('fill', 'none')
+            .attr('stroke', '#d4a843')
+            .attr('stroke-width', 2.5)
+            .attr('opacity', 0.9)
+            .attr('pointer-events', 'none');
+
+          let count = 3;
+          (function pulse() {
+            if (--count < 0) {
+              ring.transition().duration(600).attr('opacity', 0).on('end', () => ring.remove());
+              return;
+            }
+            ring.transition().duration(650)
+              .attr('r', NODE_RADIUS + 18).attr('opacity', 0.12)
+              .transition().duration(650)
+              .attr('r', NODE_RADIUS + 8).attr('opacity', 0.9)
+              .on('end', pulse);
+          })();
+        });
+    }
+
     actionsRef.current = {
       collapseAll: () => {
         expandAllNodes(root);
@@ -1181,6 +1287,7 @@ export default function TreeView({ tree }: Props) {
         update(root, 'expand');
       },
       centerAll: centerVisibleNodes,
+      focusNode,
     };
 
     // Center tree — per-tree zoom so initial nodes fill nicely
@@ -1195,6 +1302,16 @@ export default function TreeView({ tree }: Props) {
     svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
 
   }, [tree, router, getCategoryColor, getImage, getName, optimizeImage]);
+
+  /* ─── Focus on a specific character node (from ?nodo= param) ──────── */
+  useEffect(() => {
+    if (!focusId) return;
+    // Wait for D3 to finish the initial render + collapse animation
+    const timer = setTimeout(() => {
+      actionsRef.current?.focusNode(focusId);
+    }, 550);
+    return () => clearTimeout(timer);
+  }, [focusId, tree]);
 
   /* ─── Fullscreen listener ───────────────────────────────────────────── */
   useEffect(() => {
