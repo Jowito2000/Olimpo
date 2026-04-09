@@ -25,9 +25,7 @@
   ],
   "children": [
     "triton",
-    "teseo",
-    "polifemo",
-    "orion"
+    "teseo"
   ],
   "trees": [
     "olimpicos"

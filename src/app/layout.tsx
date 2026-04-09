@@ -4,15 +4,28 @@ import Footer from '@/components/common/Footer';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'OLIMPO — Atlas de la Mitología Griega',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://olimpo.com'),
+  title: {
+    default: 'OLIMPO — Atlas de la Mitología Griega',
+    template: '%s · OLIMPO',
+  },
   description: 'Explora los árboles genealógicos interactivos de la mitología griega. Desde el Caos primordial hasta los héroes.',
   openGraph: {
     title: 'OLIMPO — Atlas de la Mitología Griega',
     description: 'Árboles genealógicos interactivos de dioses, titanes y héroes griegos.',
     type: 'website',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'OLIMPO — Atlas de la Mitología Griega' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OLIMPO — Atlas de la Mitología Griega',
+    description: 'Árboles genealógicos interactivos de dioses, titanes y héroes griegos.',
   },
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Ω</text></svg>",
+  },
+  alternates: {
+    canonical: '/',
   },
 };
 

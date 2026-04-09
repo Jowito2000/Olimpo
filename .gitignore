@@ -13,6 +13,12 @@ npm-debug.log*
 # Local
 *.local
 
+# Environment variables — NEVER commit real secrets
+.env
+.env.local
+.env.production
+.env.*.local
+
 # Editor
 .vscode/*
 !.vscode/extensions.json
@@ -26,3 +32,7 @@ npm-debug.log*
 
 # Next.js types
 next-env.d.ts
+tsconfig.tsbuildinfo
+
+# Claude Code local settings
+.claude/settings.local.json
