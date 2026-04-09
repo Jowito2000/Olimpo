@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CharacterDetailPage from '@/components/pages/CharacterDetailPage';
-import { getCharacterFull, getAllCharacters } from '@/lib/queries';
-import { getCharacter } from '@/data/characters';
+import { getCharacter, getAllCharacters } from '@/data/characters';
 
 interface Props {
   params: Promise<{ characterId: string }>;
@@ -24,23 +23,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  const characters = await getAllCharacters();
-  return characters.map(c => ({ characterId: c.id }));
+export function generateStaticParams() {
+  return getAllCharacters().map(c => ({ characterId: c.id }));
 }
 
 export default async function Page({ params }: Props) {
   const { characterId } = await params;
-  const data = await getCharacterFull(characterId);
+  const character = getCharacter(characterId);
+  if (!character) notFound();
 
-  if (!data) notFound();
+  const parentCharacters = (character.parents ?? [])
+    .map(id => getCharacter(id))
+    .filter((c): c is NonNullable<typeof c> => c !== null);
+
+  const childCharacters = (character.children ?? [])
+    .map(id => getCharacter(id))
+    .filter((c): c is NonNullable<typeof c> => c !== null);
+
+  const partnerCharacters = (character.partners ?? [])
+    .map(id => getCharacter(id))
+    .filter((c): c is NonNullable<typeof c> => c !== null);
 
   return (
     <CharacterDetailPage
-      character={data.character}
-      parentCharacters={data.parentCharacters}
-      childCharacters={data.childCharacters}
-      partnerCharacters={data.partnerCharacters}
+      character={character}
+      parentCharacters={parentCharacters}
+      childCharacters={childCharacters}
+      partnerCharacters={partnerCharacters}
     />
   );
 }

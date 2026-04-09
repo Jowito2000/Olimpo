@@ -43,6 +43,55 @@
       "gender": "male"
     },
     {
+      "id": "moros",
+      "name": "Moros",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "moro",
+      "name": "Moro",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "moiras",
+      "name": "Moiras",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "atropos",
+      "name": "Átropos",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female"
+    },
+    {
+      "id": "cloto",
+      "name": "Cloto",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female"
+    },
+    {
+      "id": "laquesis",
+      "name": "Láquesis",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female"
+    },
+    {
+      "id": "hesperides",
+      "name": "Hespérides",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
       "id": "hipnos",
       "name": "Hipnos",
       "type": "individuo",
@@ -52,6 +101,13 @@
     {
       "id": "tanatos",
       "name": "Tánatos",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "caronte",
+      "name": "Caronte",
       "type": "individuo",
       "category": "primordial",
       "gender": "male"
@@ -71,11 +127,32 @@
       "gender": "female"
     },
     {
+      "id": "keres",
+      "name": "Keres",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
       "id": "ponto",
       "name": "Ponto",
       "type": "individuo",
       "category": "primordial",
       "gender": "male"
+    },
+    {
+      "id": "montes",
+      "name": "Montes",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "titanes",
+      "name": "Titanes",
+      "type": "grupo",
+      "category": "titan",
+      "gender": "unknown"
     },
     {
       "id": "oceano",
@@ -155,6 +232,41 @@
       "gender": "female"
     },
     {
+      "id": "ciclopes",
+      "name": "Cíclopes",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "arges",
+      "name": "Arges",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "brontes",
+      "name": "Brontes",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "esteropes",
+      "name": "Estéropes",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "hecatonquiros",
+      "name": "Hecatónquiros",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
       "id": "union_caos_unknown",
       "name": "",
       "type": "union"
@@ -227,9 +339,29 @@
       "type": "partner"
     },
     {
+      "source": "union_erebo_nix",
+      "target": "moros",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "moro",
+      "type": "child"
+    },
+    {
       "source": "nix",
       "target": "union_nix_unknown",
       "type": "partner"
+    },
+    {
+      "source": "union_nix_unknown",
+      "target": "moiras",
+      "type": "child"
+    },
+    {
+      "source": "union_nix_unknown",
+      "target": "hesperides",
+      "type": "child"
     },
     {
       "source": "union_nix_unknown",
@@ -243,12 +375,22 @@
     },
     {
       "source": "union_nix_unknown",
+      "target": "caronte",
+      "type": "child"
+    },
+    {
+      "source": "union_nix_unknown",
       "target": "eter",
       "type": "child"
     },
     {
       "source": "union_nix_unknown",
       "target": "hemera",
+      "type": "child"
+    },
+    {
+      "source": "union_nix_unknown",
+      "target": "keres",
       "type": "child"
     },
     {
@@ -277,6 +419,21 @@
       "type": "partner"
     },
     {
+      "source": "union_gea_urano",
+      "target": "titanes",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_urano",
+      "target": "ciclopes",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_urano",
+      "target": "hecatonquiros",
+      "type": "child"
+    },
+    {
       "source": "gea",
       "target": "union_gea_tartaro",
       "type": "partner"
@@ -290,6 +447,96 @@
       "source": "union_gea_tartaro",
       "target": "ponto",
       "type": "child"
+    },
+    {
+      "source": "union_gea_tartaro",
+      "target": "montes",
+      "type": "child"
+    },
+    {
+      "source": "moiras",
+      "target": "atropos",
+      "type": "membership"
+    },
+    {
+      "source": "moiras",
+      "target": "cloto",
+      "type": "membership"
+    },
+    {
+      "source": "moiras",
+      "target": "laquesis",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "oceano",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "ceo",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "crio",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "hiperion",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "japeto",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "cronos",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "rea",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "temis",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "mnemosine",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "febe",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "tetis",
+      "type": "membership"
+    },
+    {
+      "source": "ciclopes",
+      "target": "arges",
+      "type": "membership"
+    },
+    {
+      "source": "ciclopes",
+      "target": "brontes",
+      "type": "membership"
+    },
+    {
+      "source": "ciclopes",
+      "target": "esteropes",
+      "type": "membership"
     }
   ]
 }

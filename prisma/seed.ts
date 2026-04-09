@@ -99,8 +99,10 @@ async function main() {
     }
   }
 
-  // 4. Parent-child relations (usando char.parents como fuente canónica)
+  // 4. Parent-child relations — borrar todo y recrear desde los JSONs
   console.log('  → Relaciones padre-hijo')
+  await prisma.characterRelation.deleteMany({})
+  const parentChildPairs: { parentId: string; childId: string }[] = []
   const parentChildKeys = new Set<string>()
   for (const char of characters) {
     for (const parentId of char.parents) {
@@ -108,16 +110,15 @@ async function main() {
       const key = `${parentId}:${char.id}`
       if (parentChildKeys.has(key)) continue
       parentChildKeys.add(key)
-      await prisma.characterRelation.upsert({
-        where: { parentId_childId: { parentId, childId: char.id } },
-        update: {},
-        create: { parentId, childId: char.id },
-      })
+      parentChildPairs.push({ parentId, childId: char.id })
     }
   }
+  await prisma.characterRelation.createMany({ data: parentChildPairs })
 
-  // 5. Partner relations (deduplicadas: siempre A < B lexicográficamente)
+  // 5. Partner relations — borrar todo y recrear desde los JSONs
   console.log('  → Relaciones de pareja')
+  await prisma.characterPartner.deleteMany({})
+  const partnerPairs: { characterAId: string; characterBId: string }[] = []
   const partnerKeys = new Set<string>()
   for (const char of characters) {
     for (const partnerId of char.partners) {
@@ -126,13 +127,10 @@ async function main() {
       const key = `${a}:${b}`
       if (partnerKeys.has(key)) continue
       partnerKeys.add(key)
-      await prisma.characterPartner.upsert({
-        where: { characterAId_characterBId: { characterAId: a, characterBId: b } },
-        update: {},
-        create: { characterAId: a, characterBId: b },
-      })
+      partnerPairs.push({ characterAId: a, characterBId: b })
     }
   }
+  await prisma.characterPartner.createMany({ data: partnerPairs })
 
   // 6. CharacterTree memberships
   console.log('  → Membresías en árboles')

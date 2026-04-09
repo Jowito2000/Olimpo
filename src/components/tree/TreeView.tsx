@@ -1208,8 +1208,8 @@ export default function TreeView({ tree, focusId }: Props) {
       let charAbsX = target.x;
       let charCxOffset = 0;
       if (target.data.singlePartner === charId) {
-        charCxOffset = HALF_GAP;
-        charAbsX = target.x + HALF_GAP;
+        charCxOffset = SINGLE_PARTNER_GAP;
+        charAbsX = target.x + SINGLE_PARTNER_GAP;
       } else if (target.data.partnerLeftId === charId) {
         charCxOffset = -UNION_GAP;
         charAbsX = target.x - UNION_GAP;

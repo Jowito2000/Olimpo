@@ -29,7 +29,8 @@
       "Bash(xargs -I {} sh -c 'echo \"=== {} ===\" && grep -o \"\\\\\"id\\\\\":\\\\s*\\\\\"[^\\\\\"]*\\\\\"\" \"{}\" | sort | uniq')",
       "Bash(grep -hoE '\"id\"\\\\s*:\\\\s*\"[^\"]+\"' src/assets/tree_json/*.json)",
       "Bash(grep -oE '\"[^\"]+\"$')",
-      "Bash(grep \"\\\\.json$\")"
+      "Bash(grep \"\\\\.json$\")",
+      "Bash(echo \"EXIT: $?\")"
     ]
   }
 }
