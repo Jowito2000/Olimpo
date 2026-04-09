@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import TimelinePage from '@/components/pages/TimelinePage';
-import { getAllTimelineEvents } from '@/lib/queries';
+import { timelineEvents } from '@/data/timeline';
 
 export const metadata: Metadata = {
   title: 'Línea Temporal',
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/linea-temporal' },
 };
 
-export default async function Page() {
-  const events = await getAllTimelineEvents();
-  return <TimelinePage events={events} />;
+export default function Page() {
+  return <TimelinePage events={timelineEvents} />;
 }

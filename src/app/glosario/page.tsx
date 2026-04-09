@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import GlossaryPage from '@/components/pages/GlossaryPage';
-import { getAllGlossaryTerms } from '@/lib/queries';
+import { glossaryTerms } from '@/data/glossary';
 
 export const metadata: Metadata = {
   title: 'Glosario',
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/glosario' },
 };
 
-export default async function Page() {
-  const terms = await getAllGlossaryTerms();
-  return <GlossaryPage terms={terms} />;
+export default function Page() {
+  return <GlossaryPage terms={glossaryTerms} />;
 }

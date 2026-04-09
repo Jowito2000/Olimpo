@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import TreesPage from '@/components/pages/TreesPage';
-import { getTreeData } from '@/lib/queries';
+import { trees } from '@/data/trees';
 
 export const metadata: Metadata = {
   title: 'Árboles Genealógicos',
@@ -9,8 +8,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/arboles' },
 };
 
-export default async function Page() {
-  const tree = await getTreeData('titanes');
-  if (!tree) notFound();
-  return <TreesPage tree={tree} />;
+export default function Page() {
+  return <TreesPage tree={trees.titanes} />;
 }

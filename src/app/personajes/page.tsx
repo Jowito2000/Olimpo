@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import CharactersPage from '@/components/pages/CharactersPage';
-import { getAllCharacters } from '@/lib/queries';
+import { getAllCharacters } from '@/data/characters';
 
 export const metadata: Metadata = {
   title: 'Personajes',
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/personajes' },
 };
 
-export default async function Page() {
-  const characters = await getAllCharacters();
-  return <CharactersPage characters={characters} />;
+export default function Page() {
+  return <CharactersPage characters={getAllCharacters()} />;
 }

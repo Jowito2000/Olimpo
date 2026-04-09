@@ -30,7 +30,8 @@
       "Bash(grep -hoE '\"id\"\\\\s*:\\\\s*\"[^\"]+\"' src/assets/tree_json/*.json)",
       "Bash(grep -oE '\"[^\"]+\"$')",
       "Bash(grep \"\\\\.json$\")",
-      "Bash(echo \"EXIT: $?\")"
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(echo \"TS exit: $?\")"
     ]
   }
 }
