@@ -55,6 +55,7 @@ export interface TreeNode {
   groupImage?: string;
   /** IDs de los miembros del grupo */
   members?: string[];
+  memberNodes?: TreeNode[];
 }
 
 export interface TreeData {
@@ -84,6 +85,7 @@ export interface GraphNode {
   label?: string;
   category?: CharacterCategory;
   gender?: 'male' | 'female' | 'unknown';
+  groupImage?: string;
 }
 
 export interface GraphEdge {

@@ -43,13 +43,6 @@
       "gender": "male"
     },
     {
-      "id": "moros",
-      "name": "Moros",
-      "type": "individuo",
-      "category": "primordial",
-      "gender": "male"
-    },
-    {
       "id": "moro",
       "name": "Moro",
       "type": "individuo",
@@ -145,13 +138,6 @@
       "name": "Montes",
       "type": "individuo",
       "category": "primordial",
-      "gender": "unknown"
-    },
-    {
-      "id": "titanes",
-      "name": "Titanes",
-      "type": "grupo",
-      "category": "titan",
       "gender": "unknown"
     },
     {
@@ -300,6 +286,676 @@
       "id": "union_gea_tartaro",
       "name": "",
       "type": "union"
+    },
+    {
+      "id": "tifon",
+      "name": "Tifón",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "male"
+    },
+    {
+      "id": "union_tifon_unknown",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "hidra_de_lerma",
+      "name": "Hidra de Lerma",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "aguila_del_caucaso",
+      "name": "Águila del Cáucaso",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "ortro",
+      "name": "Ortro",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "esfinge",
+      "name": "Esfinge",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "quimera",
+      "name": "Quimera",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "equidnada",
+      "name": "Equídnada",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "leon_de_nemea",
+      "name": "León de Nemea",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "cerbero",
+      "name": "Cerbero",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "fea",
+      "name": "Fea",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "dragon_de_la_colquide",
+      "name": "Dragón de la Cólquide",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "escila",
+      "name": "Escila",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "union_urano_solo",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "afrodita",
+      "name": "Afrodita",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "gigantes",
+      "name": "Los gigantes",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown",
+      "groupImage": "Gigantes"
+    },
+    {
+      "id": "ninfas_meliades",
+      "name": "Las Ninfas Melíades",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown",
+      "groupImage": "Meliades"
+    },
+    {
+      "id": "erinias",
+      "name": "Las Erinias",
+      "type": "grupo",
+      "category": "primordial",
+      "gender": "unknown",
+      "groupImage": "Erinias"
+    },
+    {
+      "id": "alecto",
+      "name": "Alecto",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female"
+    },
+    {
+      "id": "megera",
+      "name": "Megera",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female"
+    },
+    {
+      "id": "tisifone",
+      "name": "Tisífone",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female"
+    },
+    {
+      "id": "union_gea_ponto",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "union_gea_ponto_link",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "ceto",
+      "name": "Ceto",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "forcis",
+      "name": "Forcis",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "nereo",
+      "name": "Nereo",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "taumante",
+      "name": "Taumante",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "euribia",
+      "name": "Euribia",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "unknown"
+    },
+    {
+      "id": "union_ceto_forcis",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "gorgonas",
+      "name": "Las Gorgonas",
+      "type": "grupo",
+      "category": "monstruo",
+      "gender": "unknown",
+      "groupImage": "Gorgonas"
+    },
+    {
+      "id": "esteno",
+      "name": "Esteno",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "medusa",
+      "name": "Medusa",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "euriale",
+      "name": "Euríale",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "forcides",
+      "name": "Las Fórcides / Grayas",
+      "type": "grupo",
+      "category": "monstruo",
+      "gender": "unknown",
+      "groupImage": "Grayas"
+    },
+    {
+      "id": "enio",
+      "name": "Enío",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "penfredo",
+      "name": "Penfredo",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "dino",
+      "name": "Dino",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "ladon",
+      "name": "Ladón",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "male"
+    },
+    {
+      "id": "equidna",
+      "name": "Equidna",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "tea",
+      "name": "Tea",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "union_ceo_febe",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "asteria",
+      "name": "Asteria",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "leto",
+      "name": "Leto",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "union_tetis_oceano",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "aqueloo",
+      "name": "Aqueloo",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "estigia",
+      "name": "Estigia",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "oceanides",
+      "name": "Ninfas Oceánides",
+      "type": "grupo",
+      "category": "ninfa",
+      "gender": "unknown",
+      "groupImage": "Oceánides"
+    },
+    {
+      "id": "climene",
+      "name": "Clímene",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "metis",
+      "name": "Metis",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "eurinome",
+      "name": "Eurínome",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "calirroe",
+      "name": "Calírroe",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "filira",
+      "name": "Filira",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "orseide",
+      "name": "Orseide",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "dione",
+      "name": "Dione",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "pleyone",
+      "name": "Pléyone",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "union_crio_euribia",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "palante",
+      "name": "Palante",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "astreo",
+      "name": "Astreo",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "perses",
+      "name": "Perses",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "union_tea_hiperion",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "eos",
+      "name": "Eos",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "helios",
+      "name": "Helios",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "selene",
+      "name": "Selene",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "union_estigia_solo",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "lampades",
+      "name": "Las Lámpades",
+      "type": "grupo",
+      "category": "ninfa",
+      "gender": "unknown",
+      "groupImage": "Lámpades"
+    },
+    {
+      "id": "union_japeto_climene",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "menecio",
+      "name": "Menecio",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "prometeo",
+      "name": "Prometeo",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "epimeteo",
+      "name": "Epimeteo",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "type": "individuo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "union_cronos_rea",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "hestia",
+      "name": "Hestia",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "demeter",
+      "name": "Deméter",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "hades",
+      "name": "Hades",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "poseidon",
+      "name": "Poseidón",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "hera",
+      "name": "Hera",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "zeus",
+      "name": "Zeus",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "union_cronos_filira",
+      "name": "",
+      "type": "union"
+    },
+    {
+      "id": "quiron",
+      "name": "Quirón",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "male"
+    },
+    {
+      "id": "titanes",
+      "type": "grupo",
+      "name": "Los Titanes",
+      "label": "Los Titanes",
+      "groupImage": "Titanes"
+    },
+    {
+      "id": "gea_dup",
+      "type": "individuo",
+      "category": "primordial",
+      "gender": "female",
+      "name": "Gea"
+    },
+    {
+      "id": "union_poseidon_gea",
+      "type": "union",
+      "label": "Poseidón + Gea"
+    },
+    {
+      "id": "caribdis",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "female",
+      "name": "Caribdis"
+    },
+    {
+      "id": "pleyone_dup",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Pléyone"
+    },
+    {
+      "id": "union_atlas_pleyone",
+      "type": "union",
+      "label": "Atlas + Pléyone"
+    },
+    {
+      "id": "pleyades",
+      "type": "grupo",
+      "name": "Las Pléyades",
+      "groupImage": "Pleyades"
+    },
+    {
+      "id": "maya",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Maya"
+    },
+    {
+      "id": "esterope_pleyade",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Estérope"
+    },
+    {
+      "id": "celeno",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Celeno"
+    },
+    {
+      "id": "electra",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Electra"
+    },
+    {
+      "id": "alcione_pleyade",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Alcíone"
+    },
+    {
+      "id": "taigete",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Táigete"
+    },
+    {
+      "id": "merope",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Mérope"
+    },
+    {
+      "id": "climene_dup",
+      "type": "individuo",
+      "category": "ninfa",
+      "gender": "female",
+      "name": "Clímene"
+    },
+    {
+      "id": "union_prometeo_climene",
+      "type": "union",
+      "label": "Prometeo + Clímene"
+    },
+    {
+      "id": "deucalion",
+      "type": "individuo",
+      "category": "heroe",
+      "gender": "male",
+      "name": "Deucalión"
+    },
+    {
+      "id": "union_asteria_perses",
+      "type": "union",
+      "label": "Asteria + Perses"
+    },
+    {
+      "id": "hecate",
+      "type": "individuo",
+      "category": "olimpico",
+      "gender": "female",
+      "name": "Hécate"
+    },
+    {
+      "id": "union_hera_solo",
+      "type": "union",
+      "label": "Hera (sola)"
+    },
+    {
+      "id": "carcinos",
+      "type": "individuo",
+      "category": "monstruo",
+      "gender": "male",
+      "name": "Carcinos"
     }
   ],
   "edges": [
@@ -329,74 +985,14 @@
       "type": "child"
     },
     {
-      "source": "nix",
-      "target": "union_erebo_nix",
-      "type": "partner"
-    },
-    {
       "source": "erebo",
       "target": "union_erebo_nix",
-      "type": "partner"
-    },
-    {
-      "source": "union_erebo_nix",
-      "target": "moros",
-      "type": "child"
-    },
-    {
-      "source": "union_erebo_nix",
-      "target": "moro",
-      "type": "child"
-    },
-    {
-      "source": "nix",
-      "target": "union_nix_unknown",
       "type": "partner"
     },
     {
       "source": "union_nix_unknown",
       "target": "moiras",
       "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "hesperides",
-      "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "hipnos",
-      "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "tanatos",
-      "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "caronte",
-      "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "eter",
-      "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "hemera",
-      "type": "child"
-    },
-    {
-      "source": "union_nix_unknown",
-      "target": "keres",
-      "type": "child"
-    },
-    {
-      "source": "gea",
-      "target": "union_gea_solo",
-      "type": "partner"
     },
     {
       "source": "union_gea_solo",
@@ -409,19 +1005,9 @@
       "type": "partner"
     },
     {
-      "source": "gea",
-      "target": "union_gea_urano_link",
-      "type": "partner"
-    },
-    {
       "source": "urano",
       "target": "union_gea_urano_link",
       "type": "partner"
-    },
-    {
-      "source": "union_gea_urano",
-      "target": "titanes",
-      "type": "child"
     },
     {
       "source": "union_gea_urano",
@@ -434,24 +1020,9 @@
       "type": "child"
     },
     {
-      "source": "gea",
-      "target": "union_gea_tartaro",
-      "type": "partner"
-    },
-    {
       "source": "tartaro",
       "target": "union_gea_tartaro",
       "type": "partner"
-    },
-    {
-      "source": "union_gea_tartaro",
-      "target": "ponto",
-      "type": "child"
-    },
-    {
-      "source": "union_gea_tartaro",
-      "target": "montes",
-      "type": "child"
     },
     {
       "source": "moiras",
@@ -469,8 +1040,543 @@
       "type": "membership"
     },
     {
+      "source": "ciclopes",
+      "target": "arges",
+      "type": "membership"
+    },
+    {
+      "source": "ciclopes",
+      "target": "brontes",
+      "type": "membership"
+    },
+    {
+      "source": "ciclopes",
+      "target": "esteropes",
+      "type": "membership"
+    },
+    {
+      "source": "union_gea_solo",
+      "target": "ponto",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_solo",
+      "target": "montes",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_tartaro",
+      "target": "tifon",
+      "type": "child"
+    },
+    {
+      "source": "tifon",
+      "target": "union_tifon_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "hidra_de_lerma",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "aguila_del_caucaso",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "ortro",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "esfinge",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "quimera",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "equidnada",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "leon_de_nemea",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "cerbero",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "fea",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "dragon_de_la_colquide",
+      "type": "child"
+    },
+    {
+      "source": "union_tifon_unknown",
+      "target": "escila",
+      "type": "child"
+    },
+    {
+      "source": "urano",
+      "target": "union_urano_solo",
+      "type": "partner"
+    },
+    {
+      "source": "union_urano_solo",
+      "target": "afrodita",
+      "type": "child"
+    },
+    {
+      "source": "union_urano_solo",
+      "target": "gigantes",
+      "type": "child"
+    },
+    {
+      "source": "union_urano_solo",
+      "target": "erinias",
+      "type": "child"
+    },
+    {
+      "source": "erinias",
+      "target": "alecto",
+      "type": "membership"
+    },
+    {
+      "source": "erinias",
+      "target": "megera",
+      "type": "membership"
+    },
+    {
+      "source": "erinias",
+      "target": "tisifone",
+      "type": "membership"
+    },
+    {
+      "source": "union_nix_unknown",
+      "target": "moro",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "hesperides",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "hipnos",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "tanatos",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "caronte",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "eter",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "hemera",
+      "type": "child"
+    },
+    {
+      "source": "union_erebo_nix",
+      "target": "keres",
+      "type": "child"
+    },
+    {
+      "source": "ponto",
+      "target": "union_gea_ponto",
+      "type": "partner"
+    },
+    {
+      "source": "ponto",
+      "target": "union_gea_ponto_link",
+      "type": "partner"
+    },
+    {
+      "source": "union_gea_ponto",
+      "target": "ceto",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_ponto",
+      "target": "forcis",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_ponto",
+      "target": "nereo",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_ponto",
+      "target": "taumante",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_ponto",
+      "target": "euribia",
+      "type": "child"
+    },
+    {
+      "source": "gea",
+      "target": "union_gea_solo",
+      "type": "partner"
+    },
+    {
+      "source": "gea",
+      "target": "union_gea_urano_link",
+      "type": "partner"
+    },
+    {
+      "source": "gea",
+      "target": "union_gea_tartaro",
+      "type": "partner"
+    },
+    {
+      "source": "gea",
+      "target": "union_gea_ponto_link",
+      "type": "partner"
+    },
+    {
+      "source": "nix",
+      "target": "union_nix_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "nix",
+      "target": "union_erebo_nix",
+      "type": "partner"
+    },
+    {
+      "source": "ceto",
+      "target": "union_ceto_forcis",
+      "type": "partner"
+    },
+    {
+      "source": "forcis",
+      "target": "union_ceto_forcis",
+      "type": "partner"
+    },
+    {
+      "source": "union_ceto_forcis",
+      "target": "gorgonas",
+      "type": "child"
+    },
+    {
+      "source": "gorgonas",
+      "target": "esteno",
+      "type": "membership"
+    },
+    {
+      "source": "gorgonas",
+      "target": "medusa",
+      "type": "membership"
+    },
+    {
+      "source": "gorgonas",
+      "target": "euriale",
+      "type": "membership"
+    },
+    {
+      "source": "union_ceto_forcis",
+      "target": "forcides",
+      "type": "child"
+    },
+    {
+      "source": "forcides",
+      "target": "enio",
+      "type": "membership"
+    },
+    {
+      "source": "forcides",
+      "target": "penfredo",
+      "type": "membership"
+    },
+    {
+      "source": "forcides",
+      "target": "dino",
+      "type": "membership"
+    },
+    {
+      "source": "union_ceto_forcis",
+      "target": "ladon",
+      "type": "child"
+    },
+    {
+      "source": "union_ceto_forcis",
+      "target": "equidna",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_urano",
+      "target": "ninfas_meliades",
+      "type": "child"
+    },
+    {
+      "source": "ceo",
+      "target": "union_ceo_febe",
+      "type": "partner"
+    },
+    {
+      "source": "febe",
+      "target": "union_ceo_febe",
+      "type": "partner"
+    },
+    {
+      "source": "union_ceo_febe",
+      "target": "asteria",
+      "type": "child"
+    },
+    {
+      "source": "union_ceo_febe",
+      "target": "leto",
+      "type": "child"
+    },
+    {
+      "source": "tetis",
+      "target": "union_tetis_oceano",
+      "type": "partner"
+    },
+    {
+      "source": "oceano",
+      "target": "union_tetis_oceano",
+      "type": "partner"
+    },
+    {
+      "source": "union_tetis_oceano",
+      "target": "aqueloo",
+      "type": "child"
+    },
+    {
+      "source": "union_tetis_oceano",
+      "target": "estigia",
+      "type": "child"
+    },
+    {
+      "source": "union_tetis_oceano",
+      "target": "oceanides",
+      "type": "child"
+    },
+    {
+      "source": "oceanides",
+      "target": "climene",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "metis",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "eurinome",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "calirroe",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "filira",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "orseide",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "dione",
+      "type": "membership"
+    },
+    {
+      "source": "oceanides",
+      "target": "pleyone",
+      "type": "membership"
+    },
+    {
+      "source": "crio",
+      "target": "union_crio_euribia",
+      "type": "partner"
+    },
+    {
+      "source": "euribia",
+      "target": "union_crio_euribia",
+      "type": "partner"
+    },
+    {
+      "source": "union_crio_euribia",
+      "target": "palante",
+      "type": "child"
+    },
+    {
+      "source": "union_crio_euribia",
+      "target": "astreo",
+      "type": "child"
+    },
+    {
+      "source": "union_crio_euribia",
+      "target": "perses",
+      "type": "child"
+    },
+    {
+      "source": "tea",
+      "target": "union_tea_hiperion",
+      "type": "partner"
+    },
+    {
+      "source": "hiperion",
+      "target": "union_tea_hiperion",
+      "type": "partner"
+    },
+    {
+      "source": "union_tea_hiperion",
+      "target": "eos",
+      "type": "child"
+    },
+    {
+      "source": "union_tea_hiperion",
+      "target": "helios",
+      "type": "child"
+    },
+    {
+      "source": "union_tea_hiperion",
+      "target": "selene",
+      "type": "child"
+    },
+    {
+      "source": "estigia",
+      "target": "union_estigia_solo",
+      "type": "partner"
+    },
+    {
+      "source": "union_estigia_solo",
+      "target": "lampades",
+      "type": "child"
+    },
+    {
+      "source": "japeto",
+      "target": "union_japeto_climene",
+      "type": "partner"
+    },
+    {
+      "source": "climene",
+      "target": "union_japeto_climene",
+      "type": "partner"
+    },
+    {
+      "source": "union_japeto_climene",
+      "target": "menecio",
+      "type": "child"
+    },
+    {
+      "source": "union_japeto_climene",
+      "target": "prometeo",
+      "type": "child"
+    },
+    {
+      "source": "union_japeto_climene",
+      "target": "epimeteo",
+      "type": "child"
+    },
+    {
+      "source": "union_japeto_climene",
+      "target": "atlas",
+      "type": "child"
+    },
+    {
+      "source": "cronos",
+      "target": "union_cronos_rea",
+      "type": "partner"
+    },
+    {
+      "source": "rea",
+      "target": "union_cronos_rea",
+      "type": "partner"
+    },
+    {
+      "source": "union_cronos_rea",
+      "target": "hestia",
+      "type": "child"
+    },
+    {
+      "source": "union_cronos_rea",
+      "target": "demeter",
+      "type": "child"
+    },
+    {
+      "source": "union_cronos_rea",
+      "target": "hades",
+      "type": "child"
+    },
+    {
+      "source": "union_cronos_rea",
+      "target": "poseidon",
+      "type": "child"
+    },
+    {
+      "source": "union_cronos_rea",
+      "target": "hera",
+      "type": "child"
+    },
+    {
+      "source": "union_cronos_rea",
+      "target": "zeus",
+      "type": "child"
+    },
+    {
+      "source": "cronos",
+      "target": "union_cronos_filira",
+      "type": "partner"
+    },
+    {
+      "source": "filira",
+      "target": "union_cronos_filira",
+      "type": "partner"
+    },
+    {
+      "source": "union_cronos_filira",
+      "target": "quiron",
+      "type": "child"
+    },
+    {
+      "source": "union_gea_urano",
+      "target": "titanes",
+      "type": "child"
+    },
+    {
       "source": "titanes",
       "target": "oceano",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "tetis",
       "type": "membership"
     },
     {
@@ -480,12 +1586,22 @@
     },
     {
       "source": "titanes",
-      "target": "crio",
+      "target": "febe",
       "type": "membership"
     },
     {
       "source": "titanes",
       "target": "hiperion",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "tea",
+      "type": "membership"
+    },
+    {
+      "source": "titanes",
+      "target": "crio",
       "type": "membership"
     },
     {
@@ -514,29 +1630,109 @@
       "type": "membership"
     },
     {
-      "source": "titanes",
-      "target": "febe",
+      "source": "poseidon",
+      "target": "union_poseidon_gea",
+      "type": "partner"
+    },
+    {
+      "source": "gea_dup",
+      "target": "union_poseidon_gea",
+      "type": "partner"
+    },
+    {
+      "source": "union_poseidon_gea",
+      "target": "caribdis",
+      "type": "child"
+    },
+    {
+      "source": "atlas",
+      "target": "union_atlas_pleyone",
+      "type": "partner"
+    },
+    {
+      "source": "pleyone_dup",
+      "target": "union_atlas_pleyone",
+      "type": "partner"
+    },
+    {
+      "source": "union_atlas_pleyone",
+      "target": "pleyades",
+      "type": "child"
+    },
+    {
+      "source": "pleyades",
+      "target": "maya",
       "type": "membership"
     },
     {
-      "source": "titanes",
-      "target": "tetis",
+      "source": "pleyades",
+      "target": "esterope_pleyade",
       "type": "membership"
     },
     {
-      "source": "ciclopes",
-      "target": "arges",
+      "source": "pleyades",
+      "target": "celeno",
       "type": "membership"
     },
     {
-      "source": "ciclopes",
-      "target": "brontes",
+      "source": "pleyades",
+      "target": "electra",
       "type": "membership"
     },
     {
-      "source": "ciclopes",
-      "target": "esteropes",
+      "source": "pleyades",
+      "target": "alcione_pleyade",
       "type": "membership"
+    },
+    {
+      "source": "pleyades",
+      "target": "taigete",
+      "type": "membership"
+    },
+    {
+      "source": "pleyades",
+      "target": "merope",
+      "type": "membership"
+    },
+    {
+      "source": "prometeo",
+      "target": "union_prometeo_climene",
+      "type": "partner"
+    },
+    {
+      "source": "climene_dup",
+      "target": "union_prometeo_climene",
+      "type": "partner"
+    },
+    {
+      "source": "union_prometeo_climene",
+      "target": "deucalion",
+      "type": "child"
+    },
+    {
+      "source": "asteria",
+      "target": "union_asteria_perses",
+      "type": "partner"
+    },
+    {
+      "source": "perses",
+      "target": "union_asteria_perses",
+      "type": "partner"
+    },
+    {
+      "source": "union_asteria_perses",
+      "target": "hecate",
+      "type": "child"
+    },
+    {
+      "source": "hera",
+      "target": "union_hera_solo",
+      "type": "partner"
+    },
+    {
+      "source": "union_hera_solo",
+      "target": "carcinos",
+      "type": "child"
     }
   ]
 }

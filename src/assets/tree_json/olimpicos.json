@@ -1,246 +1,1395 @@
 {
   "nodes": [
-    { "id": "zeus", "type": "individuo", "label": "Zeus", "category": "olimpico", "gender": "male" },
-    { "id": "hera", "type": "individuo", "label": "Hera", "category": "olimpico", "gender": "female" },
-    { "id": "ares", "type": "individuo", "label": "Ares", "category": "olimpico", "gender": "male" },
-    { "id": "hebe", "type": "individuo", "label": "Hebe", "category": "olimpico", "gender": "female" },
-    { "id": "hefesto", "type": "individuo", "label": "Hefesto", "category": "olimpico", "gender": "male" },
-    { "id": "eris", "type": "individuo", "label": "Eris", "category": "olimpico", "gender": "female" },
-    { "id": "ilitia", "type": "individuo", "label": "Ilitía", "category": "olimpico", "gender": "female" },
-    { "id": "metis", "type": "individuo", "label": "Metis", "category": "titan", "gender": "female" },
-    { "id": "atenea", "type": "individuo", "label": "Atenea", "category": "olimpico", "gender": "female" },
-    { "id": "eurinome", "type": "individuo", "label": "Eurínome", "category": "ninfa", "gender": "female" },
-    { "id": "aglaya", "type": "individuo", "label": "Aglaya", "category": "olimpico", "gender": "female" },
-    { "id": "eufrosine", "type": "individuo", "label": "Eufrósine", "category": "olimpico", "gender": "female" },
-    { "id": "talia-gracia", "type": "individuo", "label": "Talia", "category": "olimpico", "gender": "female" },
-    { "id": "temis", "type": "individuo", "label": "Temis", "category": "titan", "gender": "female" },
-    { "id": "eunomia", "type": "individuo", "label": "Eunomía", "category": "olimpico", "gender": "female" },
-    { "id": "dice", "type": "individuo", "label": "Dike", "category": "olimpico", "gender": "female" },
-    { "id": "irene", "type": "individuo", "label": "Irene", "category": "olimpico", "gender": "female" },
-    { "id": "mnemosine", "type": "individuo", "label": "Mnemósine", "category": "titan", "gender": "female" },
-    { "id": "caliope", "type": "individuo", "label": "Calíope", "category": "olimpico", "gender": "female" },
-    { "id": "clio", "type": "individuo", "label": "Clío", "category": "olimpico", "gender": "female" },
-    { "id": "euterpe", "type": "individuo", "label": "Euterpe", "category": "olimpico", "gender": "female" },
-    { "id": "erato", "type": "individuo", "label": "Erató", "category": "olimpico", "gender": "female" },
-    { "id": "melpomene", "type": "individuo", "label": "Melpómene", "category": "olimpico", "gender": "female" },
-    { "id": "polimnia", "type": "individuo", "label": "Polimnia", "category": "olimpico", "gender": "female" },
-    { "id": "terpsicore", "type": "individuo", "label": "Terpsícore", "category": "olimpico", "gender": "female" },
-    { "id": "talia", "type": "individuo", "label": "Talía", "category": "olimpico", "gender": "female" },
-    { "id": "urania", "type": "individuo", "label": "Urania", "category": "olimpico", "gender": "female" },
-    { "id": "maya", "type": "individuo", "label": "Maya", "category": "ninfa", "gender": "female" },
-    { "id": "hermes", "type": "individuo", "label": "Hermes", "category": "olimpico", "gender": "male" },
-    { "id": "demeter", "type": "individuo", "label": "Deméter", "category": "olimpico", "gender": "female" },
-    { "id": "persefone", "type": "individuo", "label": "Perséfone", "category": "olimpico", "gender": "female" },
-    { "id": "despena", "type": "individuo", "label": "Despena", "category": "olimpico", "gender": "female" },
-    { "id": "arion", "type": "individuo", "label": "Arión", "category": "olimpico", "gender": "male" },
-    { "id": "leto", "type": "individuo", "label": "Leto", "category": "titan", "gender": "female" },
-    { "id": "apolo", "type": "individuo", "label": "Apolo", "category": "olimpico", "gender": "male" },
-    { "id": "artemisa", "type": "individuo", "label": "Artemisa", "category": "olimpico", "gender": "female" },
-    { "id": "semele", "type": "individuo", "label": "Sémele", "category": "mortal", "gender": "female" },
-    { "id": "dioniso", "type": "individuo", "label": "Dioniso", "category": "olimpico", "gender": "male" },
-    { "id": "afrodita", "type": "individuo", "label": "Afrodita", "category": "olimpico", "gender": "female" },
-    { "id": "anteros", "type": "individuo", "label": "Anteros", "category": "olimpico", "gender": "male" },
-    { "id": "eros", "type": "individuo", "label": "Eros", "category": "olimpico", "gender": "male" },
-    { "id": "hedilogos", "type": "individuo", "label": "Hedílogos", "category": "olimpico", "gender": "male" },
-    { "id": "hermafrodito", "type": "individuo", "label": "Hermafrodito", "category": "olimpico", "gender": "unknown" },
-    { "id": "himero", "type": "individuo", "label": "Hímero", "category": "olimpico", "gender": "male" },
-    { "id": "himeneo", "type": "individuo", "label": "Himeneo", "category": "olimpico", "gender": "male" },
-    { "id": "potos", "type": "individuo", "label": "Potos", "category": "olimpico", "gender": "male" },
-    { "id": "ptono", "type": "individuo", "label": "Ptono", "category": "olimpico", "gender": "male" },
-    { "id": "harmonia", "type": "individuo", "label": "Harmonía", "category": "olimpico", "gender": "female" },
-    { "id": "epimeteo", "type": "individuo", "label": "Epimeteo", "category": "titan", "gender": "male" },
-    { "id": "abdero", "type": "individuo", "label": "Abdero", "category": "mortal", "gender": "male" },
-    { "id": "sileno", "type": "individuo", "label": "Sileno", "category": "olimpico", "gender": "male" },
-    { "id": "hades", "type": "individuo", "label": "Hades", "category": "olimpico", "gender": "male" },
-    { "id": "macaria", "type": "individuo", "label": "Macaria", "category": "olimpico", "gender": "female" },
-    { "id": "melinoe", "type": "individuo", "label": "Melínoe", "category": "olimpico", "gender": "female" },
-    { "id": "coronis", "type": "individuo", "label": "Coronis", "category": "mortal", "gender": "female" },
-    { "id": "asclepio", "type": "individuo", "label": "Asclepio", "category": "mortal", "gender": "male" },
-    { "id": "lino", "type": "individuo", "label": "Lino", "category": "mortal", "gender": "male" },
-    { "id": "orfeo", "type": "individuo", "label": "Orfeo", "category": "mortal", "gender": "male" },
-    { "id": "filamon", "type": "individuo", "label": "Filamón", "category": "mortal", "gender": "male" },
-    { "id": "euridice", "type": "individuo", "label": "Eurídice", "category": "ninfa", "gender": "female" },
-    { "id": "medusa", "type": "individuo", "label": "Medusa", "category": "monstruo", "gender": "female" },
-    { "id": "poseidon", "type": "individuo", "label": "Poseidón", "category": "olimpico", "gender": "male" },
-    { "id": "crisaor", "type": "individuo", "label": "Crisaor", "category": "monstruo", "gender": "male" },
-    { "id": "pegaso", "type": "individuo", "label": "Pegaso", "category": "monstruo", "gender": "male" },
-    { "id": "calirroe", "type": "individuo", "label": "Calírroe", "category": "ninfa", "gender": "female" },
-    { "id": "gerion", "type": "individuo", "label": "Gerión", "category": "monstruo", "gender": "male" },
-    { "id": "pandora", "type": "individuo", "label": "Pandora", "category": "mortal", "gender": "female" },
-    { "id": "pirra", "type": "individuo", "label": "Pirra", "category": "mortal", "gender": "female" },
-    { "id": "deucalion", "type": "individuo", "label": "Deucalión", "category": "mortal", "gender": "male" },
-    { "id": "helen", "type": "individuo", "label": "Helén", "category": "mortal", "gender": "male" },
-    { "id": "pandora-hija", "type": "individuo", "label": "Pandora (hija)", "category": "mortal", "gender": "female" },
-    { "id": "tuya", "type": "individuo", "label": "Tuya", "category": "mortal", "gender": "female" },
-    { "id": "protogenea", "type": "individuo", "label": "Protogenea", "category": "mortal", "gender": "female" },
-    { "id": "anfiction", "type": "individuo", "label": "Anfictión", "category": "mortal", "gender": "male" },
-    { "id": "juto", "type": "individuo", "label": "Juto", "category": "mortal", "gender": "male" },
-    { "id": "eolo", "type": "individuo", "label": "Eolo", "category": "mortal", "gender": "male" },
-    { "id": "doro", "type": "individuo", "label": "Doro", "category": "mortal", "gender": "male" },
-    { "id": "creusa", "type": "individuo", "label": "Creúsa", "category": "mortal", "gender": "female" },
-    { "id": "ion", "type": "individuo", "label": "Ion", "category": "mortal", "gender": "male" },
-    { "id": "aqueo", "type": "individuo", "label": "Aqueo", "category": "mortal", "gender": "male" },
-
-    { "id": "erotes", "type": "grupo", "label": "Erotes", "category": "olimpico" },
-    { "id": "carites", "type": "grupo", "label": "Las Gracias", "category": "olimpico" },
-    { "id": "horas", "type": "grupo", "label": "Horas", "category": "olimpico" },
-    { "id": "musas", "type": "grupo", "label": "Las Musas", "category": "olimpico" },
-    { "id": "satiros", "type": "grupo", "label": "Sátiros", "category": "olimpico" },
-
-    { "id": "union_hera_zeus", "type": "union", "label": "Zeus + Hera" },
-    { "id": "union_metis_zeus", "type": "union", "label": "Zeus + Metis" },
-    { "id": "union_eurinome_zeus", "type": "union", "label": "Zeus + Eurínome" },
-    { "id": "union_temis_zeus", "type": "union", "label": "Zeus + Temis" },
-    { "id": "union_mnemosine_zeus", "type": "union", "label": "Zeus + Mnemósine" },
-    { "id": "union_maya_zeus", "type": "union", "label": "Zeus + Maya" },
-    { "id": "union_demeter_zeus", "type": "union", "label": "Zeus + Deméter" },
-    { "id": "union_leto_zeus", "type": "union", "label": "Zeus + Leto" },
-    { "id": "union_semele_zeus", "type": "union", "label": "Zeus + Sémele" },
-    { "id": "union_afrodita_ares", "type": "union", "label": "Ares + Afrodita" },
-    { "id": "union_hefesto_unknown", "type": "union", "label": "Hefesto + ?" },
-    { "id": "union_hermes_unknown", "type": "union", "label": "Hermes + ?" },
-    { "id": "union_hades_persefone", "type": "union", "label": "Hades + Perséfone" },
-    { "id": "union_apolo_coronis", "type": "union", "label": "Apolo + Coronis" },
-    { "id": "union_apolo_unknown", "type": "union", "label": "Apolo + ?" },
-    { "id": "union_euridice_orfeo", "type": "union", "label": "Orfeo + Eurídice" },
-    { "id": "union_medusa_poseidon", "type": "union", "label": "Medusa + Poseidón" },
-    { "id": "union_calirroe_crisaor", "type": "union", "label": "Crisaor + Calírroe" },
-    { "id": "union_epimeteo_pandora", "type": "union", "label": "Epimeteo + Pandora" },
-    { "id": "union_deucalion_pirra", "type": "union", "label": "Deucalión + Pirra" },
-    { "id": "union_helen_unknown", "type": "union", "label": "Helén + ?" },
-    { "id": "union_creusa_juto", "type": "union", "label": "Juto + Creúsa" }
+    {
+      "id": "zeus",
+      "type": "individuo",
+      "label": "Zeus",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "hera",
+      "type": "individuo",
+      "label": "Hera",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "ares",
+      "type": "individuo",
+      "label": "Ares",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "hebe",
+      "type": "individuo",
+      "label": "Hebe",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "hefesto",
+      "type": "individuo",
+      "label": "Hefesto",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "eris",
+      "type": "individuo",
+      "label": "Eris",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "ilitia",
+      "type": "individuo",
+      "label": "Ilitía",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "metis",
+      "type": "individuo",
+      "label": "Metis",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "atenea",
+      "type": "individuo",
+      "label": "Atenea",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "eurinome",
+      "type": "individuo",
+      "label": "Eurínome",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "aglaya",
+      "type": "individuo",
+      "label": "Aglaya",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "eufrosine",
+      "type": "individuo",
+      "label": "Eufrósine",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "talia-gracia",
+      "type": "individuo",
+      "label": "Talia",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "temis",
+      "type": "individuo",
+      "label": "Temis",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "eunomia",
+      "type": "individuo",
+      "label": "Eunomía",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "dice",
+      "type": "individuo",
+      "label": "Dike",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "irene",
+      "type": "individuo",
+      "label": "Irene",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "mnemosine",
+      "type": "individuo",
+      "label": "Mnemósine",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "caliope",
+      "type": "individuo",
+      "label": "Calíope",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "clio",
+      "type": "individuo",
+      "label": "Clío",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "euterpe",
+      "type": "individuo",
+      "label": "Euterpe",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "erato",
+      "type": "individuo",
+      "label": "Erató",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "melpomene",
+      "type": "individuo",
+      "label": "Melpómene",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "polimnia",
+      "type": "individuo",
+      "label": "Polimnia",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "terpsicore",
+      "type": "individuo",
+      "label": "Terpsícore",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "talia",
+      "type": "individuo",
+      "label": "Talía",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "urania",
+      "type": "individuo",
+      "label": "Urania",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "maya",
+      "type": "individuo",
+      "label": "Maya",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "hermes",
+      "type": "individuo",
+      "label": "Hermes",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "demeter",
+      "type": "individuo",
+      "label": "Deméter",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "persefone",
+      "type": "individuo",
+      "label": "Kore/Perséfone",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "leto",
+      "type": "individuo",
+      "label": "Leto",
+      "category": "titan",
+      "gender": "female"
+    },
+    {
+      "id": "apolo",
+      "type": "individuo",
+      "label": "Apolo",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "artemisa",
+      "type": "individuo",
+      "label": "Artemisa",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "semele",
+      "type": "individuo",
+      "label": "Sémele",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "dioniso",
+      "type": "individuo",
+      "label": "Dioniso",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "afrodita",
+      "type": "individuo",
+      "label": "Afrodita",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "anteros",
+      "type": "individuo",
+      "label": "Anteros",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "eros",
+      "type": "individuo",
+      "label": "Eros",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "hedilogos",
+      "type": "individuo",
+      "label": "Hedílogos",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "hermafrodito",
+      "type": "individuo",
+      "label": "Hermafrodito",
+      "category": "olimpico",
+      "gender": "unknown"
+    },
+    {
+      "id": "himero",
+      "type": "individuo",
+      "label": "Hímero",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "himeneo",
+      "type": "individuo",
+      "label": "Himeneo",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "potos",
+      "type": "individuo",
+      "label": "Potos",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "ptono",
+      "type": "individuo",
+      "label": "Ptono",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "harmonia",
+      "type": "individuo",
+      "label": "Harmonía",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "epimeteo",
+      "type": "individuo",
+      "label": "Epimeteo",
+      "category": "titan",
+      "gender": "male"
+    },
+    {
+      "id": "abdero",
+      "type": "individuo",
+      "label": "Abdero",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "sileno",
+      "type": "individuo",
+      "label": "Sileno",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "hades",
+      "type": "individuo",
+      "label": "Hades",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "macaria",
+      "type": "individuo",
+      "label": "Macaria",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "melinoe",
+      "type": "individuo",
+      "label": "Melínoe",
+      "category": "olimpico",
+      "gender": "female"
+    },
+    {
+      "id": "coronis",
+      "type": "individuo",
+      "label": "Coronis",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "asclepio",
+      "type": "individuo",
+      "label": "Asclepio",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "lino",
+      "type": "individuo",
+      "label": "Lino",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "orfeo",
+      "type": "individuo",
+      "label": "Orfeo",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "filamon",
+      "type": "individuo",
+      "label": "Filamón",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "euridice",
+      "type": "individuo",
+      "label": "Eurídice",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "medusa",
+      "type": "individuo",
+      "label": "Medusa",
+      "category": "monstruo",
+      "gender": "female"
+    },
+    {
+      "id": "poseidon",
+      "type": "individuo",
+      "label": "Poseidón",
+      "category": "olimpico",
+      "gender": "male"
+    },
+    {
+      "id": "crisaor",
+      "type": "individuo",
+      "label": "Crisaor",
+      "category": "monstruo",
+      "gender": "male"
+    },
+    {
+      "id": "pegaso",
+      "type": "individuo",
+      "label": "Pegaso",
+      "category": "monstruo",
+      "gender": "male"
+    },
+    {
+      "id": "calirroe",
+      "type": "individuo",
+      "label": "Calírroe",
+      "category": "ninfa",
+      "gender": "female"
+    },
+    {
+      "id": "gerion",
+      "type": "individuo",
+      "label": "Gerión",
+      "category": "monstruo",
+      "gender": "male"
+    },
+    {
+      "id": "pandora",
+      "type": "individuo",
+      "label": "Pandora",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "pirra",
+      "type": "individuo",
+      "label": "Pirra",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "deucalion",
+      "type": "individuo",
+      "label": "Deucalión",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "helen",
+      "type": "individuo",
+      "label": "Helén/Heleno",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "pandora-hija",
+      "type": "individuo",
+      "label": "Pandora (hija)",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "tuya",
+      "type": "individuo",
+      "label": "Tuya",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "protogenea",
+      "type": "individuo",
+      "label": "Protogenea",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "anfiction",
+      "type": "individuo",
+      "label": "Anfictión",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "juto",
+      "type": "individuo",
+      "label": "Juto",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "eolo",
+      "type": "individuo",
+      "label": "Eolo",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "doro",
+      "type": "individuo",
+      "label": "Doro",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "creusa",
+      "type": "individuo",
+      "label": "Creúsa",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "ion",
+      "type": "individuo",
+      "label": "Ion",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "aqueo",
+      "type": "individuo",
+      "label": "Aqueo",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "erotes",
+      "type": "grupo",
+      "label": "Erotes",
+      "category": "olimpico"
+    },
+    {
+      "id": "carites",
+      "type": "grupo",
+      "label": "Cárites/Gracias",
+      "category": "olimpico"
+    },
+    {
+      "id": "horas",
+      "type": "grupo",
+      "label": "Horas",
+      "category": "olimpico"
+    },
+    {
+      "id": "musas",
+      "type": "grupo",
+      "label": "Las Musas",
+      "category": "olimpico"
+    },
+    {
+      "id": "satiros",
+      "type": "grupo",
+      "label": "Sátiros",
+      "category": "olimpico"
+    },
+    {
+      "id": "union_hera_zeus",
+      "type": "union",
+      "label": "Zeus + Hera"
+    },
+    {
+      "id": "union_metis_zeus",
+      "type": "union",
+      "label": "Zeus + Metis"
+    },
+    {
+      "id": "union_eurinome_zeus",
+      "type": "union",
+      "label": "Zeus + Eurínome"
+    },
+    {
+      "id": "union_temis_zeus",
+      "type": "union",
+      "label": "Zeus + Temis"
+    },
+    {
+      "id": "union_mnemosine_zeus",
+      "type": "union",
+      "label": "Zeus + Mnemósine"
+    },
+    {
+      "id": "union_maya_zeus",
+      "type": "union",
+      "label": "Zeus + Maya"
+    },
+    {
+      "id": "union_demeter_zeus",
+      "type": "union",
+      "label": "Zeus + Deméter"
+    },
+    {
+      "id": "union_leto_zeus",
+      "type": "union",
+      "label": "Zeus + Leto"
+    },
+    {
+      "id": "union_semele_zeus",
+      "type": "union",
+      "label": "Zeus + Sémele"
+    },
+    {
+      "id": "union_afrodita_ares",
+      "type": "union",
+      "label": "Ares + Afrodita"
+    },
+    {
+      "id": "union_hefesto_unknown",
+      "type": "union",
+      "label": "Hefesto + ?"
+    },
+    {
+      "id": "union_hermes_unknown",
+      "type": "union",
+      "label": "Hermes + ?"
+    },
+    {
+      "id": "union_hades_persefone",
+      "type": "union",
+      "label": "Hades + Perséfone"
+    },
+    {
+      "id": "union_apolo_coronis",
+      "type": "union",
+      "label": "Apolo + Coronis"
+    },
+    {
+      "id": "union_apolo_unknown",
+      "type": "union",
+      "label": "Apolo + ?"
+    },
+    {
+      "id": "union_euridice_orfeo",
+      "type": "union",
+      "label": "Orfeo + Eurídice"
+    },
+    {
+      "id": "union_medusa_poseidon",
+      "type": "union",
+      "label": "Medusa + Poseidón"
+    },
+    {
+      "id": "union_calirroe_crisaor",
+      "type": "union",
+      "label": "Crisaor + Calírroe"
+    },
+    {
+      "id": "union_epimeteo_pandora",
+      "type": "union",
+      "label": "Epimeteo + Pandora"
+    },
+    {
+      "id": "union_deucalion_pirra",
+      "type": "union",
+      "label": "Deucalión + Pirra"
+    },
+    {
+      "id": "union_helen_unknown",
+      "type": "union",
+      "label": "Helén + Orséide"
+    },
+    {
+      "id": "union_creusa_juto",
+      "type": "union",
+      "label": "Juto + Creúsa"
+    },
+    {
+      "id": "orseis",
+      "type": "individuo",
+      "label": "Orséide",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "diomede",
+      "type": "individuo",
+      "label": "Diómedes",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "enarete",
+      "type": "individuo",
+      "label": "Enárete",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "union_eolo_enarete",
+      "type": "union",
+      "label": "Eolo + Enárete"
+    },
+    {
+      "id": "eolidas",
+      "type": "grupo",
+      "category": "mortal",
+      "name": "Los Eólidas",
+      "groupImage": "Eolidas"
+    },
+    {
+      "id": "union_doro_solo",
+      "type": "union",
+      "label": "Doro (solo)"
+    },
+    {
+      "id": "dorios",
+      "type": "grupo",
+      "category": "mortal",
+      "name": "Dorios",
+      "groupImage": "Dorios"
+    },
+    {
+      "id": "union_ion_solo",
+      "type": "union",
+      "label": "Ion (solo)"
+    },
+    {
+      "id": "jonios",
+      "type": "grupo",
+      "category": "mortal",
+      "name": "Jonios",
+      "groupImage": "Jonios"
+    },
+    {
+      "id": "union_aqueo_solo",
+      "type": "union",
+      "label": "Aqueo (solo)"
+    },
+    {
+      "id": "aqueos",
+      "type": "grupo",
+      "category": "mortal",
+      "name": "Aqueos",
+      "groupImage": "Aqueos"
+    },
+    {
+      "id": "filonis",
+      "type": "individuo",
+      "label": "Filonis/Filónide",
+      "category": "mortal",
+      "gender": "female"
+    },
+    {
+      "id": "union_apolo_filonis",
+      "type": "union",
+      "label": "Apolo + Filonis"
+    },
+    {
+      "id": "union_hermes_filonis",
+      "type": "union",
+      "label": "Hermes + Filonis"
+    },
+    {
+      "id": "autolico",
+      "type": "individuo",
+      "label": "Autólico",
+      "category": "mortal",
+      "gender": "male"
+    },
+    {
+      "id": "union_dioniso_afrodita",
+      "type": "union",
+      "label": "Dioniso + Afrodita"
+    }
   ],
   "edges": [
-    { "source": "zeus", "target": "union_hera_zeus", "type": "partner" },
-    { "source": "hera", "target": "union_hera_zeus", "type": "partner" },
-    { "source": "union_hera_zeus", "target": "ares", "type": "child" },
-    { "source": "union_hera_zeus", "target": "hebe", "type": "child" },
-    { "source": "union_hera_zeus", "target": "hefesto", "type": "child" },
-    { "source": "union_hera_zeus", "target": "eris", "type": "child" },
-    { "source": "union_hera_zeus", "target": "ilitia", "type": "child" },
-
-    { "source": "zeus", "target": "union_metis_zeus", "type": "partner" },
-    { "source": "metis", "target": "union_metis_zeus", "type": "partner" },
-    { "source": "union_metis_zeus", "target": "atenea", "type": "child" },
-
-    { "source": "zeus", "target": "union_eurinome_zeus", "type": "partner" },
-    { "source": "eurinome", "target": "union_eurinome_zeus", "type": "partner" },
-    { "source": "union_eurinome_zeus", "target": "carites", "type": "child" },
-
-    { "source": "zeus", "target": "union_temis_zeus", "type": "partner" },
-    { "source": "temis", "target": "union_temis_zeus", "type": "partner" },
-    { "source": "union_temis_zeus", "target": "horas", "type": "child" },
-
-    { "source": "zeus", "target": "union_mnemosine_zeus", "type": "partner" },
-    { "source": "mnemosine", "target": "union_mnemosine_zeus", "type": "partner" },
-    { "source": "union_mnemosine_zeus", "target": "musas", "type": "child" },
-
-    { "source": "zeus", "target": "union_maya_zeus", "type": "partner" },
-    { "source": "maya", "target": "union_maya_zeus", "type": "partner" },
-    { "source": "union_maya_zeus", "target": "hermes", "type": "child" },
-
-    { "source": "zeus", "target": "union_demeter_zeus", "type": "partner" },
-    { "source": "demeter", "target": "union_demeter_zeus", "type": "partner" },
-    { "source": "union_demeter_zeus", "target": "persefone", "type": "child" },
-    { "source": "union_demeter_zeus", "target": "despena", "type": "child" },
-    { "source": "union_demeter_zeus", "target": "arion", "type": "child" },
-
-    { "source": "zeus", "target": "union_leto_zeus", "type": "partner" },
-    { "source": "leto", "target": "union_leto_zeus", "type": "partner" },
-    { "source": "union_leto_zeus", "target": "apolo", "type": "child" },
-    { "source": "union_leto_zeus", "target": "artemisa", "type": "child" },
-
-    { "source": "zeus", "target": "union_semele_zeus", "type": "partner" },
-    { "source": "semele", "target": "union_semele_zeus", "type": "partner" },
-    { "source": "union_semele_zeus", "target": "dioniso", "type": "child" },
-
-    { "source": "ares", "target": "union_afrodita_ares", "type": "partner" },
-    { "source": "afrodita", "target": "union_afrodita_ares", "type": "partner" },
-    { "source": "union_afrodita_ares", "target": "erotes", "type": "child" },
-    { "source": "union_afrodita_ares", "target": "harmonia", "type": "child" },
-
-    { "source": "hefesto", "target": "union_hefesto_unknown", "type": "partner" },
-    { "source": "union_hefesto_unknown", "target": "epimeteo", "type": "child" },
-
-    { "source": "hermes", "target": "union_hermes_unknown", "type": "partner" },
-    { "source": "union_hermes_unknown", "target": "abdero", "type": "child" },
-    { "source": "union_hermes_unknown", "target": "satiros", "type": "child" },
-
-    { "source": "hades", "target": "union_hades_persefone", "type": "partner" },
-    { "source": "persefone", "target": "union_hades_persefone", "type": "partner" },
-    { "source": "union_hades_persefone", "target": "macaria", "type": "child" },
-    { "source": "union_hades_persefone", "target": "melinoe", "type": "child" },
-
-    { "source": "apolo", "target": "union_apolo_coronis", "type": "partner" },
-    { "source": "coronis", "target": "union_apolo_coronis", "type": "partner" },
-    { "source": "union_apolo_coronis", "target": "asclepio", "type": "child" },
-
-    { "source": "apolo", "target": "union_apolo_unknown", "type": "partner" },
-    { "source": "union_apolo_unknown", "target": "lino", "type": "child" },
-    { "source": "union_apolo_unknown", "target": "orfeo", "type": "child" },
-    { "source": "union_apolo_unknown", "target": "filamon", "type": "child" },
-
-    { "source": "orfeo", "target": "union_euridice_orfeo", "type": "partner" },
-    { "source": "euridice", "target": "union_euridice_orfeo", "type": "partner" },
-
-    { "source": "medusa", "target": "union_medusa_poseidon", "type": "partner" },
-    { "source": "poseidon", "target": "union_medusa_poseidon", "type": "partner" },
-    { "source": "union_medusa_poseidon", "target": "crisaor", "type": "child" },
-    { "source": "union_medusa_poseidon", "target": "pegaso", "type": "child" },
-
-    { "source": "crisaor", "target": "union_calirroe_crisaor", "type": "partner" },
-    { "source": "calirroe", "target": "union_calirroe_crisaor", "type": "partner" },
-    { "source": "union_calirroe_crisaor", "target": "gerion", "type": "child" },
-
-    { "source": "epimeteo", "target": "union_epimeteo_pandora", "type": "partner" },
-    { "source": "pandora", "target": "union_epimeteo_pandora", "type": "partner" },
-    { "source": "union_epimeteo_pandora", "target": "pirra", "type": "child" },
-
-    { "source": "pirra", "target": "union_deucalion_pirra", "type": "partner" },
-    { "source": "deucalion", "target": "union_deucalion_pirra", "type": "partner" },
-    { "source": "union_deucalion_pirra", "target": "helen", "type": "child" },
-    { "source": "union_deucalion_pirra", "target": "pandora-hija", "type": "child" },
-    { "source": "union_deucalion_pirra", "target": "tuya", "type": "child" },
-    { "source": "union_deucalion_pirra", "target": "protogenea", "type": "child" },
-    { "source": "union_deucalion_pirra", "target": "anfiction", "type": "child" },
-
-    { "source": "helen", "target": "union_helen_unknown", "type": "partner" },
-    { "source": "union_helen_unknown", "target": "juto", "type": "child" },
-    { "source": "union_helen_unknown", "target": "eolo", "type": "child" },
-    { "source": "union_helen_unknown", "target": "doro", "type": "child" },
-
-    { "source": "juto", "target": "union_creusa_juto", "type": "partner" },
-    { "source": "creusa", "target": "union_creusa_juto", "type": "partner" },
-    { "source": "union_creusa_juto", "target": "ion", "type": "child" },
-    { "source": "union_creusa_juto", "target": "aqueo", "type": "child" },
-
-    { "source": "erotes", "target": "anteros", "type": "membership" },
-    { "source": "erotes", "target": "eros", "type": "membership" },
-    { "source": "erotes", "target": "hedilogos", "type": "membership" },
-    { "source": "erotes", "target": "hermafrodito", "type": "membership" },
-    { "source": "erotes", "target": "himero", "type": "membership" },
-    { "source": "erotes", "target": "himeneo", "type": "membership" },
-    { "source": "erotes", "target": "potos", "type": "membership" },
-    { "source": "erotes", "target": "ptono", "type": "membership" },
-
-    { "source": "carites", "target": "aglaya", "type": "membership" },
-    { "source": "carites", "target": "eufrosine", "type": "membership" },
-    { "source": "carites", "target": "talia-gracia", "type": "membership" },
-
-    { "source": "horas", "target": "eunomia", "type": "membership" },
-    { "source": "horas", "target": "dice", "type": "membership" },
-    { "source": "horas", "target": "irene", "type": "membership" },
-
-    { "source": "musas", "target": "caliope", "type": "membership" },
-    { "source": "musas", "target": "clio", "type": "membership" },
-    { "source": "musas", "target": "euterpe", "type": "membership" },
-    { "source": "musas", "target": "erato", "type": "membership" },
-    { "source": "musas", "target": "melpomene", "type": "membership" },
-    { "source": "musas", "target": "polimnia", "type": "membership" },
-    { "source": "musas", "target": "terpsicore", "type": "membership" },
-    { "source": "musas", "target": "talia", "type": "membership" },
-    { "source": "musas", "target": "urania", "type": "membership" },
-
-    { "source": "satiros", "target": "sileno", "type": "membership" }
+    {
+      "source": "zeus",
+      "target": "union_hera_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "hera",
+      "target": "union_hera_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_hera_zeus",
+      "target": "ares",
+      "type": "child"
+    },
+    {
+      "source": "union_hera_zeus",
+      "target": "hebe",
+      "type": "child"
+    },
+    {
+      "source": "union_hera_zeus",
+      "target": "hefesto",
+      "type": "child"
+    },
+    {
+      "source": "union_hera_zeus",
+      "target": "eris",
+      "type": "child"
+    },
+    {
+      "source": "union_hera_zeus",
+      "target": "ilitia",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_metis_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "metis",
+      "target": "union_metis_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_metis_zeus",
+      "target": "atenea",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_eurinome_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "eurinome",
+      "target": "union_eurinome_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_eurinome_zeus",
+      "target": "carites",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_temis_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "temis",
+      "target": "union_temis_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_temis_zeus",
+      "target": "horas",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_mnemosine_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "mnemosine",
+      "target": "union_mnemosine_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_mnemosine_zeus",
+      "target": "musas",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_maya_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "maya",
+      "target": "union_maya_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_maya_zeus",
+      "target": "hermes",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_demeter_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "demeter",
+      "target": "union_demeter_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_demeter_zeus",
+      "target": "persefone",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_leto_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "leto",
+      "target": "union_leto_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_leto_zeus",
+      "target": "apolo",
+      "type": "child"
+    },
+    {
+      "source": "union_leto_zeus",
+      "target": "artemisa",
+      "type": "child"
+    },
+    {
+      "source": "zeus",
+      "target": "union_semele_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "semele",
+      "target": "union_semele_zeus",
+      "type": "partner"
+    },
+    {
+      "source": "union_semele_zeus",
+      "target": "dioniso",
+      "type": "child"
+    },
+    {
+      "source": "ares",
+      "target": "union_afrodita_ares",
+      "type": "partner"
+    },
+    {
+      "source": "afrodita",
+      "target": "union_afrodita_ares",
+      "type": "partner"
+    },
+    {
+      "source": "union_afrodita_ares",
+      "target": "erotes",
+      "type": "child"
+    },
+    {
+      "source": "union_afrodita_ares",
+      "target": "harmonia",
+      "type": "child"
+    },
+    {
+      "source": "hefesto",
+      "target": "union_hefesto_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "hermes",
+      "target": "union_hermes_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "union_hermes_unknown",
+      "target": "abdero",
+      "type": "child"
+    },
+    {
+      "source": "union_hermes_unknown",
+      "target": "satiros",
+      "type": "child"
+    },
+    {
+      "source": "hades",
+      "target": "union_hades_persefone",
+      "type": "partner"
+    },
+    {
+      "source": "persefone",
+      "target": "union_hades_persefone",
+      "type": "partner"
+    },
+    {
+      "source": "union_hades_persefone",
+      "target": "macaria",
+      "type": "child"
+    },
+    {
+      "source": "union_hades_persefone",
+      "target": "melinoe",
+      "type": "child"
+    },
+    {
+      "source": "apolo",
+      "target": "union_apolo_coronis",
+      "type": "partner"
+    },
+    {
+      "source": "coronis",
+      "target": "union_apolo_coronis",
+      "type": "partner"
+    },
+    {
+      "source": "union_apolo_coronis",
+      "target": "asclepio",
+      "type": "child"
+    },
+    {
+      "source": "apolo",
+      "target": "union_apolo_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "union_apolo_unknown",
+      "target": "lino",
+      "type": "child"
+    },
+    {
+      "source": "union_apolo_unknown",
+      "target": "orfeo",
+      "type": "child"
+    },
+    {
+      "source": "orfeo",
+      "target": "union_euridice_orfeo",
+      "type": "partner"
+    },
+    {
+      "source": "euridice",
+      "target": "union_euridice_orfeo",
+      "type": "partner"
+    },
+    {
+      "source": "medusa",
+      "target": "union_medusa_poseidon",
+      "type": "partner"
+    },
+    {
+      "source": "poseidon",
+      "target": "union_medusa_poseidon",
+      "type": "partner"
+    },
+    {
+      "source": "union_medusa_poseidon",
+      "target": "crisaor",
+      "type": "child"
+    },
+    {
+      "source": "union_medusa_poseidon",
+      "target": "pegaso",
+      "type": "child"
+    },
+    {
+      "source": "crisaor",
+      "target": "union_calirroe_crisaor",
+      "type": "partner"
+    },
+    {
+      "source": "calirroe",
+      "target": "union_calirroe_crisaor",
+      "type": "partner"
+    },
+    {
+      "source": "union_calirroe_crisaor",
+      "target": "gerion",
+      "type": "child"
+    },
+    {
+      "source": "epimeteo",
+      "target": "union_epimeteo_pandora",
+      "type": "partner"
+    },
+    {
+      "source": "pandora",
+      "target": "union_epimeteo_pandora",
+      "type": "partner"
+    },
+    {
+      "source": "union_epimeteo_pandora",
+      "target": "pirra",
+      "type": "child"
+    },
+    {
+      "source": "pirra",
+      "target": "union_deucalion_pirra",
+      "type": "partner"
+    },
+    {
+      "source": "deucalion",
+      "target": "union_deucalion_pirra",
+      "type": "partner"
+    },
+    {
+      "source": "union_deucalion_pirra",
+      "target": "helen",
+      "type": "child"
+    },
+    {
+      "source": "union_deucalion_pirra",
+      "target": "pandora-hija",
+      "type": "child"
+    },
+    {
+      "source": "union_deucalion_pirra",
+      "target": "tuya",
+      "type": "child"
+    },
+    {
+      "source": "union_deucalion_pirra",
+      "target": "protogenea",
+      "type": "child"
+    },
+    {
+      "source": "union_deucalion_pirra",
+      "target": "anfiction",
+      "type": "child"
+    },
+    {
+      "source": "helen",
+      "target": "union_helen_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "union_helen_unknown",
+      "target": "juto",
+      "type": "child"
+    },
+    {
+      "source": "union_helen_unknown",
+      "target": "eolo",
+      "type": "child"
+    },
+    {
+      "source": "union_helen_unknown",
+      "target": "doro",
+      "type": "child"
+    },
+    {
+      "source": "juto",
+      "target": "union_creusa_juto",
+      "type": "partner"
+    },
+    {
+      "source": "creusa",
+      "target": "union_creusa_juto",
+      "type": "partner"
+    },
+    {
+      "source": "union_creusa_juto",
+      "target": "ion",
+      "type": "child"
+    },
+    {
+      "source": "union_creusa_juto",
+      "target": "aqueo",
+      "type": "child"
+    },
+    {
+      "source": "erotes",
+      "target": "anteros",
+      "type": "membership"
+    },
+    {
+      "source": "erotes",
+      "target": "eros",
+      "type": "membership"
+    },
+    {
+      "source": "erotes",
+      "target": "hedilogos",
+      "type": "membership"
+    },
+    {
+      "source": "erotes",
+      "target": "hermafrodito",
+      "type": "membership"
+    },
+    {
+      "source": "erotes",
+      "target": "himero",
+      "type": "membership"
+    },
+    {
+      "source": "erotes",
+      "target": "potos",
+      "type": "membership"
+    },
+    {
+      "source": "erotes",
+      "target": "ptono",
+      "type": "membership"
+    },
+    {
+      "source": "carites",
+      "target": "aglaya",
+      "type": "membership"
+    },
+    {
+      "source": "carites",
+      "target": "eufrosine",
+      "type": "membership"
+    },
+    {
+      "source": "carites",
+      "target": "talia-gracia",
+      "type": "membership"
+    },
+    {
+      "source": "horas",
+      "target": "eunomia",
+      "type": "membership"
+    },
+    {
+      "source": "horas",
+      "target": "dice",
+      "type": "membership"
+    },
+    {
+      "source": "horas",
+      "target": "irene",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "caliope",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "clio",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "euterpe",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "erato",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "melpomene",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "polimnia",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "terpsicore",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "talia",
+      "type": "membership"
+    },
+    {
+      "source": "musas",
+      "target": "urania",
+      "type": "membership"
+    },
+    {
+      "source": "satiros",
+      "target": "sileno",
+      "type": "membership"
+    },
+    {
+      "source": "union_hefesto_unknown",
+      "target": "pandora",
+      "type": "child"
+    },
+    {
+      "source": "orseis",
+      "target": "union_helen_unknown",
+      "type": "partner"
+    },
+    {
+      "source": "union_creusa_juto",
+      "target": "diomede",
+      "type": "child"
+    },
+    {
+      "source": "eolo",
+      "target": "union_eolo_enarete",
+      "type": "partner"
+    },
+    {
+      "source": "enarete",
+      "target": "union_eolo_enarete",
+      "type": "partner"
+    },
+    {
+      "source": "union_eolo_enarete",
+      "target": "eolidas",
+      "type": "child"
+    },
+    {
+      "source": "doro",
+      "target": "union_doro_solo",
+      "type": "partner"
+    },
+    {
+      "source": "union_doro_solo",
+      "target": "dorios",
+      "type": "child"
+    },
+    {
+      "source": "ion",
+      "target": "union_ion_solo",
+      "type": "partner"
+    },
+    {
+      "source": "union_ion_solo",
+      "target": "jonios",
+      "type": "child"
+    },
+    {
+      "source": "aqueo",
+      "target": "union_aqueo_solo",
+      "type": "partner"
+    },
+    {
+      "source": "union_aqueo_solo",
+      "target": "aqueos",
+      "type": "child"
+    },
+    {
+      "source": "apolo",
+      "target": "union_apolo_filonis",
+      "type": "partner"
+    },
+    {
+      "source": "filonis",
+      "target": "union_apolo_filonis",
+      "type": "partner"
+    },
+    {
+      "source": "union_apolo_filonis",
+      "target": "filamon",
+      "type": "child"
+    },
+    {
+      "source": "hermes",
+      "target": "union_hermes_filonis",
+      "type": "partner"
+    },
+    {
+      "source": "filonis",
+      "target": "union_hermes_filonis",
+      "type": "partner"
+    },
+    {
+      "source": "union_hermes_filonis",
+      "target": "autolico",
+      "type": "child"
+    },
+    {
+      "source": "dioniso",
+      "target": "union_dioniso_afrodita",
+      "type": "partner"
+    },
+    {
+      "source": "afrodita",
+      "target": "union_dioniso_afrodita",
+      "type": "partner"
+    },
+    {
+      "source": "union_dioniso_afrodita",
+      "target": "himeneo",
+      "type": "child"
+    }
   ]
 }

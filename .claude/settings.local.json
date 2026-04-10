@@ -32,7 +32,12 @@
       "Bash(grep \"\\\\.json$\")",
       "Bash(echo \"EXIT: $?\")",
       "Bash(echo \"TS exit: $?\")",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(calirroe)",
+      "Bash(hidra\")",
+      "Bash(node scripts/fix-olimpicos.js)",
+      "Bash(node scripts/fix-olimpicos2.js)",
+      "Bash(node scripts/fix-demeter.js)"
     ]
   }
 }

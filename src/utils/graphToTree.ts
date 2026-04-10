@@ -76,12 +76,17 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
       const members = (edgesBySource.get(nodeId) ?? [])
         .filter(e => e.type === 'membership')
         .map(e => e.target);
+        
+      const memberNodes = members.map(mid => buildNode(mid));
+
       return {
         ...baseNode,
         id: nodeId,
         isGroup: true,
         groupName: node.name ?? node.label ?? nodeId,
+        groupImage: node.groupImage,
         members,
+        memberNodes, // Pass fully-built trees to the UI layer
       } as TreeNode;
     }
 

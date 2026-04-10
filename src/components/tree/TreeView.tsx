@@ -95,8 +95,13 @@ function flattenToLayout(
   };
 
   if (!node.unions || node.unions.length === 0) {
-    // Group pre-populate
-    if (result.isGroup && result.members) {
+    // Group: use fully-built memberNodes (with their own partner/child branches) if available
+    if (result.isGroup && node.memberNodes && node.memberNodes.length > 0) {
+      const memberIds = new Set(node.memberNodes.map(m => m.id));
+      result.children = node.memberNodes.map(m =>
+        flattenToLayout(m, allNodeIds, memberIds, placedIds, placedDepths, depth + 1)
+      );
+    } else if (result.isGroup && result.members) {
       result.children = result.members.map(mid => ({ id: mid, personId: mid }));
     }
     return result;
@@ -153,15 +158,14 @@ function flattenToLayout(
     const ch = buildChildren(solo[0]?.children ?? []);
     result.children = ch.length > 0 ? ch : undefined;
   } else {
-    const soloChildren: LayoutNode[] = [];
-    const partneredChildren: LayoutNode[] = [];
+    const children: LayoutNode[] = [];
     for (const union of node.unions ?? []) {
       if (!union.partnerId) {
-        soloChildren.push(...buildChildren(union.children ?? []));
+        children.push(...buildChildren(union.children ?? []));
       } else {
         const unionChildren = buildChildren(union.children ?? [], union.partnerId);
         const isCrossLink = isPartnerNearby(union.partnerId);
-        partneredChildren.push({
+        children.push({
           id: `${node.id}_x_${union.partnerId}`,
           isUnionHeader: true,
           unionParentId: node.id,
@@ -171,13 +175,7 @@ function flattenToLayout(
         });
       }
     }
-    const children = [...soloChildren, ...partneredChildren];
     result.children = children.length > 0 ? children : undefined;
-  }
-
-  // Group pre-populate
-  if (result.isGroup && result.members && (!result.children || result.children.length === 0)) {
-    result.children = result.members.map(mid => ({ id: mid, personId: mid }));
   }
 
   return result;
@@ -280,13 +278,22 @@ export default function TreeView({ tree, focusId }: Props) {
         node._children = node.children as HNode[];
         node.children = undefined;
       }
-      node.children?.forEach(c => collapseGroups(c as HNode));
+      // Recurse into _children too so nested groups (e.g. Oceánides inside Titanes) get collapsed
+      (node.children ?? node._children ?? []).forEach(c => collapseGroups(c as HNode));
     }
     collapseGroups(root);
 
     // Collapse deep branches (count person generations, not union headers)
     function collapseDeep(node: HNode, gen: number, maxGen: number) {
-      if (node.data.isGroup) return;
+      if (node.data.isGroup) {
+        // Group members inside the group are evaluated for collapse. 
+        // We do NOT collapse the group itself here, since collapseGroups handled that.
+        // But we MUST recurse into its members (which are in node.children or node._children).
+        const kids = (node.children || node._children || []);
+        kids.forEach(c => collapseDeep(c as HNode, gen, maxGen));
+        return;
+      }
+      
       const myGen = node.data.isUnionHeader ? gen : gen;
       if (node.children && !node.data.isUnionHeader && myGen >= maxGen) {
         node._children = node.children as HNode[];
@@ -316,6 +323,7 @@ export default function TreeView({ tree, focusId }: Props) {
         const w = (n: d3.HierarchyPointNode<LayoutNode>) => {
           if (n.data.singlePartner) return 2.2;
           if (n.data.isUnionHeader) return 1.8;
+          if (n.data.isGroup) return 1.3;
           return 1.0;
         };
         return ((w(a) + w(b)) / 2) * (a.parent === b.parent ? 1.0 : 1.5);
@@ -388,6 +396,7 @@ export default function TreeView({ tree, focusId }: Props) {
       // Assign generations and fix Y positions
       function assignGen(n: HNode, gen: number) {
         n._gen = gen;
+        
         (n.children || []).forEach((c) => {
           const ch = c as HNode;
           assignGen(ch, (ch.data.isUnionHeader) ? gen : gen + 1);
@@ -420,7 +429,9 @@ export default function TreeView({ tree, focusId }: Props) {
       // Bottom-up pass: push overlapping sibling subtrees apart, re-center parents.
 
       function subtreeExtent(n: HNode): [number, number] {
-        const hw = n.data.singlePartner ? HALF_GAP + NODE_RADIUS : NODE_RADIUS + 15;
+        const hw = n.data.singlePartner ? SINGLE_PARTNER_GAP + NODE_RADIUS
+          : n.data.isGroup ? NODE_RADIUS + 35
+          : NODE_RADIUS + 15;
         let lo = n.x - hw;
         let hi = n.x + hw;
         for (const c of n.children || []) {
@@ -473,9 +484,18 @@ export default function TreeView({ tree, focusId }: Props) {
 
         const MIN_GAP = 20;
         for (let i = 1; i < kids.length; i++) {
-          const [, prevHi] = subtreeExtent(kids[i - 1] as HNode);
-          const [nextLo] = subtreeExtent(kids[i] as HNode);
-          const overlap = prevHi + MIN_GAP - nextLo;
+          const prevKid = kids[i - 1] as HNode;
+          const nextKid = kids[i] as HNode;
+          const [, prevHi] = subtreeExtent(prevKid);
+          const [nextLo] = subtreeExtent(nextKid);
+          
+          let requiredGap = MIN_GAP;
+          // Apply a significant push to the right for Erebo's children
+          if (nextKid.data.unionPartnerId === 'erebo') {
+            requiredGap = 200;
+          }
+          
+          const overlap = prevHi + requiredGap - nextLo;
           
           if (overlap > 0) {
             for (let j = i; j < kids.length; j++) shiftSubtree(kids[j] as HNode, overlap);
@@ -723,18 +743,24 @@ export default function TreeView({ tree, focusId }: Props) {
         .merge(crossSym)
         .transition().duration(duration)
         .attr('x', d => {
-          if (Math.abs(d.sy - d.ty) >= 20 && Math.abs(d.sx - d.tx) <= NODE_SPACING_X * 1.5) {
-            const isLeft = d.tx < d.sx;
-            const bulgeDir = isLeft ? -1 : 1;
-            return (d.sx + d.tx) / 2 + bulgeDir * (NODE_RADIUS + 80);
+          if (Math.abs(d.sy - d.ty) < 20) {
+            return (d.sx + d.tx) / 2;
           }
-          return (d.sx + d.tx) / 2;
+          // Same Bezier midpoint logic as the crossLinkPath
+          const absDx = Math.abs(d.sx - d.tx);
+          const isLeft = d.tx < d.sx;
+          const offset = isLeft ? -NODE_RADIUS : NODE_RADIUS;
+          const bulgeDir = isLeft ? -1 : 1;
+          const bulgeAmount = Math.max(180, absDx * 0.45 + 90);
+          const bulge = offset + bulgeDir * bulgeAmount;
+          return (d.sx + d.tx) / 2 + 0.25 * offset + 0.75 * bulge;
         })
         .attr('y', d => {
           if (Math.abs(d.sy - d.ty) < 20) {
             const dist = Math.abs(d.tx - d.sx) - NODE_RADIUS * 2;
             const arcH = Math.min(45, Math.max(dist, 0) * 0.3 + 10);
-            return d.sy - arcH / 2 - 8;
+            // Midpoint of quadratic bezier Q
+            return d.sy - arcH / 2 - 4;
           }
           return (d.sy + d.ty) / 2 - 4;
         })
@@ -784,7 +810,7 @@ export default function TreeView({ tree, focusId }: Props) {
         .append('image')
         .attr('class', 'tree-node__image')
         .attr('href', d => d.data.isGroup && d.data.groupImage
-          ? optimizeImage(`/images/personajes/${d.data.groupImage}`)
+          ? optimizeImage(`/images/personajes/${d.data.groupImage}.png`)
           : getImage(pId(d)))
         .attr('x', d => pCx(d) - (NODE_RADIUS - 3) * 1.4)
         .attr('y', -(NODE_RADIUS - 3))
@@ -925,7 +951,7 @@ export default function TreeView({ tree, focusId }: Props) {
       // Partner ficha link (single-partner mode)
       nodeEnter.filter(d => !!d.data.singlePartner && !!getCharacter(d.data.singlePartner!))
         .append('text').attr('class', 'tree-node__link tree-node__link--partner')
-        .attr('x', HALF_GAP).attr('dy', -NODE_RADIUS - 8)
+        .attr('x', SINGLE_PARTNER_GAP).attr('dy', -NODE_RADIUS - 8)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
         .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.singlePartner}`); });
@@ -1112,22 +1138,19 @@ export default function TreeView({ tree, focusId }: Props) {
         const arcH = Math.min(45, dist * 0.3 + 10);
         return `M ${sx} ${d.sy} Q ${midX} ${d.sy - arcH} ${tx} ${d.ty}`;
       }
-      // Different levels: S-curve from bottom of upper to top of lower
-      const goingDown = d.ty > d.sy;
+      
+      // Different levels: ALWAYS arc to the side to separate from standard parent-child links (pequeño rodeo)
       const absDx = Math.abs(d.sx - d.tx);
-      // Nearly vertical: arc to the side to separate from standard parent-child or routing links
-      if (absDx <= NODE_SPACING_X * 1.5) {
-        const isLeft = d.tx < d.sx;
-        const offset = isLeft ? -NODE_RADIUS : NODE_RADIUS;
-        const bulgeDir = isLeft ? -1 : 1;
-        const bulge = offset + bulgeDir * 110;
-        const midY = (d.sy + d.ty) / 2;
-        return `M ${d.sx + offset} ${d.sy} C ${d.sx + bulge} ${midY} ${d.tx + bulge} ${midY} ${d.tx + offset} ${d.ty}`;
-      }
-      const sy = goingDown ? d.sy + NODE_RADIUS : d.sy - NODE_RADIUS;
-      const ty = goingDown ? d.ty - NODE_RADIUS : d.ty + NODE_RADIUS;
-      const midY = (sy + ty) / 2;
-      return `M ${d.sx} ${sy} C ${d.sx} ${midY} ${d.tx} ${midY} ${d.tx} ${ty}`;
+      const isLeft = d.tx < d.sx;
+      const offset = isLeft ? -NODE_RADIUS : NODE_RADIUS;
+      const bulgeDir = isLeft ? -1 : 1;
+      
+      // Calculate a dynamic bulge based on horizontal distance to ensure it always visibly detours
+      const bulgeAmount = Math.max(180, absDx * 0.45 + 90);
+      const bulge = offset + bulgeDir * bulgeAmount;
+      const midY = (d.sy + d.ty) / 2;
+      
+      return `M ${d.sx + offset} ${d.sy} C ${d.sx + bulge} ${midY} ${d.tx + bulge} ${midY} ${d.tx + offset} ${d.ty}`;
     }
 
     // ─── Expose collapse/expand actions via ref ───────────────────────
