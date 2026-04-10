@@ -1,0 +1,11 @@
+Hay que cambiar algo mas del arbol de los heroes. POrque en este caso puede que vaya a haber mas de un nodo raiz en el mismo arbol que se conecte con otros nodos del arbol. Y eso tiene que gestionarse bien y visualmente correcto.
+Faltan nodos:
+- Zeus creó a Néfele
+- Néfele se juntó con Ixión
+- Néfele e Ixión tuvieron al grupo de los Centauros; que de momento solo contiene a Neso
+- Andrómeda viene de Cefeo y Casiopea (Que son dos nodos que no estan en el arbol ahora pero que no vienen de zeus ni nada)
+- Perseo y Andrómeda tuvieron al grupo de Perseidas que son un grupo que contiene a: Perses, Gorgófone, Heleo, Méstor, Electrión, Alceo y Esténelo
+- Por otro lado Tántalo y Dione que son dos nodos que tampoco vienen de Zeus, tuvieron a Pélope
+- Enómao y Estérope tuvieron a Hipodamia que tampoco vienen de Zeus
+- Pélope e Hipodamia tuvieron al grupo de los Pelópides
+- Por otro lado Dárdano con Batía tuvieron más hijos: Ilo, Erictonio (que si que esta) y Zacinto
