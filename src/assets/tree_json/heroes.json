@@ -38,7 +38,7 @@
     { "id": "estenelo", "type": "individuo", "label": "Esténelo", "category": "mortal", "gender": "male" },
 
     { "id": "alcmena", "type": "individuo", "label": "Alcmena", "category": "mortal", "gender": "female" },
-    { "id": "anfitrion", "type": "individuo", "label": "Anfitrión", "category": "mortal", "gender": "male" },
+    { "id": "anfitrion_dup", "type": "individuo", "label": "Anfitrión", "category": "mortal", "gender": "male" },
     { "id": "ificles", "type": "individuo", "label": "Ificles", "category": "mortal", "gender": "male" },
     { "id": "zeus_dup", "type": "individuo", "label": "Zeus", "category": "olimpico", "gender": "male" },
     { "id": "heracles", "type": "individuo", "label": "Heracles", "category": "heroe", "gender": "male" },
@@ -89,7 +89,7 @@
     { "id": "alceo_dup", "type": "individuo", "label": "Alceo", "category": "mortal", "gender": "male" },
     { "id": "electrion_dup", "type": "individuo", "label": "Electrión", "category": "mortal", "gender": "male" },
     { "id": "euristeo", "type": "individuo", "label": "Euristeo", "category": "heroe", "gender": "male" },
-    { "id": "anfitrion_dup", "type": "individuo", "label": "Anfitrión", "category": "mortal", "gender": "male" },
+    { "id": "anfitrion", "type": "individuo", "label": "Anfitrión", "category": "mortal", "gender": "male" },
     { "id": "alcmena_dup", "type": "individuo", "label": "Alcmena", "category": "mortal", "gender": "female" },
 
     { "id": "sarpedon", "type": "individuo", "label": "Sarpedón", "category": "mortal", "gender": "male" },
@@ -229,7 +229,7 @@
     { "source": "union_electrion_unknown", "target": "alcmena", "type": "child" },
 
     { "source": "alcmena", "target": "union_alcmena_anfitrion", "type": "partner" },
-    { "source": "anfitrion", "target": "union_alcmena_anfitrion", "type": "partner" },
+    { "source": "anfitrion_dup", "target": "union_alcmena_anfitrion", "type": "partner" },
     { "source": "union_alcmena_anfitrion", "target": "ificles", "type": "child" },
     { "source": "union_alcmena_anfitrion", "target": "laonome", "type": "child" },
 
@@ -310,7 +310,7 @@
 
     { "source": "astidamia", "target": "union_astidamia_alceo", "type": "partner" },
     { "source": "alceo_dup", "target": "union_astidamia_alceo", "type": "partner" },
-    { "source": "union_astidamia_alceo", "target": "anfitrion_dup", "type": "child" },
+    { "source": "union_astidamia_alceo", "target": "anfitrion", "type": "child" },
 
     { "source": "lisidice", "target": "union_lisidice_electrion", "type": "partner" },
     { "source": "electrion_dup", "target": "union_lisidice_electrion", "type": "partner" },

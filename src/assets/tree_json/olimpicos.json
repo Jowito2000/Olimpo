@@ -686,7 +686,7 @@
       "label": "Juto + Creúsa"
     },
     {
-      "id": "orseis",
+      "id": "orseide",
       "type": "individuo",
       "label": "Orséide",
       "category": "mortal",
@@ -1291,7 +1291,7 @@
       "type": "child"
     },
     {
-      "source": "orseis",
+      "source": "orseide",
       "target": "union_helen_unknown",
       "type": "partner"
     },

@@ -30,9 +30,11 @@ function preloadTreeImages(tree: TreeData) {
   }
 
   function visit(node: TreeNode) {
-    if (node.isGroup && node.groupImage) {
+    if (node.id === '__virtual_root__') {
+      // Virtual root has no image — skip
+    } else if (node.isGroup && node.groupImage) {
       const img = new window.Image();
-      img.src = `/_next/image?url=${encodeURIComponent(`/images/personajes/${node.groupImage}`)}&w=256&q=90`;
+      img.src = `/_next/image?url=${encodeURIComponent(`/images/personajes/${node.groupImage}.png`)}&w=256&q=90`;
     } else {
       resolveAndPreload(node.id);
     }

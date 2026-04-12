@@ -37,7 +37,8 @@
       "Bash(hidra\")",
       "Bash(node scripts/fix-olimpicos.js)",
       "Bash(node scripts/fix-olimpicos2.js)",
-      "Bash(node scripts/fix-demeter.js)"
+      "Bash(node scripts/fix-demeter.js)",
+      "Bash(node:*)"
     ]
   }
 }

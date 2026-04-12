@@ -330,3 +330,31 @@
 .tree-view__legend-line--creation {
   border-top: 2px dashed rgba(147, 51, 234, 0.75);
 }
+
+/* ─── Cross-tree badge — ripple animation ──────────────────────────── */
+@keyframes cross-ripple {
+  0%   { r: 10px; opacity: 0.75; stroke-width: 2px; }
+  100% { r: 22px; opacity: 0;    stroke-width: 1px; }
+}
+
+@keyframes cross-badge-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.15); opacity: 0.85; }
+}
+
+.tree-node__cross-ripple {
+  animation: cross-ripple 1.6s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tree-node__cross-badge {
+  animation: cross-badge-pulse 1.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tree-node__cross-click:hover ~ .tree-node__cross-badge,
+.tree-node__cross-click:hover + .tree-node__cross-badge {
+  fill: #38c9b5;
+}

@@ -5,6 +5,7 @@ import * as d3 from 'd3';
 import { useRouter } from 'next/navigation';
 import { getCharacter, categories } from '../../data';
 import { getImageUrl, getCharacterImage } from '../../utils/images';
+import { getCanonicalRef, baseNodeId } from '../../data/crossTreeIndex';
 import type { TreeData, TreeNode } from '../../types';
 import './TreeView.css';
 
@@ -559,29 +560,59 @@ export default function TreeView({ tree, focusId }: Props) {
         }
       });
 
-      // ─── Cross-link partner helpers (bidirectional expand/collapse) ────
-      // Find junctions whose cross-link partner matches a given person ID
-      function junctionsForPartner(personId: string): HNode[] {
-        return nodes.filter(n =>
-          isJunction(n) && n.data.crossLinkPartnerId === personId
-        );
+      // ─── Bidirectional expansion helpers ──────────────────────────────
+      // Find all nodes that represent a union visually attached to a given character across the FULL tree
+      function getUnionsForPerson(personId: string): HNode[] {
+        const result: HNode[] = [];
+        function walk(node: HNode) {
+          if (node.data.personId === personId) {
+             result.push(node);
+          }
+          if (node.data.isUnionHeader && (node.data.unionParentId === personId || node.data.crossLinkPartnerId === personId)) {
+             result.push(node);
+          }
+          if (node.children) node.children.forEach(c => walk(c as HNode));
+          if (node._children) node._children.forEach(c => walk(c as HNode));
+        }
+        walk(root); // Always traverse from root to catch nodes inside collapsed groups
+        return result;
       }
 
       function hasHiddenChildren(d: HNode): boolean {
-        if (d._children) return true;
-        if (d.data.personId) {
-          for (const j of junctionsForPartner(d.data.personId)) {
-            if (j._children) return true;
+        const charId = primaryCharId(d);
+        if (!charId) return !!d._children;
+        const related = getUnionsForPerson(charId);
+        for (const n of related) {
+          if (n._children && n._children.length > 0) return true;
+          if (n.children && n.children.length > 0) {
+            let p = n.parent as HNode | null;
+            let hiddenByAncestor = false;
+            while (p) {
+              if (p._children) { hiddenByAncestor = true; break; }
+              p = p.parent as HNode | null;
+            }
+            if (hiddenByAncestor) return true;
           }
         }
         return false;
       }
 
       function hiddenChildCount(d: HNode): number {
-        let count = d._children?.length ?? 0;
-        if (d.data.personId) {
-          for (const j of junctionsForPartner(d.data.personId)) {
-            if (j._children) count += j._children.length;
+        const charId = primaryCharId(d);
+        if (!charId) return d._children?.length ?? 0;
+        
+        let count = 0;
+        const related = getUnionsForPerson(charId);
+        for (const n of related) {
+          const kids = n._children || n.children || [];
+          if (kids.length > 0) {
+            let isHidden = !!n._children;
+            let p = n.parent as HNode | null;
+            while (p && !isHidden) {
+              if (p._children) isHidden = true;
+              p = p.parent as HNode | null;
+            }
+            if (isHidden) count += kids.length;
           }
         }
         return count;
@@ -632,8 +663,10 @@ export default function TreeView({ tree, focusId }: Props) {
         const s = link.source as HNode;
         const t = link.target as HNode;
 
-        // Creation link: exits from the right edge of the source node
+        // Creation link: vertical targets exit from bottom, horizontal targets exit from right
         if (t.data.isCreatedChild) {
+          const dx = Math.abs(t.x - s.x);
+          if (dx < 150) return { x: s.x, y: s.y + NODE_RADIUS + 6 };
           return { x: s.x + NODE_RADIUS + 6, y: s.y };
         }
 
@@ -822,7 +855,10 @@ export default function TreeView({ tree, focusId }: Props) {
           if (isJunction(d)) c += ' tree-node--junction';
           return c;
         })
-        .attr('transform', `translate(${source.x0 ?? 0},${source.y0 ?? 0})`);
+        .attr('transform', d => {
+          const p = d.parent || source;
+          return `translate(${p.x0 ?? source.x0 ?? 0},${p.y0 ?? source.y0 ?? 0})`;
+        });
 
       /* PRIMARY CIRCLE (all nodes) */
       const pCx = (d: HNode) => personCx(d);
@@ -1025,54 +1061,180 @@ export default function TreeView({ tree, focusId }: Props) {
         .attr('text-anchor', 'middle').attr('font-size', '10px')
         .text('▼ Ver miembros').style('cursor', 'pointer').style('opacity', 0);
 
-      /* CLICK TARGETS (always expand/collapse, never navigate) */
-      nodeEnter.append('circle').attr('class', 'tree-node__click-target')
-        .attr('cx', pCx).attr('r', d => nodeRadius(d) + 4)
-        .attr('fill', 'transparent').style('cursor', 'pointer')
-        .on('click', (_e, d) => {
-          const expanding = !d.children && !!d._children;
-          toggleChildren(d);
-          // Bidirectional: also toggle junctions referencing this node
-          if (d.data.personId) {
-            (root.descendants() as HNode[]).forEach(n => {
-              if (isJunction(n) && n.data.crossLinkPartnerId === d.data.personId) {
-                toggleChildren(n);
+        /* CLICK TARGETS (always expand/collapse, never navigate) */
+        const performGlobalToggle = (charId: string, clickedNode: HNode) => {
+          const related = getUnionsForPerson(charId);
+          
+          let expanding = false;
+          related.forEach(n => {
+            if (n._children && n._children.length > 0) expanding = true;
+            if (n.children && n.children.length > 0) {
+               let p = n.parent as HNode | null;
+               while (p) {
+                 if (p._children) { expanding = true; break; }
+                 p = p.parent as HNode | null;
+               }
+            }
+          });
+
+          related.forEach(n => {
+            if (expanding) {
+              if (n._children) {
+                n.children = n._children;
+                n._children = undefined;
               }
-            });
+              let p = n.parent as HNode | null;
+              while (p) {
+                if (p._children) {
+                  p.children = p._children;
+                  p._children = undefined;
+                }
+                p = p.parent as HNode | null;
+              }
+            } else {
+              if (n.children) {
+                n._children = n.children;
+                n.children = undefined;
+              }
+            }
+          });
+
+          update(clickedNode, expanding ? 'expand' : 'collapse');
+        };
+
+        const performLocalToggle = (nodeToToggle: HNode, focusNode: HNode = nodeToToggle) => {
+          const expanding = !nodeToToggle.children && !!nodeToToggle._children;
+          toggleChildren(nodeToToggle);
+          
+          if (expanding) {
+            let p = nodeToToggle.parent as HNode | null;
+            while (p) {
+              if (p._children) {
+                p.children = p._children;
+                p._children = undefined;
+              }
+              p = p.parent as HNode | null;
+            }
           }
-          update(d, expanding ? 'expand' : 'collapse');
-        });
+          
+          update(focusNode, expanding ? 'expand' : 'collapse');
+        };
+
+        nodeEnter.append('circle').attr('class', 'tree-node__click-target')
+          .attr('cx', pCx).attr('r', d => nodeRadius(d) + 4)
+          .attr('fill', 'transparent').style('cursor', 'pointer')
+          .on('click', (_e, d) => {
+            const charId = primaryCharId(d);
+            if (!charId) {
+              performLocalToggle(d);
+            } else {
+              performGlobalToggle(charId, d);
+            }
+          });
 
       // Partner click targets (Dual mode)
       nodeEnter.filter(d => !!d.data.partnerLeftId)
         .append('circle').attr('class', 'tree-node__click-target')
         .attr('cx', -UNION_GAP).attr('r', NODE_RADIUS + 4)
-        .attr('fill', 'transparent').style('cursor', 'pointer')
         .on('click', (_e, d) => {
-          const expanding = !d.children && !!d._children;
-          toggleChildren(d);
-          update(d, expanding ? 'expand' : 'collapse');
+           const kids = [...(d.children || []), ...(d._children || [])] as HNode[];
+           const u = kids.find(k => k.data.unionPartnerId === d.data.partnerLeftId);
+           if (u) performLocalToggle(u, d);
         });
       nodeEnter.filter(d => !!d.data.partnerRightId)
         .append('circle').attr('class', 'tree-node__click-target')
         .attr('cx', UNION_GAP).attr('r', NODE_RADIUS + 4)
-        .attr('fill', 'transparent').style('cursor', 'pointer')
         .on('click', (_e, d) => {
-          const expanding = !d.children && !!d._children;
-          toggleChildren(d);
-          update(d, expanding ? 'expand' : 'collapse');
+           const kids = [...(d.children || []), ...(d._children || [])] as HNode[];
+           const u = kids.find(k => k.data.unionPartnerId === d.data.partnerRightId);
+           if (u) performLocalToggle(u, d);
         });
 
       // Regular Partner click target
       nodeEnter.filter(d => !!d.data.singlePartner)
         .append('circle').attr('class', 'tree-node__click-target')
-        .attr('cx', HALF_GAP).attr('r', NODE_RADIUS + 4)
+        .attr('cx', SINGLE_PARTNER_GAP).attr('r', NODE_RADIUS + 4)
         .attr('fill', 'transparent').style('cursor', 'pointer')
-        .on('click', (_e, d) => {
-          const expanding = !d.children && !!d._children;
-          toggleChildren(d);
-          update(d, expanding ? 'expand' : 'collapse');
-        });
+        .on('click', (_e, d) => performLocalToggle(d));
+
+
+      /* CROSS-TREE BADGE — appended last so it renders on top of all other node elements */
+      function appendCrossBadge(
+        sel: d3.Selection<SVGGElement, HNode, SVGGElement, unknown>,
+        bx: (d: HNode) => number,
+        getNodeId: (d: HNode) => string,
+        isEmbedded: boolean = false
+      ) {
+        const BY = -NODE_RADIUS + 7;
+        // Ripple ring (animated, behind badge)
+        sel.append('circle').attr('class', 'tree-node__cross-ripple')
+          .attr('cx', bx).attr('cy', BY).attr('r', 10)
+          .attr('fill', 'none').attr('stroke', '#2a9d8f').attr('stroke-width', 2)
+          .attr('pointer-events', 'none');
+        // Solid badge circle
+        sel.append('circle').attr('class', 'tree-node__cross-badge')
+          .attr('cx', bx).attr('cy', BY).attr('r', 10)
+          .attr('fill', '#2a9d8f').attr('stroke', '#0a0a0f').attr('stroke-width', 1.5)
+          .attr('pointer-events', 'none');
+        // Arrow text
+        sel.append('text').attr('class', 'tree-node__cross-label')
+          .attr('x', bx).attr('y', BY + 4)
+          .attr('text-anchor', 'middle').attr('fill', '#fff')
+          .attr('font-size', '11px').attr('font-weight', 'bold').attr('pointer-events', 'none')
+          .text('↗');
+        // Transparent click target on top
+        sel.append('circle').attr('class', 'tree-node__cross-click')
+          .attr('cx', bx).attr('cy', BY).attr('r', 12)
+          .attr('fill', 'transparent').style('cursor', 'pointer')
+          .on('click', (event: MouseEvent, d) => {
+            event.stopPropagation();
+            const id = getNodeId(d);
+            const ref = getCanonicalRef(id, tree.id, isEmbedded);
+            if (!ref) return;
+            
+            if (ref.treeId === tree.id) {
+               window.history.replaceState(null, '', `?nodo=${baseNodeId(id)}`);
+               focusNode(baseNodeId(id));
+            } else {
+               router.push(`/arboles/${ref.treeId}?nodo=${baseNodeId(id)}`);
+            }
+          });
+      }
+
+      /* CROSS-TREE BADGE (primary node) */
+      const withCross = nodeEnter.filter(d =>
+        !isJunction(d) && !isDualHeader(d) && !d.data.isGroup &&
+        getCanonicalRef(pId(d), tree.id) !== null
+      );
+      appendCrossBadge(withCross, d => pCx(d) - NODE_RADIUS + 7, d => pId(d));
+
+      /* CROSS-TREE BADGE (single partner) —
+         Only show badge if partner has a standalone primary node in this tree
+         (allNodeIds.has → intra-tree jump) or a genuine cross-tree destination. */
+      const withCrossPartner = nodeEnter.filter(d => {
+        if (!d.data.singlePartner) return false;
+        const pid = d.data.singlePartner;
+        const hasOwnNode = allNodeIds.has(pid);
+        return getCanonicalRef(pid, tree.id, hasOwnNode) !== null;
+      });
+      appendCrossBadge(withCrossPartner, () => SINGLE_PARTNER_GAP - NODE_RADIUS + 7, d => d.data.singlePartner!, true);
+
+      /* CROSS-TREE BADGE (dual partners) */
+      const withCrossLeft = nodeEnter.filter(d => {
+        if (!d.data.partnerLeftId) return false;
+        const pid = d.data.partnerLeftId;
+        const hasOwnNode = allNodeIds.has(pid);
+        return getCanonicalRef(pid, tree.id, hasOwnNode) !== null;
+      });
+      appendCrossBadge(withCrossLeft, () => -UNION_GAP - NODE_RADIUS + 7, d => d.data.partnerLeftId!, true);
+
+      const withCrossRight = nodeEnter.filter(d => {
+        if (!d.data.partnerRightId) return false;
+        const pid = d.data.partnerRightId;
+        const hasOwnNode = allNodeIds.has(pid);
+        return getCanonicalRef(pid, tree.id, hasOwnNode) !== null;
+      });
+      appendCrossBadge(withCrossRight, () => UNION_GAP - NODE_RADIUS + 7, d => d.data.partnerRightId!, true);
 
       /* ─── UPDATE transitions ────────────────────────────────────────── */
       const nodeUpdate = nodeEnter.merge(node);
@@ -1119,7 +1281,10 @@ export default function TreeView({ tree, focusId }: Props) {
 
       /* ─── EXIT ──────────────────────────────────────────────────────── */
       const nodeExit = node.exit().transition().duration(duration)
-        .attr('transform', `translate(${source.x ?? 0},${source.y ?? 0})`)
+        .attr('transform', d => {
+          const p = d.parent || source;
+          return `translate(${p.x ?? source.x ?? 0},${p.y ?? source.y ?? 0})`;
+        })
         .remove();
       nodeExit.select('.tree-node__bg').attr('r', 0);
       nodeExit.select('.tree-node__clip').attr('r', 0);
@@ -1167,11 +1332,17 @@ export default function TreeView({ tree, focusId }: Props) {
       return `M ${s.x} ${s.y} C ${s.x} ${midY} ${t.x} ${midY} ${t.x} ${t.y}`;
     }
 
-    // Creation link: exits from the right edge of the source, detours right,
-    // then curves down and across to the target — avoids overlapping child links.
+    // Creation link: vertical targets use a straight angular path; horizontal targets
+    // detour right and arrive perpendicularly (vertically) at the target node.
     function creationLinkPath(s: { x: number; y: number }, t: { x: number; y: number }): string {
+      const dx = Math.abs(t.x - s.x);
+      if (dx < 150) {
+        // Straight downward — reuse angular link so it arrives perpendicularly
+        return angularLink(s, t);
+      }
+      // Horizontal detour: exit right, curve down, arrive from above
       const detourX = Math.max(s.x + 110, t.x + NODE_RADIUS + 60);
-      return `M ${s.x} ${s.y} C ${detourX} ${s.y} ${detourX} ${t.y} ${t.x} ${t.y}`;
+      return `M ${s.x} ${s.y} C ${detourX} ${s.y} ${t.x} ${t.y - 80} ${t.x} ${t.y}`;
     }
 
     function crossLinkPath(d: { sx: number; sy: number; tx: number; ty: number }): string {
@@ -1243,21 +1414,32 @@ export default function TreeView({ tree, focusId }: Props) {
 
     function focusNode(charId: string) {
       // 1. Find the node, searching both visible (children) and collapsed (_children)
-      function findInHierarchy(node: HNode): HNode | null {
-        if (
-          node.data.personId === charId ||
-          node.data.singlePartner === charId ||
-          node.data.unionPartnerId === charId ||
-          node.data.partnerLeftId === charId ||
-          node.data.partnerRightId === charId
-        ) return node;
-        for (const c of [...(node.children ?? []), ...(node._children ?? [])] as HNode[]) {
-          const found = findInHierarchy(c);
-          if (found) return found;
+      function findInHierarchy(): HNode | null {
+        let best: HNode | null = null;
+        function walk(n: HNode) {
+          if (n.data.personId === charId) {
+            best = n;
+            return;
+          }
+          if (!best && (
+            n.data.singlePartner === charId ||
+            n.data.unionPartnerId === charId ||
+            n.data.partnerLeftId === charId ||
+            n.data.partnerRightId === charId
+          )) {
+            best = n;
+          }
+          if (best && best.data.personId === charId) return;
+
+          for (const c of [...(n.children ?? []), ...(n._children ?? [])] as HNode[]) {
+            walk(c);
+            if (best && best.data.personId === charId) return;
+          }
         }
-        return null;
+        walk(root);
+        return best;
       }
-      const target = findInHierarchy(root);
+      const target = findInHierarchy();
       if (!target) return;
 
       // 2. Expand all collapsed ancestors on the path to target
@@ -1301,25 +1483,12 @@ export default function TreeView({ tree, focusId }: Props) {
       svg.transition().duration(700)
         .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
 
-      // 5. Pulsing gold ring on the character circle
+      // 5. Pulsing gold ring EXCLUSIVELY on the target character circle
       g.selectAll('.focus-highlight').remove();
       (g.selectAll<SVGGElement, HNode>('g.tree-node') as d3.Selection<SVGGElement, HNode, SVGGElement, unknown>)
-        .filter(d =>
-          d.data.personId === charId ||
-          d.data.singlePartner === charId ||
-          d.data.unionPartnerId === charId ||
-          d.data.partnerLeftId === charId ||
-          d.data.partnerRightId === charId
-        )
+        .filter(d => d === target)
         .each(function(d) {
           let cx = charCxOffset;
-          if (d !== target) {
-            if (d.data.singlePartner === charId) cx = HALF_GAP;
-            else if (d.data.partnerLeftId === charId) cx = -UNION_GAP;
-            else if (d.data.partnerRightId === charId) cx = UNION_GAP;
-            else if (d.data.personId === charId && d.data.singlePartner) cx = -SINGLE_PARTNER_GAP;
-            else cx = 0;
-          }
           const ring = d3.select(this)
             .append('circle')
             .attr('class', 'focus-highlight')
@@ -1367,7 +1536,7 @@ export default function TreeView({ tree, focusId }: Props) {
       titanes: 1.5,
       olimpicos: 0.7,
       heroes: 0.65,
-      sisifo: 1.2,
+      sisifo: 1.05,
     };
     const height = svgRef.current.clientHeight;
     const sc = initialZoom[tree.id] ?? 1.0;
@@ -1377,6 +1546,15 @@ export default function TreeView({ tree, focusId }: Props) {
       if (zeusNode) {
         const tx = width / 2 - zeusNode.x * sc;
         const ty = height / 5 - zeusNode.y * sc;
+        svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(sc));
+      } else {
+        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+      }
+    } else if (tree.id === 'sisifo') {
+      const deucalionNode = (root.descendants() as HNode[]).find(n => n.data.id === 'deucalion' && !n.data.isUnionHeader);
+      if (deucalionNode) {
+        const tx = width / 2 - deucalionNode.x * sc;
+        const ty = height / 5 - deucalionNode.y * sc;
         svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(sc));
       } else {
         svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
