@@ -627,9 +627,8 @@
       "label": "Ares + Afrodita"
     },
     {
-      "id": "union_hefesto_unknown",
-      "type": "union",
-      "label": "Hefesto + ?"
+      "id": "creation_hefesto_pandora",
+      "type": "union"
     },
     {
       "id": "union_hermes_unknown",
@@ -968,8 +967,8 @@
     },
     {
       "source": "hefesto",
-      "target": "union_hefesto_unknown",
-      "type": "partner"
+      "target": "creation_hefesto_pandora",
+      "type": "creation"
     },
     {
       "source": "hermes",
@@ -1287,7 +1286,7 @@
       "type": "membership"
     },
     {
-      "source": "union_hefesto_unknown",
+      "source": "creation_hefesto_pandora",
       "target": "pandora",
       "type": "child"
     },

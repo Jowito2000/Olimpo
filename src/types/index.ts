@@ -41,6 +41,8 @@ export interface TreeUnion {
   partnerId?: string;
   /** Hijos de esta unión */
   children: TreeNode[];
+  /** Marca esta unión como "creación" en vez de descendencia biológica */
+  isCreation?: boolean;
 }
 
 export interface TreeNode {
@@ -76,7 +78,7 @@ export interface TreeListItem {
 /* ─── Graph model (nodes/edges) ───────────────────────────────────── */
 
 export type GraphNodeType = 'individuo' | 'grupo' | 'union';
-export type GraphEdgeType = 'partner' | 'child' | 'membership';
+export type GraphEdgeType = 'partner' | 'child' | 'membership' | 'creation';
 
 export interface GraphNode {
   id: string;
@@ -86,6 +88,8 @@ export interface GraphNode {
   category?: CharacterCategory;
   gender?: 'male' | 'female' | 'unknown';
   groupImage?: string;
+  /** For union nodes: which person node should own/claim this union */
+  claimedBy?: string;
 }
 
 export interface GraphEdge {
@@ -97,6 +101,8 @@ export interface GraphEdge {
 export interface GraphData {
   nodes: GraphNode[];
   edges: GraphEdge[];
+  /** IDs of root nodes for multi-root trees (order determines build/visual order) */
+  roots?: string[];
 }
 
 export type GlossaryCategory = 'concepto' | 'autor' | 'lugar' | 'tribu' | 'criatura' | 'objeto';

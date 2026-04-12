@@ -150,6 +150,12 @@
   stroke-dasharray: 6, 3;
 }
 
+.tree-link--creation {
+  stroke: rgba(147, 51, 234, 0.65);
+  stroke-width: 2;
+  stroke-dasharray: 3, 6;
+}
+
 /* ─── Union symbol on marriage links ────────────────────────────────── */
 .tree-union-sym {
   pointer-events: none;
@@ -319,4 +325,8 @@
 
 .tree-view__legend-line--union {
   border-top-style: dashed;
+}
+
+.tree-view__legend-line--creation {
+  border-top: 2px dashed rgba(147, 51, 234, 0.75);
 }

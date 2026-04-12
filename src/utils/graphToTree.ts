@@ -9,14 +9,18 @@ interface TreeMeta {
 /**
  * Converts a flat graph (nodes/edges) into a recursive TreeData structure.
  *
- * Key fixes:
- * 1. Defers unions at root when the partner is reachable through other child paths
- *    (prevents Heracles appearing prematurely under Zeus).
- * 2. Processes partners recursively so their own separate unions are discovered
- *    (fixes Toro de Creta / Minotauro not appearing).
- * 3. Allows duplicate nodes when cross-linking would span too far.
+ * Key features:
+ * 1. Multi-root support via graph.roots array: builds a virtual invisible root
+ *    so all clusters can be laid out by D3 side-by-side.
+ * 2. claimedBy on union nodes: prevents the wrong partner from claiming a union
+ *    when building clusters in order (critical for cross-cluster partnerships).
+ * 3. Defers unions at the rootId node when the partner is reachable through
+ *    other child paths (prevents premature placement under the root).
+ * 4. creation edge type: models "divine creation" relationships (e.g. Zeus→Néfele)
+ *    as solo unions tagged with isCreation:true so TreeView renders them distinctly.
  */
 export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): TreeData {
+  const roots = graph.roots ?? [rootId];
   const nodeMap = new Map(graph.nodes.map(n => [n.id, n]));
 
   // Index edges by source and target for fast lookup
@@ -76,7 +80,7 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
       const members = (edgesBySource.get(nodeId) ?? [])
         .filter(e => e.type === 'membership')
         .map(e => e.target);
-        
+
       const memberNodes = members.map(mid => buildNode(mid));
 
       return {
@@ -86,36 +90,54 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
         groupName: node.name ?? node.label ?? nodeId,
         groupImage: node.groupImage,
         members,
-        memberNodes, // Pass fully-built trees to the UI layer
+        memberNodes,
       } as TreeNode;
     }
+
+    // ── Regular (individual) node ────────────────────────────────────────
 
     // Find all partner edges for this node
     const partnerEdges = (edgesBySource.get(nodeId) ?? [])
       .filter(e => e.type === 'partner');
 
-    if (partnerEdges.length === 0) return { ...baseNode, id: nodeId } as TreeNode;
+    // Find all creation edges for this node
+    const creationEdges = (edgesBySource.get(nodeId) ?? [])
+      .filter(e => e.type === 'creation');
+
+    if (partnerEdges.length === 0 && creationEdges.length === 0) {
+      return { ...baseNode, id: nodeId } as TreeNode;
+    }
 
     // Phase 1: Claim unions for this node
     interface UnionInfo {
       partnerId: string | undefined;
       childIds: string[];
     }
+    interface CreationInfo {
+      childIds: string[];
+    }
     const unionInfos: UnionInfo[] = [];
+    const creationInfos: CreationInfo[] = [];
 
+    // ── Partner unions ───────────────────────────────────────────────────
     for (const pe of partnerEdges) {
       const unionNodeId = pe.target;
       if (visitedUnions.has(unionNodeId)) continue;
+
+      const unionNode = nodeMap.get(unionNodeId);
+
+      // claimedBy check: if this union is explicitly owned by another node, skip
+      if (unionNode?.claimedBy && unionNode.claimedBy !== nodeId) continue;
 
       const otherPartnerEdge = (edgesByTarget.get(unionNodeId) ?? [])
         .find(e => e.type === 'partner' && e.source !== nodeId);
       const partnerId = otherPartnerEdge?.source;
 
-      // DEFER CHECK: If this is the root node and the partner is reachable
+      // DEFER CHECK: If this is the primary rootId and the partner is reachable
       // through other child paths, skip this union — let the partner claim it later.
       if (nodeId === rootId && partnerId) {
         if (isReachableWithout(rootId, partnerId, unionNodeId)) {
-          continue; // Don't claim this union at the root
+          continue;
         }
       }
 
@@ -125,24 +147,37 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
         .filter(e => e.type === 'child')
         .map(e => e.target);
 
-      unionInfos.push({
-        partnerId,
-        childIds,
-      });
+      unionInfos.push({ partnerId, childIds });
     }
 
-    if (unionInfos.length === 0) return { ...baseNode, id: nodeId } as TreeNode;
+    // ── Creation unions ──────────────────────────────────────────────────
+    for (const ce of creationEdges) {
+      const creationUnionId = ce.target;
+      if (visitedUnions.has(creationUnionId)) continue;
+      visitedUnions.add(creationUnionId);
 
-    // Phase 2: Recurse into children AND process partner sub-branches
-    const unions: TreeUnion[] = unionInfos.map(info => {
-      const children = info.childIds.map(cid => buildNode(cid));
+      const childIds = (edgesBySource.get(creationUnionId) ?? [])
+        .filter(e => e.type === 'child')
+        .map(e => e.target);
 
-      // Process partner's own separate unions (handled by TreeView's duplication logic)
-      return {
+      creationInfos.push({ childIds });
+    }
+
+    if (unionInfos.length === 0 && creationInfos.length === 0) {
+      return { ...baseNode, id: nodeId } as TreeNode;
+    }
+
+    // Phase 2: Recurse into children
+    const unions: TreeUnion[] = [
+      ...unionInfos.map(info => ({
         partnerId: info.partnerId,
-        children,
-      };
-    });
+        children: info.childIds.map(cid => buildNode(cid)),
+      })),
+      ...creationInfos.map(info => ({
+        children: info.childIds.map(cid => buildNode(cid)),
+        isCreation: true as const,
+      })),
+    ];
 
     return { ...baseNode, id: nodeId, unions } as TreeNode;
   }
@@ -152,11 +187,33 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
     nodeMeta[n.id] = { name: n.label ?? n.name, category: n.category };
   }
 
+  // ── Single root (backward compatible) ───────────────────────────────
+  if (roots.length === 1) {
+    return {
+      id: meta.id,
+      name: meta.name,
+      description: meta.description,
+      root: buildNode(roots[0] ?? rootId),
+      nodeMeta,
+    };
+  }
+
+  // ── Multi-root: build each cluster in order, combine under virtual root ──
+  // Order matters: clusters that supply partners to later clusters must come first
+  // so their nodes are in `visited` when the later cluster does cross-link detection.
+  const rootNodes = roots.map(rid => buildNode(rid));
+
+  const virtualRoot: TreeNode = {
+    id: '__virtual_root__',
+    // Each cluster hangs as a child of a solo union under the virtual root
+    unions: rootNodes.map(rn => ({ children: [rn] })),
+  };
+
   return {
     id: meta.id,
     name: meta.name,
     description: meta.description,
-    root: buildNode(rootId),
+    root: virtualRoot,
     nodeMeta,
   };
 }

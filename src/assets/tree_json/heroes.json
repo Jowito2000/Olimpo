@@ -1,10 +1,13 @@
 {
+  "roots": ["eneo", "enomao", "tantalo", "cefeo", "zeus", "ares", "helios", "eurito", "esqueneo", "creonte"],
   "nodes": [
     { "id": "zeus", "type": "individuo", "label": "Zeus", "category": "olimpico", "gender": "male" },
     { "id": "electra-ninfa", "type": "individuo", "label": "Electra", "category": "ninfa", "gender": "female" },
     { "id": "dardano", "type": "individuo", "label": "Dárdano", "category": "mortal", "gender": "male" },
     { "id": "batia", "type": "individuo", "label": "Batía", "category": "mortal", "gender": "female" },
+    { "id": "Ilo-de-Dardano", "type": "individuo", "label": "Ilo", "category": "mortal", "gender": "male" },
     { "id": "erictonio", "type": "individuo", "label": "Erictonio", "category": "mortal", "gender": "male" },
+    { "id": "zacinto", "type": "individuo", "label": "Zacinto", "category": "mortal", "gender": "male" },
     { "id": "astioque", "type": "individuo", "label": "Astíoque", "category": "mortal", "gender": "female" },
     { "id": "tros", "type": "individuo", "label": "Tros", "category": "mortal", "gender": "male" },
     { "id": "calirroe-ninfa", "type": "individuo", "label": "Calirroe", "category": "ninfa", "gender": "female" },
@@ -12,13 +15,27 @@
     { "id": "asaraco", "type": "individuo", "label": "Asáraco", "category": "mortal", "gender": "male" },
     { "id": "ganimedes", "type": "individuo", "label": "Ganimedes", "category": "mortal", "gender": "male" },
 
+    { "id": "nefele", "type": "individuo", "label": "Néfele", "category": "mortal", "gender": "female" },
+    { "id": "ixion", "type": "individuo", "label": "Ixión", "category": "mortal", "gender": "male" },
+    { "id": "centauros", "type": "grupo", "label": "Centauros", "category": "monstruo" },
+    { "id": "neso", "type": "individuo", "label": "Neso", "category": "monstruo", "gender": "male" },
+
     { "id": "danae", "type": "individuo", "label": "Dánae", "category": "mortal", "gender": "female" },
     { "id": "perseo", "type": "individuo", "label": "Perseo", "category": "heroe", "gender": "male" },
+
+    { "id": "cefeo", "type": "individuo", "label": "Cefeo", "category": "mortal", "gender": "male" },
+    { "id": "casiopea", "type": "individuo", "label": "Casiopea", "category": "mortal", "gender": "female" },
     { "id": "andromeda", "type": "individuo", "label": "Andrómeda", "category": "mortal", "gender": "female" },
+    { "id": "andromeda_dup", "type": "individuo", "label": "Andrómeda", "category": "mortal", "gender": "female" },
+
+    { "id": "perseidas", "type": "grupo", "label": "Perseidas", "category": "heroe" },
+    { "id": "perses-perseo", "type": "individuo", "label": "Perses", "category": "mortal", "gender": "male" },
+    { "id": "gorgofone", "type": "individuo", "label": "Gorgófone", "category": "mortal", "gender": "female" },
+    { "id": "heleo", "type": "individuo", "label": "Heleo", "category": "mortal", "gender": "male" },
+    { "id": "mestor", "type": "individuo", "label": "Méstor", "category": "mortal", "gender": "male" },
     { "id": "electrion", "type": "individuo", "label": "Electrión", "category": "mortal", "gender": "male" },
     { "id": "alceo", "type": "individuo", "label": "Alceo", "category": "mortal", "gender": "male" },
     { "id": "estenelo", "type": "individuo", "label": "Esténelo", "category": "mortal", "gender": "male" },
-    { "id": "gorgofone", "type": "individuo", "label": "Gorgófone", "category": "mortal", "gender": "female" },
 
     { "id": "alcmena", "type": "individuo", "label": "Alcmena", "category": "mortal", "gender": "female" },
     { "id": "anfitrion", "type": "individuo", "label": "Anfitrión", "category": "mortal", "gender": "male" },
@@ -32,7 +49,7 @@
     { "id": "deicoonte", "type": "individuo", "label": "Deicoonte", "category": "mortal", "gender": "male" },
     { "id": "deyanira", "type": "individuo", "label": "Deyanira", "category": "mortal", "gender": "female" },
     { "id": "hilo", "type": "individuo", "label": "Hilo", "category": "mortal", "gender": "male" },
-    { "id": "macaria", "type": "individuo", "label": "Macaria", "category": "mortal", "gender": "female" },
+    { "id": "macaria-heracles", "type": "individuo", "label": "Macaria", "category": "mortal", "gender": "female" },
     { "id": "hebe", "type": "individuo", "label": "Hebe", "category": "olimpico", "gender": "female" },
 
     { "id": "leda", "type": "individuo", "label": "Leda", "category": "mortal", "gender": "female" },
@@ -56,6 +73,62 @@
     { "id": "harmonia-mortal", "type": "individuo", "label": "Harmonía", "category": "mortal", "gender": "female" },
     { "id": "hipolita", "type": "individuo", "label": "Hipólita", "category": "heroe", "gender": "female" },
 
+    { "id": "tantalo", "type": "individuo", "label": "Tántalo", "category": "mortal", "gender": "male" },
+    { "id": "dione-mortal", "type": "individuo", "label": "Dione", "category": "mortal", "gender": "female" },
+    { "id": "pelope", "type": "individuo", "label": "Pélope", "category": "mortal", "gender": "male" },
+
+    { "id": "enomao", "type": "individuo", "label": "Enómao", "category": "mortal", "gender": "male" },
+    { "id": "esterope", "type": "individuo", "label": "Estérope", "category": "mortal", "gender": "female" },
+    { "id": "hipodamia", "type": "individuo", "label": "Hipodamía", "category": "mortal", "gender": "female" },
+    { "id": "pelopides", "type": "grupo", "label": "Pelópides", "category": "mortal" },
+
+    { "id": "nicipe", "type": "individuo", "label": "Nícipe", "category": "mortal", "gender": "female" },
+    { "id": "astidamia", "type": "individuo", "label": "Astidamía", "category": "mortal", "gender": "female" },
+    { "id": "lisidice", "type": "individuo", "label": "Lisídice", "category": "mortal", "gender": "female" },
+    { "id": "estenelo_dup", "type": "individuo", "label": "Esténelo", "category": "mortal", "gender": "male" },
+    { "id": "alceo_dup", "type": "individuo", "label": "Alceo", "category": "mortal", "gender": "male" },
+    { "id": "electrion_dup", "type": "individuo", "label": "Electrión", "category": "mortal", "gender": "male" },
+    { "id": "euristeo", "type": "individuo", "label": "Euristeo", "category": "heroe", "gender": "male" },
+    { "id": "anfitrion_dup", "type": "individuo", "label": "Anfitrión", "category": "mortal", "gender": "male" },
+    { "id": "alcmena_dup", "type": "individuo", "label": "Alcmena", "category": "mortal", "gender": "female" },
+
+    { "id": "sarpedon", "type": "individuo", "label": "Sarpedón", "category": "mortal", "gender": "male" },
+    { "id": "radamantis", "type": "individuo", "label": "Radamantis", "category": "mortal", "gender": "male" },
+
+    { "id": "helios", "type": "individuo", "label": "Helios", "category": "olimpico", "gender": "male" },
+    { "id": "creta", "type": "individuo", "label": "Creta", "category": "ninfa", "gender": "female" },
+
+    { "id": "gleno", "type": "individuo", "label": "Gleno", "category": "mortal", "gender": "male" },
+    { "id": "ctesipo", "type": "individuo", "label": "Ctesipo", "category": "mortal", "gender": "male" },
+    { "id": "onites", "type": "individuo", "label": "Onites", "category": "mortal", "gender": "male" },
+
+    { "id": "eurito", "type": "individuo", "label": "Éurito", "category": "mortal", "gender": "male" },
+    { "id": "antiope", "type": "individuo", "label": "Antíope", "category": "mortal", "gender": "female" },
+    { "id": "iole", "type": "individuo", "label": "Íole", "category": "mortal", "gender": "female" },
+    { "id": "deyon", "type": "individuo", "label": "Deyón", "category": "mortal", "gender": "male" },
+    { "id": "clitio", "type": "individuo", "label": "Clitio", "category": "mortal", "gender": "male" },
+    { "id": "Toxeo-Éurito", "type": "individuo", "label": "Toxeo", "category": "mortal", "gender": "male" },
+    { "id": "ifito", "type": "individuo", "label": "Ífito", "category": "mortal", "gender": "male" },
+
+    { "id": "antimaca", "type": "individuo", "label": "Antímaca", "category": "mortal", "gender": "female" },
+    { "id": "admete", "type": "individuo", "label": "Admete", "category": "mortal", "gender": "female" },
+    { "id": "esqueneo", "type": "individuo", "label": "Esqueneo", "category": "mortal", "gender": "male" },
+    { "id": "climene", "type": "individuo", "label": "Clímene", "category": "mortal", "gender": "female" },
+    { "id": "atalanta", "type": "individuo", "label": "Atalanta", "category": "heroe", "gender": "female" },
+    { "id": "Toxeo-Eneo", "type": "individuo", "label": "Toxeo", "category": "mortal", "gender": "male" },
+    { "id": "gorge", "type": "individuo", "label": "Gorge", "category": "mortal", "gender": "female" },
+    { "id": "climeno", "type": "individuo", "label": "Clímeno", "category": "mortal", "gender": "male" },
+    { "id": "tireo", "type": "individuo", "label": "Tireo", "category": "mortal", "gender": "male" },
+    { "id": "creonte", "type": "individuo", "label": "Creonte", "category": "mortal", "gender": "male" },
+    { "id": "euridice", "type": "individuo", "label": "Eurídice", "category": "mortal", "gender": "female" },
+    { "id": "laonome", "type": "individuo", "label": "Laónome", "category": "mortal", "gender": "female" },
+    { "id": "automedusa", "type": "individuo", "label": "Automedusa", "category": "mortal", "gender": "female" },
+    { "id": "yolao", "type": "individuo", "label": "Yolao", "category": "heroe", "gender": "male" },
+    { "id": "abdero", "type": "individuo", "label": "Abdero", "category": "mortal", "gender": "male" },
+    { "id": "onfale", "type": "individuo", "label": "Ónfale", "category": "mortal", "gender": "female" },
+    { "id": "iole_dup", "type": "individuo", "label": "Íole", "category": "mortal", "gender": "female" },
+
+    { "id": "creation_zeus_nefele", "type": "union" },
     { "id": "union_zeus_electra", "type": "union" },
     { "id": "union_dardano_batia", "type": "union" },
     { "id": "union_erictonio_astioque", "type": "union" },
@@ -68,23 +141,50 @@
     { "id": "union_alcmena_anfitrion", "type": "union" },
     { "id": "union_alcmena_zeus_dup", "type": "union" },
     { "id": "union_heracles_megara", "type": "union" },
-    { "id": "union_heracles_deyanira", "type": "union" },
+    { "id": "union_heracles_deyanira", "type": "union", "claimedBy": "heracles" },
     { "id": "union_heracles_hebe", "type": "union" },
     { "id": "union_tindareo_leda", "type": "union" },
     { "id": "union_minos_pasifae", "type": "union" },
     { "id": "union_pasifae_toro", "type": "union" },
     { "id": "union_eneo_altea", "type": "union" },
     { "id": "union_ares_harmonia", "type": "union" },
-    { "id": "union_gorgofone_unknown", "type": "union" }
+    { "id": "union_gorgofone_unknown", "type": "union" },
+    { "id": "union_ixion_nefele", "type": "union" },
+    { "id": "union_cefeo_casiopea", "type": "union" },
+    { "id": "union_tantalo_dione", "type": "union" },
+    { "id": "union_enomao_esterope", "type": "union" },
+    { "id": "union_pelope_hipodamia", "type": "union", "claimedBy": "pelope" },
+    { "id": "union_nicipe_estenelo", "type": "union" },
+    { "id": "union_astidamia_alceo", "type": "union" },
+    { "id": "union_lisidice_electrion", "type": "union" },
+    { "id": "union_helios_creta", "type": "union" },
+    { "id": "union_eurito_antiope", "type": "union" },
+    { "id": "union_euristo_antimaca", "type": "union" },
+    { "id": "union_esqueneo_climene", "type": "union" },
+    { "id": "union_creonte_euridice", "type": "union" },
+    { "id": "union_ificles_automedusa", "type": "union" },
+    { "id": "union_heracles_abdero", "type": "union" },
+    { "id": "union_heracles_onfale", "type": "union" },
+    { "id": "union_heracles_iole", "type": "union" }
   ],
   "edges": [
     { "source": "zeus", "target": "union_zeus_electra", "type": "partner" },
     { "source": "electra-ninfa", "target": "union_zeus_electra", "type": "partner" },
     { "source": "union_zeus_electra", "target": "dardano", "type": "child" },
 
+    { "source": "zeus", "target": "creation_zeus_nefele", "type": "creation" },
+    { "source": "creation_zeus_nefele", "target": "nefele", "type": "child" },
+
+    { "source": "nefele", "target": "union_ixion_nefele", "type": "partner" },
+    { "source": "ixion", "target": "union_ixion_nefele", "type": "partner" },
+    { "source": "union_ixion_nefele", "target": "centauros", "type": "child" },
+    { "source": "centauros", "target": "neso", "type": "membership" },
+
     { "source": "dardano", "target": "union_dardano_batia", "type": "partner" },
     { "source": "batia", "target": "union_dardano_batia", "type": "partner" },
+    { "source": "union_dardano_batia", "target": "Ilo-de-Dardano", "type": "child" },
     { "source": "union_dardano_batia", "target": "erictonio", "type": "child" },
+    { "source": "union_dardano_batia", "target": "zacinto", "type": "child" },
 
     { "source": "erictonio", "target": "union_erictonio_astioque", "type": "partner" },
     { "source": "astioque", "target": "union_erictonio_astioque", "type": "partner" },
@@ -101,11 +201,16 @@
     { "source": "union_zeus_danae", "target": "perseo", "type": "child" },
 
     { "source": "perseo", "target": "union_perseo_andromeda", "type": "partner" },
-    { "source": "andromeda", "target": "union_perseo_andromeda", "type": "partner" },
-    { "source": "union_perseo_andromeda", "target": "electrion", "type": "child" },
-    { "source": "union_perseo_andromeda", "target": "alceo", "type": "child" },
-    { "source": "union_perseo_andromeda", "target": "estenelo", "type": "child" },
-    { "source": "union_perseo_andromeda", "target": "gorgofone", "type": "child" },
+    { "source": "andromeda_dup", "target": "union_perseo_andromeda", "type": "partner" },
+    { "source": "union_perseo_andromeda", "target": "perseidas", "type": "child" },
+
+    { "source": "perseidas", "target": "perses-perseo", "type": "membership" },
+    { "source": "perseidas", "target": "gorgofone", "type": "membership" },
+    { "source": "perseidas", "target": "heleo", "type": "membership" },
+    { "source": "perseidas", "target": "mestor", "type": "membership" },
+    { "source": "perseidas", "target": "electrion", "type": "membership" },
+    { "source": "perseidas", "target": "alceo", "type": "membership" },
+    { "source": "perseidas", "target": "estenelo", "type": "membership" },
 
     { "source": "gorgofone", "target": "union_gorgofone_unknown", "type": "partner" },
     { "source": "union_gorgofone_unknown", "target": "tindareo", "type": "child" },
@@ -126,6 +231,7 @@
     { "source": "alcmena", "target": "union_alcmena_anfitrion", "type": "partner" },
     { "source": "anfitrion", "target": "union_alcmena_anfitrion", "type": "partner" },
     { "source": "union_alcmena_anfitrion", "target": "ificles", "type": "child" },
+    { "source": "union_alcmena_anfitrion", "target": "laonome", "type": "child" },
 
     { "source": "alcmena", "target": "union_alcmena_zeus_dup", "type": "partner" },
     { "source": "zeus_dup", "target": "union_alcmena_zeus_dup", "type": "partner" },
@@ -140,29 +246,107 @@
     { "source": "heracles", "target": "union_heracles_deyanira", "type": "partner" },
     { "source": "deyanira", "target": "union_heracles_deyanira", "type": "partner" },
     { "source": "union_heracles_deyanira", "target": "hilo", "type": "child" },
-    { "source": "union_heracles_deyanira", "target": "macaria", "type": "child" },
+    { "source": "union_heracles_deyanira", "target": "macaria-heracles", "type": "child" },
+    { "source": "union_heracles_deyanira", "target": "gleno", "type": "child" },
+    { "source": "union_heracles_deyanira", "target": "ctesipo", "type": "child" },
+    { "source": "union_heracles_deyanira", "target": "onites", "type": "child" },
 
     { "source": "heracles", "target": "union_heracles_hebe", "type": "partner" },
     { "source": "hebe", "target": "union_heracles_hebe", "type": "partner" },
 
-    { "source": "eneo", "target": "union_eneo_altea", "type": "partner" },
-    { "source": "altea", "target": "union_eneo_altea", "type": "partner" },
-    { "source": "union_eneo_altea", "target": "meleagro", "type": "child" },
-    { "source": "union_eneo_altea", "target": "deyanira", "type": "child" },
-
     { "source": "zeus", "target": "union_zeus_europa", "type": "partner" },
     { "source": "europa", "target": "union_zeus_europa", "type": "partner" },
     { "source": "union_zeus_europa", "target": "minos", "type": "child" },
+    { "source": "union_zeus_europa", "target": "sarpedon", "type": "child" },
+    { "source": "union_zeus_europa", "target": "radamantis", "type": "child" },
 
     { "source": "minos", "target": "union_minos_pasifae", "type": "partner" },
     { "source": "pasifae", "target": "union_minos_pasifae", "type": "partner" },
+
+    { "source": "helios", "target": "union_helios_creta", "type": "partner" },
+    { "source": "creta", "target": "union_helios_creta", "type": "partner" },
+    { "source": "union_helios_creta", "target": "pasifae", "type": "child" },
 
     { "source": "pasifae", "target": "union_pasifae_toro", "type": "partner" },
     { "source": "toro-de-creta", "target": "union_pasifae_toro", "type": "partner" },
     { "source": "union_pasifae_toro", "target": "minotauro", "type": "child" },
 
+    { "source": "eneo", "target": "union_eneo_altea", "type": "partner" },
+    { "source": "altea", "target": "union_eneo_altea", "type": "partner" },
+    { "source": "union_eneo_altea", "target": "meleagro", "type": "child" },
+    { "source": "union_eneo_altea", "target": "deyanira", "type": "child" },
+    { "source": "union_eneo_altea", "target": "Toxeo-Eneo", "type": "child" },
+    { "source": "union_eneo_altea", "target": "gorge", "type": "child" },
+    { "source": "union_eneo_altea", "target": "climeno", "type": "child" },
+    { "source": "union_eneo_altea", "target": "tireo", "type": "child" },
+
     { "source": "ares", "target": "union_ares_harmonia", "type": "partner" },
     { "source": "harmonia-mortal", "target": "union_ares_harmonia", "type": "partner" },
-    { "source": "union_ares_harmonia", "target": "hipolita", "type": "child" }
+    { "source": "union_ares_harmonia", "target": "hipolita", "type": "child" },
+
+    { "source": "cefeo", "target": "union_cefeo_casiopea", "type": "partner" },
+    { "source": "casiopea", "target": "union_cefeo_casiopea", "type": "partner" },
+    { "source": "union_cefeo_casiopea", "target": "andromeda", "type": "child" },
+
+    { "source": "enomao", "target": "union_enomao_esterope", "type": "partner" },
+    { "source": "esterope", "target": "union_enomao_esterope", "type": "partner" },
+    { "source": "union_enomao_esterope", "target": "hipodamia", "type": "child" },
+
+    { "source": "tantalo", "target": "union_tantalo_dione", "type": "partner" },
+    { "source": "dione-mortal", "target": "union_tantalo_dione", "type": "partner" },
+    { "source": "union_tantalo_dione", "target": "pelope", "type": "child" },
+
+    { "source": "pelope", "target": "union_pelope_hipodamia", "type": "partner" },
+    { "source": "hipodamia", "target": "union_pelope_hipodamia", "type": "partner" },
+    { "source": "union_pelope_hipodamia", "target": "pelopides", "type": "child" },
+
+    { "source": "pelopides", "target": "nicipe", "type": "membership" },
+    { "source": "pelopides", "target": "astidamia", "type": "membership" },
+    { "source": "pelopides", "target": "lisidice", "type": "membership" },
+
+    { "source": "nicipe", "target": "union_nicipe_estenelo", "type": "partner" },
+    { "source": "estenelo_dup", "target": "union_nicipe_estenelo", "type": "partner" },
+    { "source": "union_nicipe_estenelo", "target": "euristeo", "type": "child" },
+
+    { "source": "astidamia", "target": "union_astidamia_alceo", "type": "partner" },
+    { "source": "alceo_dup", "target": "union_astidamia_alceo", "type": "partner" },
+    { "source": "union_astidamia_alceo", "target": "anfitrion_dup", "type": "child" },
+
+    { "source": "lisidice", "target": "union_lisidice_electrion", "type": "partner" },
+    { "source": "electrion_dup", "target": "union_lisidice_electrion", "type": "partner" },
+    { "source": "union_lisidice_electrion", "target": "alcmena_dup", "type": "child" },
+
+    { "source": "eurito", "target": "union_eurito_antiope", "type": "partner" },
+    { "source": "antiope", "target": "union_eurito_antiope", "type": "partner" },
+    { "source": "union_eurito_antiope", "target": "iole", "type": "child" },
+    { "source": "union_eurito_antiope", "target": "deyon", "type": "child" },
+    { "source": "union_eurito_antiope", "target": "clitio", "type": "child" },
+    { "source": "union_eurito_antiope", "target": "Toxeo-Éurito", "type": "child" },
+    { "source": "union_eurito_antiope", "target": "ifito", "type": "child" },
+
+    { "source": "euristeo", "target": "union_euristo_antimaca", "type": "partner" },
+    { "source": "antimaca", "target": "union_euristo_antimaca", "type": "partner" },
+    { "source": "union_euristo_antimaca", "target": "admete", "type": "child" },
+
+    { "source": "esqueneo", "target": "union_esqueneo_climene", "type": "partner" },
+    { "source": "climene", "target": "union_esqueneo_climene", "type": "partner" },
+    { "source": "union_esqueneo_climene", "target": "atalanta", "type": "child" },
+
+    { "source": "creonte", "target": "union_creonte_euridice", "type": "partner" },
+    { "source": "euridice", "target": "union_creonte_euridice", "type": "partner" },
+    { "source": "union_creonte_euridice", "target": "megara", "type": "child" },
+
+    { "source": "ificles", "target": "union_ificles_automedusa", "type": "partner" },
+    { "source": "automedusa", "target": "union_ificles_automedusa", "type": "partner" },
+    { "source": "union_ificles_automedusa", "target": "yolao", "type": "child" },
+
+    { "source": "heracles", "target": "union_heracles_abdero", "type": "partner" },
+    { "source": "abdero", "target": "union_heracles_abdero", "type": "partner" },
+
+    { "source": "heracles", "target": "union_heracles_onfale", "type": "partner" },
+    { "source": "onfale", "target": "union_heracles_onfale", "type": "partner" },
+
+    { "source": "heracles", "target": "union_heracles_iole", "type": "partner" },
+    { "source": "iole_dup", "target": "union_heracles_iole", "type": "partner" }
   ]
 }

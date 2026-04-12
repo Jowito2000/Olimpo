@@ -23,6 +23,8 @@ interface LayoutNode {
   fromUnionPartnerId?: string;
   /** Partner exists elsewhere in tree as a sibling — render cross-link, not duplicate */
   crossLinkPartnerId?: string;
+  /** This node was "created" by its parent (divine creation, not biological child) */
+  isCreatedChild?: boolean;
   isGroup?: boolean;
   groupName?: string;
   groupImage?: string;
@@ -111,9 +113,13 @@ function flattenToLayout(
   const solo = node.unions.filter(u => !u.partnerId);
 
   // Helper to build children with correct siblingIds
-  const buildChildren = (children: TreeNode[], partnerId?: string) => {
+  const buildChildren = (children: TreeNode[], partnerId?: string, isCreation?: boolean) => {
     const childIds = new Set(children.map(c => c.id));
-    return children.map(c => flattenToLayout(c, allNodeIds, childIds, placedIds, placedDepths, depth + 1, partnerId));
+    return children.map(c => {
+      const layoutNode = flattenToLayout(c, allNodeIds, childIds, placedIds, placedDepths, depth + 1, partnerId);
+      if (isCreation) layoutNode.isCreatedChild = true;
+      return layoutNode;
+    });
   };
 
   /** Check if partner is placed AND close enough for a cross-link (depth diff ≤ 2).
@@ -155,13 +161,13 @@ function flattenToLayout(
       };
     });
   } else if (partnered.length === 0 && solo.length === 1) {
-    const ch = buildChildren(solo[0]?.children ?? []);
+    const ch = buildChildren(solo[0]?.children ?? [], undefined, solo[0]?.isCreation);
     result.children = ch.length > 0 ? ch : undefined;
   } else {
     const children: LayoutNode[] = [];
     for (const union of node.unions ?? []) {
       if (!union.partnerId) {
-        children.push(...buildChildren(union.children ?? []));
+        children.push(...buildChildren(union.children ?? [], undefined, union.isCreation));
       } else {
         const unionChildren = buildChildren(union.children ?? [], union.partnerId);
         const isCrossLink = isPartnerNearby(union.partnerId);
@@ -312,7 +318,9 @@ export default function TreeView({ tree, focusId }: Props) {
       heroes: 1,
       sisifo: 1,
     };
-    collapseDeep(root, 0, initialDepth[tree.id] ?? 2);
+    // For multi-root trees the hierarchy has an invisible virtual root at gen -1
+    const startGen = root.data.id === '__virtual_root__' ? -1 : 0;
+    collapseDeep(root, startGen, initialDepth[tree.id] ?? 2);
 
     root.x0 = 0;
     root.y0 = 0;
@@ -399,10 +407,29 @@ export default function TreeView({ tree, focusId }: Props) {
         
         (n.children || []).forEach((c) => {
           const ch = c as HNode;
-          assignGen(ch, (ch.data.isUnionHeader) ? gen : gen + 1);
+          let nextGen = (ch.data.isUnionHeader) ? gen : gen + 1;
+          
+          if (n.data.id === '__virtual_root__' && tree.id === 'heroes') {
+            const rootOffsets: Record<string, number> = {
+              eneo: 0,
+              enomao: 1,
+              tantalo: 1,
+              cefeo: 2,
+              zeus: 0,
+              ares: 1,
+              helios: 2,
+              eurito: 1,
+              esqueneo: 0,
+              creonte: 2,
+            };
+            nextGen += rootOffsets[ch.data.id] || 0;
+          }
+          
+          assignGen(ch, nextGen);
         });
       }
-      assignGen(root, 0);
+      const genStart = root.data.id === '__virtual_root__' ? -1 : 0;
+      assignGen(root, genStart);
 
       const nodes = root.descendants() as HNode[];
       nodes.forEach(d => {
@@ -594,15 +621,21 @@ export default function TreeView({ tree, focusId }: Props) {
       });
 
       // ─── LINKS ───────────────────────────────────────────────────────
-      // Filter out links TO junction nodes (their children still get links, sourced from midpoint)
+      // Filter out links FROM virtual root (invisible) and TO junction nodes
       const links = root.links().filter(l => {
+        const s = l.source as HNode;
         const t = l.target as HNode;
-        return !isJunction(t) && !isDualHeader(t);
+        return s.data.id !== '__virtual_root__' && !isJunction(t) && !isDualHeader(t);
       });
 
       function linkSource(link: d3.HierarchyPointLink<LayoutNode>) {
         const s = link.source as HNode;
         const t = link.target as HNode;
+
+        // Creation link: exits from the right edge of the source node
+        if (t.data.isCreatedChild) {
+          return { x: s.x + NODE_RADIUS + 6, y: s.y };
+        }
 
         // Marriage link: from parent bottom edge
         if (t.data.isUnionHeader) {
@@ -654,7 +687,9 @@ export default function TreeView({ tree, focusId }: Props) {
       const linkEnter = link.enter()
         .append('path')
         .attr('class', d => {
-          const isMarriage = (d.target as HNode).data.isUnionHeader;
+          const t = d.target as HNode;
+          if (t.data.isCreatedChild) return 'tree-link tree-link--creation';
+          const isMarriage = t.data.isUnionHeader;
           return isMarriage ? 'tree-link tree-link--marriage' : 'tree-link';
         })
         .attr('d', () => {
@@ -667,6 +702,9 @@ export default function TreeView({ tree, focusId }: Props) {
         .attr('d', d => {
           const s = linkSource(d);
           const t = linkTarget(d);
+          if ((d.target as HNode).data.isCreatedChild) {
+            return creationLinkPath(s, t);
+          }
           if ((d.target as HNode).data.isUnionHeader) {
             return marriageLink(s, t);
           }
@@ -769,8 +807,10 @@ export default function TreeView({ tree, focusId }: Props) {
       crossSym.exit().transition().duration(duration).style('opacity', 0).remove();
 
       // ─── NODES ───────────────────────────────────────────────────────
+      // Exclude virtual root from rendering (it's invisible and off-screen)
+      const visibleNodes = nodes.filter(d => d.data.id !== '__virtual_root__');
       const node = g.selectAll<SVGGElement, HNode>('g.tree-node')
-        .data(nodes, d => nodeKey(d));
+        .data(visibleNodes, d => nodeKey(d));
 
       const nodeEnter = node.enter()
         .append('g')
@@ -1127,6 +1167,13 @@ export default function TreeView({ tree, focusId }: Props) {
       return `M ${s.x} ${s.y} C ${s.x} ${midY} ${t.x} ${midY} ${t.x} ${t.y}`;
     }
 
+    // Creation link: exits from the right edge of the source, detours right,
+    // then curves down and across to the target — avoids overlapping child links.
+    function creationLinkPath(s: { x: number; y: number }, t: { x: number; y: number }): string {
+      const detourX = Math.max(s.x + 110, t.x + NODE_RADIUS + 60);
+      return `M ${s.x} ${s.y} C ${detourX} ${s.y} ${detourX} ${t.y} ${t.x} ${t.y}`;
+    }
+
     function crossLinkPath(d: { sx: number; sy: number; tx: number; ty: number }): string {
       if (Math.abs(d.sy - d.ty) < 20) {
         // Horizontal (same level): from side edges at vertical center, arc above
@@ -1163,7 +1210,8 @@ export default function TreeView({ tree, focusId }: Props) {
     }
 
     function centerVisibleNodes() {
-      const visible = root.descendants() as HNode[];
+      const visible = (root.descendants() as HNode[])
+        .filter(d => d.data.id !== '__virtual_root__');
       if (visible.length === 0) return;
       let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
       for (const d of visible) {
@@ -1302,7 +1350,8 @@ export default function TreeView({ tree, focusId }: Props) {
       collapseAll: () => {
         expandAllNodes(root);
         collapseGroups(root);
-        collapseDeep(root, 0, initialDepth[tree.id] ?? 2);
+        const collapseGenStart = root.data.id === '__virtual_root__' ? -1 : 0;
+        collapseDeep(root, collapseGenStart, initialDepth[tree.id] ?? 2);
         update(root, 'collapse');
       },
       expandAll: () => {
@@ -1317,12 +1366,24 @@ export default function TreeView({ tree, focusId }: Props) {
     const initialZoom: Record<string, number> = {
       titanes: 1.5,
       olimpicos: 0.7,
-      heroes: 0.9,
+      heroes: 0.65,
       sisifo: 1.2,
     };
     const height = svgRef.current.clientHeight;
     const sc = initialZoom[tree.id] ?? 1.0;
-    svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+
+    if (tree.id === 'heroes') {
+      const zeusNode = (root.descendants() as HNode[]).find(n => n.data.id === 'zeus' && !n.data.isUnionHeader);
+      if (zeusNode) {
+        const tx = width / 2 - zeusNode.x * sc;
+        const ty = height / 5 - zeusNode.y * sc;
+        svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(sc));
+      } else {
+        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+      }
+    } else {
+      svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+    }
 
   }, [tree, router, getCategoryColor, getImage, getName, optimizeImage]);
 
@@ -1419,6 +1480,9 @@ export default function TreeView({ tree, focusId }: Props) {
               </span>
               <span className="tree-view__info-item">
                 <span className="tree-view__legend-line tree-view__legend-line--union" /> Union
+              </span>
+              <span className="tree-view__info-item">
+                <span className="tree-view__legend-line tree-view__legend-line--creation" /> Creación
               </span>
             </div>
           </div>
