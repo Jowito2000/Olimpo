@@ -1281,7 +1281,7 @@ export default function TreeView({ tree, focusId }: Props) {
 
       /* ─── EXIT ──────────────────────────────────────────────────────── */
       const nodeExit = node.exit().transition().duration(duration)
-        .attr('transform', d => {
+        .attr('transform', (d: any) => {
           const p = d.parent || source;
           return `translate(${p.x ?? source.x ?? 0},${p.y ?? source.y ?? 0})`;
         })
@@ -1487,7 +1487,7 @@ export default function TreeView({ tree, focusId }: Props) {
       g.selectAll('.focus-highlight').remove();
       (g.selectAll<SVGGElement, HNode>('g.tree-node') as d3.Selection<SVGGElement, HNode, SVGGElement, unknown>)
         .filter(d => d === target)
-        .each(function(d) {
+        .each(function() {
           let cx = charCxOffset;
           const ring = d3.select(this)
             .append('circle')
