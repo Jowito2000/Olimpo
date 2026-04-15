@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import TreeView from '@/components/tree/TreeView';
 import SuggestionButton from '@/components/suggestion/SuggestionButton';
 import { treeList, getCharacter } from '@/data';
-import { getCharacterImage, getImageUrl } from '@/utils/images';
+import { getCharacterPortrait, getPortraitUrl } from '@/utils/images';
 import type { TreeData, TreeNode } from '@/types';
 
 interface Props {
@@ -22,8 +22,8 @@ function preloadTreeImages(tree: TreeData) {
 
     const char = getCharacter(baseId);
     const rawPath = char
-      ? getCharacterImage(char)
-      : getImageUrl(baseId, fallbackName ?? tree.nodeMeta?.[baseId]?.name ?? baseId);
+      ? getCharacterPortrait(char)
+      : getPortraitUrl(baseId, fallbackName ?? tree.nodeMeta?.[baseId]?.name ?? baseId);
 
     const img = new window.Image();
     img.src = `/_next/image?url=${encodeURIComponent(rawPath)}&w=256&q=90`;
@@ -34,7 +34,7 @@ function preloadTreeImages(tree: TreeData) {
       // Virtual root has no image — skip
     } else if (node.isGroup && node.groupImage) {
       const img = new window.Image();
-      img.src = `/_next/image?url=${encodeURIComponent(`/images/personajes/${node.groupImage}.png`)}&w=256&q=90`;
+      img.src = `/_next/image?url=${encodeURIComponent(`/images/retratos/${node.groupImage}.png`)}&w=256&q=90`;
     } else {
       resolveAndPreload(node.id);
     }

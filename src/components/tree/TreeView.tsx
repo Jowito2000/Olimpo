@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useCallback, useState } from 'react';
 import * as d3 from 'd3';
 import { useRouter } from 'next/navigation';
 import { getCharacter, categories } from '../../data';
-import { getImageUrl, getCharacterImage } from '../../utils/images';
+import { getPortraitUrl, getCharacterPortrait } from '../../utils/images';
 import { getCanonicalRef, baseNodeId } from '../../data/crossTreeIndex';
 import type { TreeData, TreeNode } from '../../types';
 import './TreeView.css';
@@ -240,8 +240,8 @@ export default function TreeView({ tree, focusId }: Props) {
     const baseId = id.split(/(_dup|:|_2)/)[0] ?? id;
     const char = getCharacter(baseId);
     const rawPath = char
-      ? getCharacterImage(char)
-      : getImageUrl(baseId, tree.nodeMeta?.[baseId]?.name ?? metaMap.get(baseId)?.name ?? baseId);
+      ? getCharacterPortrait(char)
+      : getPortraitUrl(baseId, tree.nodeMeta?.[baseId]?.name ?? metaMap.get(baseId)?.name ?? baseId);
     return optimizeImage(rawPath);
   }, [metaMap, tree.nodeMeta, optimizeImage]);
 
@@ -886,7 +886,7 @@ export default function TreeView({ tree, focusId }: Props) {
         .append('image')
         .attr('class', 'tree-node__image')
         .attr('href', d => d.data.isGroup && d.data.groupImage
-          ? optimizeImage(`/images/personajes/${d.data.groupImage}.png`)
+          ? optimizeImage(`/images/retratos/${d.data.groupImage}.png`)
           : getImage(pId(d)))
         .attr('x', d => pCx(d) - (NODE_RADIUS - 3) * 1.4)
         .attr('y', -(NODE_RADIUS - 3))

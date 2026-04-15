@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { categories, treeList } from '@/data';
-import { getCharacterImage } from '@/utils/images';
+import { getCharacterImage, getCharacterPortrait } from '@/utils/images';
 import type { Character } from '@/types';
 import SuggestionButton from '@/components/suggestion/SuggestionButton';
 import './CharacterDetailPage.css';
@@ -36,7 +36,7 @@ export default function CharacterDetailPage({ character, parentCharacters, child
               style={{ '--cat-color': categoryInfo?.color ?? '#9a9a9a' } as React.CSSProperties}
             >
               <Image
-                src={getCharacterImage(character)}
+                src={getCharacterPortrait(character)}
                 alt={character.name}
                 fill
                 priority
@@ -163,7 +163,7 @@ function FamilyGroup({ label, characters }: FamilyGroupProps) {
             className="flex items-center gap-2 px-4 py-2 bg-bg-card border border-border-base rounded-lg no-underline transition-all duration-150 hover:border-gold hover:bg-bg-hover hover:-translate-y-0.5"
           >
             <Image
-              src={getCharacterImage(char)}
+              src={getCharacterPortrait(char)}
               alt={char.name}
               width={36}
               height={36}

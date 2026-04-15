@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { treeList } from '../../data';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import { getImageByName } from '../../utils/images';
+import { getPortraitByName } from '../../utils/images';
 import './TreesPreview.css';
 
 export default function TreesPreview() {
@@ -37,7 +37,7 @@ export default function TreesPreview() {
             >
               <div className="w-[100px] h-[100px] min-w-16 rounded-xl overflow-hidden shrink-0">
                 <img
-                  src={getImageByName(tree.icon)}
+                  src={getPortraitByName(tree.icon)}
                   alt={tree.name}
                   className="w-[100px] h-[100px] min-w-16 rounded-xl object-cover object-[center_10%] scale-130 origin-top transition-transform duration-250"
                   loading="lazy"

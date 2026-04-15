@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Character } from '../../types';
-import { getCharacterImage } from '../../utils/images';
+import { getCharacterPortrait } from '../../utils/images';
 import './CharacterCard.css';
 
 interface Props {
@@ -18,7 +18,7 @@ export default function CharacterCard({ character, priority = false }: Props) {
     >
       <div className="relative w-full aspect-square overflow-hidden bg-bg-secondary">
         <Image
-          src={getCharacterImage(character)}
+          src={getCharacterPortrait(character)}
           alt={character.name}
           fill
           sizes="(max-width: 640px) 50vw, 200px"

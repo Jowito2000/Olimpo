@@ -37,7 +37,8 @@ const imageOverrides: Record<string, string> = {
 };
 
 /**
- * Devuelve la ruta de imagen para un personaje.
+ * Devuelve la ruta de imagen completa (personajes/) para un personaje.
+ * Usar solo en la sección "Imagen Completa del Personaje".
  */
 export function getCharacterImage(character: Character | null): string {
   if (!character) return '/images/personajes/placeholder.png';
@@ -45,7 +46,16 @@ export function getCharacterImage(character: Character | null): string {
 }
 
 /**
- * Devuelve la ruta de imagen dado un ID y un nombre de respaldo.
+ * Devuelve la ruta de retrato (retratos/) para un personaje.
+ * Usar en tarjetas, árbol familiar y cabecera de detalle.
+ */
+export function getCharacterPortrait(character: Character | null): string {
+  if (!character) return '/images/retratos/placeholder.png';
+  return getPortraitUrl(character.id, character.name);
+}
+
+/**
+ * Devuelve la ruta de imagen completa dado un ID y un nombre de respaldo.
  */
 export function getImageUrl(id: string, name: string): string {
   const baseId = id.split(/(_dup|:|_2)/)[0] ?? id;
@@ -55,9 +65,27 @@ export function getImageUrl(id: string, name: string): string {
 }
 
 /**
+ * Devuelve la ruta de retrato dado un ID y un nombre de respaldo.
+ */
+export function getPortraitUrl(id: string, name: string): string {
+  const baseId = id.split(/(_dup|:|_2)/)[0] ?? id;
+  const override = imageOverrides[baseId];
+  const filename = override || name;
+  return `/images/retratos/${filename}.png`;
+}
+
+/**
  * Devuelve la ruta de imagen dado solo un nombre (para los nodos del árbol).
+ * @deprecated Usar getPortraitByName para árboles.
  */
 export function getImageByName(name: string): string {
   return `/images/personajes/${name}.png`;
+}
+
+/**
+ * Devuelve la ruta de retrato dado solo un nombre (para los nodos del árbol).
+ */
+export function getPortraitByName(name: string): string {
+  return `/images/retratos/${name}.png`;
 }
 

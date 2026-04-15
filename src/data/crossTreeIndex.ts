@@ -82,6 +82,17 @@ export function baseNodeId(nodeId: string): string {
 }
 
 /**
+ * Explicit canonical-tree overrides for nodes where the automatic logic
+ * (mortal/hero/nymph priority boost for sisifo/heroes) gives the wrong result.
+ *
+ * Use case: Deucalion is Prometheus's son — his origin is the Titans tree,
+ * not the Sisyphus tree where he appears as a root entry point.
+ */
+const CANONICAL_TREE_OVERRIDES: Partial<Record<string, TreeId>> = {
+  deucalion: 'titanes',
+};
+
+/**
  * Returns the canonical (highest-priority) tree ref for this node,
  * or null if the current tree IS already the canonical location.
  *
@@ -127,8 +138,15 @@ export function getCanonicalRef(
     TREE_PRIORITY[r.treeId] < TREE_PRIORITY[best.treeId] ? r : best
   );
 
+  // ── Explicit override: use the declared canonical tree if the node is rooted there ──
+  const overrideTreeId = CANONICAL_TREE_OVERRIDES[base];
+  if (overrideTreeId) {
+    const overrideRef = rootedRefs.find(r => r.treeId === overrideTreeId);
+    if (overrideRef) canonical = overrideRef;
+  }
+
   const cat = nodeCategoryMap[base];
-  if (cat === 'mortal' || cat === 'ninfa' || cat === 'heroe') {
+  if (!overrideTreeId && (cat === 'mortal' || cat === 'ninfa' || cat === 'heroe')) {
     // For mortals, heroes, and nymphs, their human ancestry trees (sisifo, heroes)
     // are their TRUE canonical origins. Override standard priority.
     const mortalCanonical = rootedRefs.slice().sort((a, b) => {
