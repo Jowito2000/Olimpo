@@ -29,6 +29,8 @@ const imageOverrides: Record<string, string> = {
   'Toxeo-Eneo': 'Toxeo-Eneo',
   'Toxeo-Éurito': 'Toxeo-Éurito',
   'hidra_de_lerma': 'Hidra',
+  'ladon': 'LadónRetrato',
+  'euristeo': 'EuristeoJoven',
   'ilio': 'Ilo-de-Tros',
   'ion': 'Ion-Helen',
   'alcione': 'Alcíone-Eolo',

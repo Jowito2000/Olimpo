@@ -888,12 +888,12 @@ export default function TreeView({ tree, focusId }: Props) {
         .attr('href', d => d.data.isGroup && d.data.groupImage
           ? optimizeImage(`/images/retratos/${d.data.groupImage}.png`)
           : getImage(pId(d)))
-        .attr('x', d => pCx(d) - (NODE_RADIUS - 3) * 1.4)
+        .attr('x', d => pCx(d) - (NODE_RADIUS - 3))
         .attr('y', -(NODE_RADIUS - 3))
-        .attr('width', (NODE_RADIUS - 3) * 2.8)
-        .attr('height', (NODE_RADIUS - 3) * 2.8)
+        .attr('width', (NODE_RADIUS - 3) * 2)
+        .attr('height', (NODE_RADIUS - 3) * 2)
         .attr('clip-path', d => `url(#cp-${nodeKey(d)})`)
-        .attr('preserveAspectRatio', 'xMidYMin slice');
+        .attr('preserveAspectRatio', 'xMidYMid slice');
 
       // Name label — skip for junctions and dual-partner headers
       nodeEnter.filter(d => !isJunction(d) && !isDualHeader(d))
@@ -937,10 +937,10 @@ export default function TreeView({ tree, focusId }: Props) {
 
       withP.append('image').attr('class', 'tree-node__partner-image')
         .attr('href', d => getImage(d.data.singlePartner!))
-        .attr('x', SINGLE_PARTNER_GAP - (NODE_RADIUS - 3) * 1.4).attr('y', -(NODE_RADIUS - 3))
-        .attr('width', (NODE_RADIUS - 3) * 2.8).attr('height', (NODE_RADIUS - 3) * 2.8)
+        .attr('x', SINGLE_PARTNER_GAP - (NODE_RADIUS - 3)).attr('y', -(NODE_RADIUS - 3))
+        .attr('width', (NODE_RADIUS - 3) * 2).attr('height', (NODE_RADIUS - 3) * 2)
         .attr('clip-path', d => `url(#cpp-${nodeKey(d)})`)
-        .attr('preserveAspectRatio', 'xMidYMin slice');
+        .attr('preserveAspectRatio', 'xMidYMid slice');
 
       withP.append('text').attr('class', 'tree-node__partner-name')
         .attr('x', SINGLE_PARTNER_GAP).attr('dy', NODE_RADIUS + 16).attr('text-anchor', 'middle')
@@ -973,9 +973,9 @@ export default function TreeView({ tree, focusId }: Props) {
         .append('circle').attr('class', 'tree-node__partner-clip--left').attr('cx', -UNION_GAP).attr('r', 0);
       withDual.append('image').attr('class', 'tree-node__partner-image')
         .attr('href', d => getImage(d.data.partnerLeftId!))
-        .attr('x', -UNION_GAP - (NODE_RADIUS - 3) * 1.4).attr('y', -(NODE_RADIUS - 3))
-        .attr('width', (NODE_RADIUS - 3) * 2.8).attr('height', (NODE_RADIUS - 3) * 2.8)
-        .attr('clip-path', d => `url(#cpl-${nodeKey(d)})`).attr('preserveAspectRatio', 'xMidYMin slice');
+        .attr('x', -UNION_GAP - (NODE_RADIUS - 3)).attr('y', -(NODE_RADIUS - 3))
+        .attr('width', (NODE_RADIUS - 3) * 2).attr('height', (NODE_RADIUS - 3) * 2)
+        .attr('clip-path', d => `url(#cpl-${nodeKey(d)})`).attr('preserveAspectRatio', 'xMidYMid slice');
       withDual.append('text').attr('class', 'tree-node__partner-name')
         .attr('x', -UNION_GAP).attr('dy', NODE_RADIUS + 16).attr('text-anchor', 'middle')
         .text(d => getName(d.data.partnerLeftId!));
@@ -989,9 +989,9 @@ export default function TreeView({ tree, focusId }: Props) {
         .append('circle').attr('class', 'tree-node__partner-clip--right').attr('cx', UNION_GAP).attr('r', 0);
       withDual.append('image').attr('class', 'tree-node__partner-image')
         .attr('href', d => getImage(d.data.partnerRightId!))
-        .attr('x', UNION_GAP - (NODE_RADIUS - 3) * 1.4).attr('y', -(NODE_RADIUS - 3))
-        .attr('width', (NODE_RADIUS - 3) * 2.8).attr('height', (NODE_RADIUS - 3) * 2.8)
-        .attr('clip-path', d => `url(#cpr-${nodeKey(d)})`).attr('preserveAspectRatio', 'xMidYMin slice');
+        .attr('x', UNION_GAP - (NODE_RADIUS - 3)).attr('y', -(NODE_RADIUS - 3))
+        .attr('width', (NODE_RADIUS - 3) * 2).attr('height', (NODE_RADIUS - 3) * 2)
+        .attr('clip-path', d => `url(#cpr-${nodeKey(d)})`).attr('preserveAspectRatio', 'xMidYMid slice');
       withDual.append('text').attr('class', 'tree-node__partner-name')
         .attr('x', UNION_GAP).attr('dy', NODE_RADIUS + 16).attr('text-anchor', 'middle')
         .text(d => getName(d.data.partnerRightId!));

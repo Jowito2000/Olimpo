@@ -22,7 +22,7 @@ export default function CharacterCard({ character, priority = false }: Props) {
           alt={character.name}
           fill
           sizes="(max-width: 640px) 50vw, 200px"
-          className="object-cover object-[center_10%] scale-120 origin-top transition-transform duration-[400ms]"
+          className="object-cover object-center transition-transform duration-[400ms]"
           priority={priority}
           loading={priority ? undefined : 'lazy'}
         />
