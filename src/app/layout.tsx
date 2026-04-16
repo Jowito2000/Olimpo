@@ -6,8 +6,8 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://olimpo.com'),
   title: {
-    default: 'OLIMPO — Atlas de la Mitología Griega',
-    template: '%s · OLIMPO',
+    default: 'Olimpo',
+    template: '%s · Olimpo',
   },
   description: 'Explora los árboles genealógicos interactivos de la mitología griega. Desde el Caos primordial hasta los héroes.',
   openGraph: {

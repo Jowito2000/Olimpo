@@ -3,20 +3,55 @@ import { Resend } from 'resend';
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? 'jowito2000@gmail.com';
 
+/* ─── Rate limiting (IP-based, in-memory) ────────────────────────
+   Allows 5 submissions per IP per hour.
+   Resets on cold starts — intentionally simple for this use case. */
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT) return true;
+
+  entry.count++;
+  return false;
+}
+
+/* ─── HTML escaping ──────────────────────────────────────────────
+   Prevents user input from injecting HTML into the email. */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function buildEmailHtml(data: Record<string, string>): string {
   const fecha = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
 
   const row = (label: string, value: string | undefined, isLong = false) =>
     value
       ? `<tr>
-          <td style="padding:10px 16px;font-size:0.78rem;font-weight:600;color:#9a9a9a;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;vertical-align:top;border-bottom:1px solid rgba(212,168,67,0.1);">${label}</td>
-          <td style="padding:10px 16px;font-size:0.9rem;color:#e8e6e3;vertical-align:top;border-bottom:1px solid rgba(212,168,67,0.1);${isLong ? 'white-space:pre-wrap;' : ''}">${value}</td>
+          <td style="padding:10px 16px;font-size:0.78rem;font-weight:600;color:#9a9a9a;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;vertical-align:top;border-bottom:1px solid rgba(212,168,67,0.1);">${escapeHtml(label)}</td>
+          <td style="padding:10px 16px;font-size:0.9rem;color:#e8e6e3;vertical-align:top;border-bottom:1px solid rgba(212,168,67,0.1);${isLong ? 'white-space:pre-wrap;' : ''}">${escapeHtml(value)}</td>
         </tr>`
       : '';
 
   const isCharacter = data.contextoTipo === 'character';
   const badge = isCharacter
     ? `<span style="background:rgba(212,168,67,0.15);color:#d4a843;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;">PERSONAJE</span>`
+    : data.contextoTipo === 'general'
+    ? `<span style="background:rgba(134,239,172,0.15);color:#86efac;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;">GENERAL</span>`
     : `<span style="background:rgba(8,145,178,0.15);color:#38bdf8;padding:4px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;">ÁRBOL GENEALÓGICO</span>`;
 
   return `<!DOCTYPE html>
@@ -36,11 +71,11 @@ function buildEmailHtml(data: Record<string, string>): string {
       <div style="padding:20px 24px;border-bottom:1px solid rgba(212,168,67,0.15);display:flex;align-items:center;gap:12px;justify-content:space-between;">
         <div>
           <div style="margin-bottom:4px;">${badge}</div>
-          <div style="color:#e8e6e3;font-size:1.1rem;font-weight:600;margin-top:8px;">${data.contextoNombre}</div>
+          <div style="color:#e8e6e3;font-size:1.1rem;font-weight:600;margin-top:8px;">${escapeHtml(data.contextoNombre ?? '')}</div>
         </div>
         <div style="text-align:right;">
           <div style="font-size:0.75rem;color:#5a5a6e;margin-bottom:2px;">Tipo</div>
-          <div style="color:#f0d47a;font-size:0.85rem;">${data.tipo}</div>
+          <div style="color:#f0d47a;font-size:0.85rem;">${escapeHtml(data.tipo ?? '')}</div>
         </div>
       </div>
 
@@ -48,15 +83,15 @@ function buildEmailHtml(data: Record<string, string>): string {
         ${row('Campo / Aspecto', data.campo)}
         ${row('Sugerencia', data.sugerencia, true)}
         ${row('Fuente', data.fuente)}
-        ${row('URL de la fuente', data.urlFuente ? `<a href="${data.urlFuente}" style="color:#d4a843;">${data.urlFuente}</a>` : '')}
+        ${row('URL de la fuente', data.urlFuente ? `<a href="${escapeHtml(data.urlFuente)}" style="color:#d4a843;">${escapeHtml(data.urlFuente)}</a>` : '')}
         ${row('Notas adicionales', data.notas, true)}
       </table>
 
       ${(data.nombre || data.emailContacto) ? `
       <div style="padding:16px 24px;background:rgba(255,255,255,0.02);border-top:1px solid rgba(212,168,67,0.1);">
         <div style="font-size:0.75rem;color:#5a5a6e;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;">Remitente</div>
-        ${data.nombre ? `<div style="color:#e8e6e3;font-size:0.9rem;">${data.nombre}</div>` : ''}
-        ${data.emailContacto ? `<div style="color:#d4a843;font-size:0.85rem;margin-top:2px;">${data.emailContacto}</div>` : ''}
+        ${data.nombre ? `<div style="color:#e8e6e3;font-size:0.9rem;">${escapeHtml(data.nombre)}</div>` : ''}
+        ${data.emailContacto ? `<div style="color:#d4a843;font-size:0.85rem;margin-top:2px;">${escapeHtml(data.emailContacto)}</div>` : ''}
       </div>` : ''}
     </div>
 
@@ -70,6 +105,18 @@ function buildEmailHtml(data: Record<string, string>): string {
 
 export async function POST(req: Request) {
   try {
+    const ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+      req.headers.get('x-real-ip') ??
+      'unknown';
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Demasiadas solicitudes. Inténtalo más tarde.' },
+        { status: 429 },
+      );
+    }
+
     const data = await req.json() as Record<string, string>;
 
     if (!data.sugerencia?.trim() || !data.fuente?.trim()) {
