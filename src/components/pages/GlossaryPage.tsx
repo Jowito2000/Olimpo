@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import type { GlossaryCategory, GlossaryTerm } from '@/types';
+import SuggestionButton from '@/components/suggestion/SuggestionButton';
 import './GlossaryPage.css';
 
 interface Props {
@@ -143,7 +144,7 @@ export default function GlossaryPage({ terms: glossaryTerms }: Props) {
         >
           {filtered.map((term) => (
             <article key={term.id} className="glossary-card">
-              <h2 className="text-gold-light font-display text-xl m-0 border-b border-[rgba(212,168,67,0.1)] pb-2 mb-1">{term.title}</h2>
+              <h2 className="text-gold-light font-display m-0 border-b border-[rgba(212,168,67,0.1)] pb-2 mb-1">{term.title}</h2>
               <p className="text-text-secondary text-[0.95rem] leading-relaxed m-0">{term.description}</p>
             </article>
           ))}
@@ -155,6 +156,11 @@ export default function GlossaryPage({ terms: glossaryTerms }: Props) {
           </div>
         )}
       </div>
+
+      <SuggestionButton
+        context={{ tipo: 'general', subject: 'Glosario' }}
+        variant="floating"
+      />
     </main>
   );
 }

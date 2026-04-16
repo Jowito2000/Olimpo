@@ -1,0 +1,293 @@
+/* ─── ExploreMore ────────────────────────────────────────────────── */
+
+.explore-more__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+/* ── Card base ── */
+@keyframes exploreReveal {
+  0%   { opacity: 0; transform: translateY(40px) scale(0.95); }
+  65%  { opacity: 1; transform: translateY(-4px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.explore-more__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem 2rem 1.75rem;
+  border-radius: 14px;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.explore-more__card--visible {
+  animation: exploreReveal 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--card-delay, 0s);
+}
+
+/* Glossary card — warm gold tones */
+.explore-more__card--glossary {
+  background: linear-gradient(135deg, #1a1828 0%, #1e1a2e 60%, #1a1828 100%);
+  border-top: 2px solid rgba(212, 168, 67, 0.5);
+}
+
+.explore-more__card--glossary:hover {
+  border-color: rgba(212, 168, 67, 0.45);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(212, 168, 67, 0.1);
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* Timeline card — cool blue/teal tones */
+.explore-more__card--timeline {
+  background: linear-gradient(135deg, #0f1a2e 0%, #111827 60%, #0f1a2e 100%);
+  border-top: 2px solid rgba(56, 189, 248, 0.4);
+}
+
+.explore-more__card--timeline:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(56, 189, 248, 0.08);
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* Watermark Greek text */
+.explore-more__watermark {
+  position: absolute;
+  top: 50%;
+  right: -0.5rem;
+  transform: translateY(-50%);
+  font-family: var(--font-greek);
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  transition: color 300ms ease;
+}
+
+.explore-more__card:hover .explore-more__watermark {
+  color: rgba(255, 255, 255, 0.04);
+}
+
+/* Header */
+.explore-more__card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.explore-more__icon-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 250ms ease;
+}
+
+.explore-more__card--glossary .explore-more__icon-img {
+  filter: drop-shadow(0 0 6px rgba(212, 168, 67, 0.35));
+}
+
+.explore-more__card--timeline .explore-more__icon-img {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.35));
+}
+
+.explore-more__card:hover .explore-more__icon-img {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.explore-more__card--glossary:hover .explore-more__icon-img {
+  filter: drop-shadow(0 0 10px rgba(212, 168, 67, 0.6));
+}
+
+.explore-more__card--timeline:hover .explore-more__icon-img {
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6));
+}
+
+.explore-more__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.3rem;
+  line-height: 1.2;
+}
+
+.explore-more__subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Glossary chips ── */
+@keyframes chipPop {
+  from { opacity: 0; transform: scale(0.8) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.explore-more__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.explore-more__chip {
+  font-family: var(--font-display);
+  font-size: 0.63rem;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--chip-color, #d4a843) 30%, transparent);
+  color: var(--chip-color, #d4a843);
+  background: color-mix(in srgb, var(--chip-color, #d4a843) 8%, transparent);
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.8) translateY(6px);
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.explore-more__card--visible .explore-more__chip {
+  animation: chipPop 0.4s ease forwards;
+  animation-delay: calc(0.3s + var(--chip-delay, 0s));
+}
+
+.explore-more__card:hover .explore-more__chip {
+  border-color: color-mix(in srgb, var(--chip-color, #d4a843) 55%, transparent);
+  background: color-mix(in srgb, var(--chip-color, #d4a843) 14%, transparent);
+}
+
+.explore-more__chip--more {
+  border-style: dashed;
+  color: var(--color-text-muted);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.explore-more__card:hover .explore-more__chip--more {
+  border-color: rgba(212, 168, 67, 0.3);
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+
+/* ── Timeline eras ── */
+@keyframes eraSlide {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.explore-more__eras {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.explore-more__era {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-12px);
+}
+
+.explore-more__card--visible .explore-more__era {
+  animation: eraSlide 0.4s ease forwards;
+  animation-delay: calc(0.35s + var(--era-delay, 0s));
+}
+
+.explore-more__era-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--era-color, #888);
+  box-shadow: 0 0 10px var(--era-color, #888);
+  flex-shrink: 0;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  margin-bottom: 0.6rem;
+}
+
+.explore-more__card:hover .explore-more__era-dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 18px var(--era-color, #888);
+}
+
+.explore-more__era-line {
+  position: absolute;
+  top: 6px;
+  left: calc(50% + 6px);
+  right: calc(-50% + 6px);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--era-color, #888),
+    rgba(255, 255, 255, 0.08)
+  );
+  opacity: 0.4;
+}
+
+.explore-more__era-label {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.3;
+  transition: color 200ms ease;
+}
+
+.explore-more__card:hover .explore-more__era-label {
+  color: var(--color-text-secondary);
+}
+
+/* CTA at bottom of card */
+.explore-more__cta {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  transition: letter-spacing 250ms ease;
+}
+
+.explore-more__card--glossary .explore-more__cta  { color: var(--color-gold-dark); }
+.explore-more__card--timeline .explore-more__cta  { color: #38bdf8; opacity: 0.8; }
+
+.explore-more__card:hover .explore-more__cta {
+  letter-spacing: 0.18em;
+}
+
+.explore-more__card--glossary:hover .explore-more__cta { color: var(--color-gold); }
+.explore-more__card--timeline:hover .explore-more__cta { color: #7dd3fc; opacity: 1; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .explore-more__grid {
+    grid-template-columns: 1fr;
+  }
+}

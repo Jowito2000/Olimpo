@@ -3,9 +3,9 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import './Introduction.css';
 
+
 export default function Introduction() {
   const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
-  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal(0.2);
 
   return (
     <section className="py-16">
@@ -49,26 +49,6 @@ export default function Introduction() {
           </div>
         </div>
 
-        <div
-          ref={statsRef}
-          className={`intro__stats ${statsVisible ? 'intro__stats--visible' : ''}`}
-        >
-          {[
-            { number: '4', label: 'Árboles genealógicos' },
-            { number: '60+', label: 'Personajes' },
-            { number: '7', label: 'Categorías' },
-            { number: '∞', label: 'Versiones del mito' },
-          ].map((stat, i) => (
-            <div
-              key={stat.label}
-              className="intro__stat"
-              style={{ animationDelay: `${i * 0.12}s` }}
-            >
-              <span className="block font-display text-[2.5rem] font-bold text-gold leading-none mb-2">{stat.number}</span>
-              <span className="text-[0.8rem] text-text-muted uppercase tracking-wider">{stat.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -17,7 +17,12 @@ type TreeContext = {
   treeName: string;
 };
 
-export type SuggestionContext = CharacterContext | TreeContext;
+type GeneralContext = {
+  tipo: 'general';
+  subject: string;
+};
+
+export type SuggestionContext = CharacterContext | TreeContext | GeneralContext;
 
 interface Props {
   context: SuggestionContext;
@@ -62,6 +67,14 @@ const TIPOS_TREE = [
   'Dato incorrecto',
   'Personaje o nodo faltante',
   'Conexión o relación incorrecta',
+  'Otro',
+];
+
+const TIPOS_GENERAL = [
+  'Nuevo personaje que añadir',
+  'Información incorrecta en la web',
+  'Sugerencia de mejora',
+  'Problema técnico',
   'Otro',
 ];
 
@@ -120,9 +133,10 @@ export default function SuggestionModal({ context, onClose }: Props) {
   }, []);
 
   const isCharacter = context.tipo === 'character';
-  const tipos = isCharacter ? TIPOS_CHARACTER : TIPOS_TREE;
+  const isGeneral  = context.tipo === 'general';
+  const tipos = isCharacter ? TIPOS_CHARACTER : isGeneral ? TIPOS_GENERAL : TIPOS_TREE;
   const fields = isCharacter ? CHARACTER_FIELDS : TREE_FIELDS;
-  const contextoNombre = isCharacter ? context.character.name : context.treeName;
+  const contextoNombre = isCharacter ? context.character.name : isGeneral ? context.subject : context.treeName;
   const contextoTipo = context.tipo;
 
   const selectedField = isCharacter
@@ -136,7 +150,7 @@ export default function SuggestionModal({ context, onClose }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.sugerencia.trim()) { setErrorMsg('La sugerencia no puede estar vacía.'); return; }
-    if (!form.fuente.trim()) { setErrorMsg('La fuente es obligatoria para poder verificar la información.'); return; }
+    if (!isGeneral && !form.fuente.trim()) { setErrorMsg('La fuente es obligatoria para poder verificar la información.'); return; }
 
     setStatus('loading');
     setErrorMsg('');
@@ -146,7 +160,11 @@ export default function SuggestionModal({ context, onClose }: Props) {
         ...form,
         contextoTipo,
         contextoNombre,
-        ...(isCharacter ? { contextoId: context.character.id } : { contextoId: context.treeId }),
+        ...(isCharacter
+          ? { contextoId: context.character.id }
+          : isGeneral
+          ? { contextoId: 'general' }
+          : { contextoId: (context as { treeId: string }).treeId }),
       };
 
       const res = await fetch('/api/sugerencia', {
@@ -191,14 +209,16 @@ export default function SuggestionModal({ context, onClose }: Props) {
               <span className="text-[0.65rem] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-full border"
                 style={isCharacter
                   ? { background: 'rgba(212,168,67,0.12)', color: '#d4a843', borderColor: 'rgba(212,168,67,0.3)' }
+                  : isGeneral
+                  ? { background: 'rgba(134,239,172,0.1)', color: '#86efac', borderColor: 'rgba(134,239,172,0.3)' }
                   : { background: 'rgba(8,145,178,0.12)', color: '#38bdf8', borderColor: 'rgba(8,145,178,0.3)' }
                 }
               >
-                {isCharacter ? 'Personaje' : 'Árbol genealógico'}
+                {isCharacter ? 'Personaje' : isGeneral ? 'Sugerencia general' : 'Árbol genealógico'}
               </span>
             </div>
             <h2 className="font-display text-[1.05rem] text-text-primary leading-tight">
-              Sugerir corrección
+              {isGeneral ? 'Sugerir al equipo' : 'Sugerir corrección'}
               <span className="text-gold"> — {contextoNombre}</span>
             </h2>
             <p className="text-[0.75rem] text-text-muted mt-0.5">
@@ -250,7 +270,8 @@ export default function SuggestionModal({ context, onClose }: Props) {
                 </select>
               </div>
 
-              {/* Campo */}
+              {/* Campo — omitido en contexto general */}
+              {!isGeneral && (
               <div>
                 <label className={labelClass}>
                   {isCharacter ? 'Dato afectado' : 'Aspecto afectado'} <span className="text-gold">*</span>
@@ -273,9 +294,10 @@ export default function SuggestionModal({ context, onClose }: Props) {
                   </div>
                 )}
               </div>
+              )}
 
               {/* Para árbol: personaje(s) afectado(s) */}
-              {!isCharacter && (
+              {!isCharacter && !isGeneral && (
                 <div>
                   <label className={labelClass}>Personaje(s) o nodo(s) involucrado(s)</label>
                   <input
@@ -309,15 +331,16 @@ export default function SuggestionModal({ context, onClose }: Props) {
               <div className="space-y-3">
                 <div>
                   <label className={labelClass}>
-                    Fuente de la información <span className="text-gold">*</span>
+                    Fuente de la información {!isGeneral && <span className="text-gold">*</span>}
+                    {isGeneral && <span className="text-text-muted">(opcional)</span>}
                   </label>
                   <input
                     type="text"
                     value={form.fuente}
                     onChange={e => set('fuente', e.target.value)}
-                    placeholder="Ej: Teogonía de Hesíodo, Wikipedia en español, Biblioteca de Apolodoro..."
+                    placeholder={isGeneral ? 'Si tienes una referencia, indícala aquí...' : 'Ej: Teogonía de Hesíodo, Wikipedia en español, Biblioteca de Apolodoro...'}
                     className={inputClass}
-                    required
+                    required={!isGeneral}
                   />
                 </div>
                 <div>

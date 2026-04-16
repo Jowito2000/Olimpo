@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CharactersPage from '@/components/pages/CharactersPage';
 import { getAllCharacters } from '@/data/characters';
+import type { CharacterCategory } from '@/types';
 
 export const metadata: Metadata = {
   title: 'Personajes',
@@ -8,6 +9,16 @@ export const metadata: Metadata = {
   alternates: { canonical: '/personajes' },
 };
 
-export default function Page() {
-  return <CharactersPage characters={getAllCharacters()} />;
+type PageProps = {
+  searchParams: Promise<{ categoria?: string }>;
+};
+
+export default async function Page({ searchParams }: PageProps) {
+  const { categoria } = await searchParams;
+  return (
+    <CharactersPage
+      characters={getAllCharacters()}
+      initialCategory={(categoria as CharacterCategory) ?? 'all'}
+    />
+  );
 }

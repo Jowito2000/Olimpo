@@ -7,11 +7,12 @@ import type { Character, CharacterCategory, TreeId } from '@/types';
 
 interface Props {
   characters: Character[];
+  initialCategory?: CharacterCategory | 'all';
 }
 
-export default function CharactersPage({ characters }: Props) {
+export default function CharactersPage({ characters, initialCategory = 'all' }: Props) {
   const [search, setSearch] = useState('');
-  const [activeCategory, setActiveCategory] = useState<CharacterCategory | 'all'>('all');
+  const [activeCategory, setActiveCategory] = useState<CharacterCategory | 'all'>(initialCategory);
   const [activeTree, setActiveTree] = useState<TreeId | 'all'>('all');
 
   const allCharacters = characters;
