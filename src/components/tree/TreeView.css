@@ -1,3 +1,92 @@
+/* ─── Tree Search ──────────────────────────────────────────────────── */
+.tree-search {
+  position: relative;
+  width: min(320px, 60%);
+  pointer-events: auto;
+}
+
+.tree-search__input-wrap {
+  position: relative;
+}
+
+.tree-search__icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  color: #666;
+  pointer-events: none;
+}
+
+.tree-search__input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: #d0d0d8;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.tree-search__input:focus {
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #e8e8ec;
+}
+
+.tree-search__input::placeholder {
+  color: #777;
+  letter-spacing: 0.04em;
+}
+
+.tree-search__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: rgba(8, 8, 8, 0.97);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.tree-search__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  color: #c0c0cc;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  transition: background 0.1s, color 0.1s;
+}
+
+.tree-search__option--active {
+  background: rgba(212, 175, 55, 0.1);
+  color: #d4af37;
+}
+
+.tree-search__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── Tree view ────────────────────────────────────────────────────── */
 .tree-view {
   position: relative;
   width: 100%;
@@ -24,24 +113,31 @@
   right: var(--space-sm);
   z-index: 10;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   pointer-events: none;
+}
+
+.tree-view__toolbar > .tree-view__btn--icon {
+  position: absolute;
+  left: 0;
 }
 
 .tree-view__btn-group {
   display: flex;
   gap: 4px;
   pointer-events: auto;
+  position: absolute;
+  right: 0;
 }
 
 .tree-view__btn {
   background: rgba(10, 10, 15, 0.85);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(212, 168, 67, 0.35);
   border-radius: var(--radius-sm);
-  color: var(--color-text-muted);
+  color: #b8b8c8;
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   letter-spacing: 0.04em;
   padding: 5px 10px;
   cursor: pointer;
