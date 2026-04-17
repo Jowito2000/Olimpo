@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useCallback, useState, forwardRef, useImperativeHandle } from 'react';
 import * as d3 from 'd3';
 import { useRouter } from 'next/navigation';
 import { getCharacter, categories } from '../../data';
 import { getPortraitUrl, getCharacterPortrait } from '../../utils/images';
 import { getCanonicalRef, baseNodeId } from '../../data/crossTreeIndex';
 import type { TreeData, TreeNode } from '../../types';
+import TreeSearch from './TreeSearch';
 import './TreeView.css';
 
 /* ─── Layout node: flat hierarchy for D3 ─────────────────────────────── */
@@ -192,7 +193,9 @@ function flattenToLayout(
 
 interface Props { tree: TreeData; focusId?: string; }
 
-export default function TreeView({ tree, focusId }: Props) {
+export interface TreeViewHandle { focusNode: (id: string) => void; }
+
+const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, focusId }, ref) {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const actionsRef = useRef<{
@@ -1565,6 +1568,10 @@ export default function TreeView({ tree, focusId }: Props) {
 
   }, [tree, router, getCategoryColor, getImage, getName, optimizeImage]);
 
+  useImperativeHandle(ref, () => ({
+    focusNode: (id: string) => actionsRef.current?.focusNode(id),
+  }));
+
   /* ─── Focus on a specific character node (from ?nodo= param) ──────── */
   useEffect(() => {
     if (!focusId) return;
@@ -1613,6 +1620,11 @@ export default function TreeView({ tree, focusId }: Props) {
         >
           {showInfo ? '\u2715' : '?'}
         </button>
+
+        <TreeSearch
+          tree={tree}
+          onSelect={id => actionsRef.current?.focusNode(id)}
+        />
 
         <div className="tree-view__btn-group">
           <button className="tree-view__btn" onClick={() => actionsRef.current?.collapseAll()}>
@@ -1670,4 +1682,6 @@ export default function TreeView({ tree, focusId }: Props) {
       <svg ref={svgRef} className="tree-view__svg" aria-label={`Árbol genealógico: ${tree.name}`} />
     </div>
   );
-}
+});
+
+export default TreeView;
