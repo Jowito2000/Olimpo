@@ -22,7 +22,11 @@ export const metadata: Metadata = {
     description: 'Árboles genealógicos interactivos de dioses, titanes y héroes griegos.',
   },
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Ω</text></svg>",
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
   alternates: {
     canonical: '/',
