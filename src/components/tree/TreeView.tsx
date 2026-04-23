@@ -1057,12 +1057,15 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .text('→ Ver ficha').style('cursor', 'pointer').style('opacity', 0)
         .on('click', (e, d) => { e.stopPropagation(); router.push(`/personaje/${d.data.unionPartnerId}`); });
 
-      // Group link
+      // Group link — placed below the node (under the expand indicator) so it
+      // never overlaps with the "Ver ficha" link for groups that also have a
+      // character card (e.g. Musas).
       nodeEnter.filter(d => !!d.data.isGroup)
-        .append('text').attr('class', 'tree-node__link')
-        .attr('x', pCx).attr('dy', -NODE_RADIUS - 8)
+        .append('text').attr('class', 'tree-node__link tree-node__link--group')
+        .attr('x', pCx).attr('dy', d => nodeRadius(d) + 58)
         .attr('text-anchor', 'middle').attr('font-size', '10px')
-        .text('▼ Ver miembros').style('cursor', 'pointer').style('opacity', 0);
+        .text('▼ Ver miembros').style('cursor', 'pointer').style('opacity', 0)
+        .on('click', (e, d) => { e.stopPropagation(); performLocalToggle(d); });
 
         /* CLICK TARGETS (always expand/collapse, never navigate) */
         const performGlobalToggle = (charId: string, clickedNode: HNode) => {
