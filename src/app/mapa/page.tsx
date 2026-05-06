@@ -8,10 +8,10 @@ import PanelInfo from '@/components/mapa/PanelInfo';
 import { motion } from 'framer-motion';
 
 export default function MapaPage() {
-  const [activeEraId, setActiveEraId] = useState<string>(ERAS_DATA[0].id);
+  const [activeEraId, setActiveEraId] = useState<string>(ERAS_DATA[0]!.id);
   const [activeKingdom, setActiveKingdom] = useState<Kingdom | null>(null);
 
-  const activeEra = ERAS_DATA.find((e) => e.id === activeEraId) || ERAS_DATA[0];
+  const activeEra = ERAS_DATA.find((e) => e.id === activeEraId) || ERAS_DATA[0]!;
 
   const handleEraChange = (eraId: string) => {
     setActiveEraId(eraId);
