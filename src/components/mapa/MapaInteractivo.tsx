@@ -297,18 +297,14 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                 <stop offset="100%" stopColor="rgba(212, 175, 55, 0)" />
               </radialGradient>
               
-              {/* Organic/Jagged border filter */}
-              <filter id="displacementFilter" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
-              </filter>
+
               
               <clipPath id="all-land-clip">
                 <path d={landClipPathDef} />
               </clipPath>
             </defs>
 
-            <g ref={mapGroupRef}>
+            <g ref={mapGroupRef} style={{ willChange: 'transform' }}>
               {/* Base Map - Mediterranean Context */}
               {medGeoDataHighRes.features.map((feature: any, i: number) => {
                 const hasItalianColonies = era.kingdoms.some(k => k.coordinates[0] < 19);
@@ -323,6 +319,7 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                       stroke={isGreeceOrCoast ? "rgba(212, 175, 55, 0.15)" : "rgba(212, 175, 55, 0.05)"}
                       strokeWidth={isGreeceOrCoast ? 1.5 : 1}
                       vectorEffect="non-scaling-stroke"
+                      className="pointer-events-none"
                     />
                     {!isGreeceOrCoast && !isNaN(centroid[0]) && (
                       <text
@@ -342,8 +339,8 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                 );
               })}
 
-              {/* Voronoi Territories Clipped to all Land and Filtered for organic borders */}
-              <g clipPath="url(#all-land-clip)" filter="url(#displacementFilter)">
+              {/* Voronoi Territories Clipped to all Land */}
+              <g clipPath="url(#all-land-clip)">
                 {era.kingdoms.map((kingdom, i) => {
                   const isActive = activeKingdom?.id === kingdom.id;
                   const isDimmed = activeKingdom && !isActive;
