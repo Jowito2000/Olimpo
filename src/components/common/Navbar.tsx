@@ -14,6 +14,7 @@ export default function Navbar() {
     { href: '/personajes', label: 'Personajes' },
     { href: '/glosario', label: 'Glosario' },
     { href: '/linea-temporal', label: 'Línea Temporal' },
+    { href: '/mapa', label: 'Mapa' },
   ];
 
   const isActive = (href: string, exact?: boolean) => {
@@ -35,7 +36,7 @@ export default function Navbar() {
         </Link>
 
         <button
-          className={`md:hidden flex flex-col gap-[5px] bg-none border-none cursor-pointer p-2 ${menuOpen ? 'navbar-toggle--open' : ''}`}
+          className={`lg:hidden flex flex-col gap-[5px] bg-none border-none cursor-pointer p-2 ${menuOpen ? 'navbar-toggle--open' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-expanded={menuOpen}
           aria-label="Abrir menú de navegación"
@@ -47,11 +48,11 @@ export default function Navbar() {
 
         <ul className={`
           list-none flex items-center gap-8
-          max-md:fixed max-md:top-16 max-md:left-0 max-md:right-0
-          max-md:flex-col max-md:bg-[rgba(10,10,15,0.98)] max-md:backdrop-blur-[12px]
-          max-md:p-8 max-md:gap-6 max-md:border-b max-md:border-border-base
-          max-md:transition-all max-md:duration-250 max-md:ease
-          ${menuOpen ? 'max-md:translate-y-0 max-md:opacity-100 max-md:pointer-events-auto' : 'max-md:-translate-y-full max-md:opacity-0 max-md:pointer-events-none'}
+          max-lg:fixed max-lg:top-16 max-lg:left-0 max-lg:right-0
+          max-lg:flex-col max-lg:bg-[rgba(10,10,15,0.98)] max-lg:backdrop-blur-[12px]
+          max-lg:p-8 max-lg:gap-6 max-lg:border-b max-lg:border-border-base
+          max-lg:transition-all max-lg:duration-250 max-lg:ease
+          ${menuOpen ? 'max-lg:translate-y-0 max-lg:opacity-100 max-lg:pointer-events-auto' : 'max-lg:-translate-y-full max-lg:opacity-0 max-lg:pointer-events-none'}
         `}>
           {links.map(link => {
             const active = isActive(link.href, link.exact);
@@ -61,7 +62,7 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className={`
-                    font-display text-[0.85rem] max-md:text-base font-medium tracking-[0.15em] uppercase
+                    font-display text-[0.85rem] max-lg:text-base font-medium tracking-[0.15em] uppercase
                     py-1 relative no-underline transition-colors duration-250
                     after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:bg-gold after:transition-[width] after:duration-250
                     ${active ? 'text-gold-light after:w-full' : 'text-text-secondary after:w-0 hover:text-gold-light hover:after:w-full'}
