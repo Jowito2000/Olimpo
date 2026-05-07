@@ -27,8 +27,8 @@ export default function QuizPage() {
     if (availableQuestions.length === 0) {
       const allDiffQuestions = QUIZ_QUESTIONS.filter(q => q.difficulty === diff);
       const randomQ = allDiffQuestions[Math.floor(Math.random() * allDiffQuestions.length)];
-      setPlayedQuestionIds(new Set([randomQ.id])); // Resetear pero marcando la actual
-      return getShuffledQuestion(randomQ);
+      setPlayedQuestionIds(new Set([randomQ!.id])); // Resetear pero marcando la actual
+      return getShuffledQuestion(randomQ!);
     }
 
     const randomQ = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
