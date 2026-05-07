@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Difficulty } from '@/data/quizData';
 
