@@ -151,8 +151,7 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
             d={pathGenerator(feature) || ''}
             fill={isGreeceOrCoast ? "rgba(25, 30, 40, 0.9)" : "rgba(12, 15, 20, 0.6)"}
             stroke={isGreeceOrCoast ? "rgba(212, 175, 55, 0.15)" : "rgba(212, 175, 55, 0.05)"}
-            strokeWidth={isGreeceOrCoast ? 1.5 : 1}
-            vectorEffect="non-scaling-stroke"
+            style={{ strokeWidth: isGreeceOrCoast ? 'calc(1.5px * var(--zoom-inv, 1))' : 'calc(1px * var(--zoom-inv, 1))' }}
             className="pointer-events-none"
           />
           {!isGreeceOrCoast && !isNaN(centroid[0]) && (
@@ -354,9 +353,8 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                       opacity={isActive ? 0.6 : (isDimmed ? 0.05 : 0.35)}
                       className="transition-all duration-700 ease-in-out cursor-pointer hover:opacity-50"
                       stroke={kingdom.color}
-                      strokeWidth={2} // Using thick stroke of same color to hide internal voronoi lines
+                      style={{ strokeWidth: 'calc(2px * var(--zoom-inv, 1))' }}
                       strokeOpacity={0.8}
-                      vectorEffect="non-scaling-stroke"
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectKingdom(kingdom);
@@ -426,7 +424,6 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                             fill="none"
                             stroke="rgba(212, 175, 55, 0.5)"
                             strokeWidth={1}
-                            vectorEffect="non-scaling-stroke"
                             className={`kingdom-hover transition-all duration-300 ${isSelected ? 'scale-150 opacity-0' : 'group-hover:scale-150 group-hover:opacity-0'}`}
                           />
 
