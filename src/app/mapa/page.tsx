@@ -26,12 +26,12 @@ export default function MapaPage() {
     <main className="relative w-full min-h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[rgba(25,25,35,1)] via-[#0A0A0F] to-[#050508] overflow-x-hidden">
       
       {/* MAPA A PANTALLA COMPLETA */}
-      <section className="relative w-full h-screen overflow-hidden">
+      <section className="relative w-full h-[100dvh] overflow-hidden">
       {/* Background Star field for extra depth, reusing existing global styles if any */}
       <div className="absolute inset-0 opacity-30 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 50%)' }}></div>
       
       {/* Header Overlay */}
-      <div className="absolute top-18 left-0 right-0 z-20 flex justify-center pointer-events-none">
+      <div className="absolute top-20 md:top-24 left-0 right-0 z-20 flex justify-center pointer-events-none">
         <SelectorEpoca 
           eras={ERAS_DATA} 
           activeEraId={activeEraId} 

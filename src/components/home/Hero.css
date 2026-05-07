@@ -6,6 +6,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  padding-top: 64px; /* Altura del navbar para centrar correctamente debajo de él */
 }
 
 .hero__overlay {
@@ -344,6 +345,17 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 90px; /* Más espacio para evitar el navbar en móvil */
+    padding-bottom: 40px;
+    align-items: flex-start; /* Evita que el flex-center lo empuje hacia arriba si es muy alto */
+  }
+
+  .hero__content {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .hero__actions {
     flex-direction: column;
     align-items: center;
@@ -356,6 +368,42 @@
   }
 
   .hero__ring--3 {
+    display: none;
+  }
+
+  /* Reducir espacios para que el contenido encaje mejor en pantallas pequeñas */
+  .hero__greek-border {
+    margin-bottom: 1rem;
+  }
+
+  .hero__greek {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 15vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .hero__line {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__description {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Ocultar indicador de scroll en pantallas pequeñas (vertical u horizontal) para evitar solapamiento con los botones */
+@media (max-height: 750px), (max-width: 768px) {
+  .hero__scroll-indicator {
     display: none;
   }
 }
