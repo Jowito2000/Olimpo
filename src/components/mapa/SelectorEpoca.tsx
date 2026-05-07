@@ -101,10 +101,10 @@ export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorE
 
         <div className="flex flex-col items-center justify-center flex-1 text-center overflow-hidden px-2">
           <span className="text-gold font-display text-[9px] tracking-[0.2em] uppercase mb-0.5 whitespace-nowrap">
-            {eras[activeIndex].period}
+            {eras[activeIndex]!.period}
           </span>
           <span className="text-white font-display text-xs tracking-wider uppercase truncate w-full">
-            {eras[activeIndex].name.split(' (')[0]}
+            {eras[activeIndex]!.name.split(' (')[0]}
           </span>
         </div>
 
