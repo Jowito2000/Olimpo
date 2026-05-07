@@ -57,17 +57,11 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
         const { k } = event.transform;
         currentZoomRef.current = event.transform;
         
-        d3.select(mapGroupRef.current).attr('transform', event.transform.toString());
-        
-        const g = d3.select(mapGroupRef.current);
-        g.selectAll('.country-label').attr('font-size', `${14 / k}px`);
-        g.selectAll('.sea-label-main').attr('font-size', `${24 / k}px`);
-        g.selectAll('.sea-label-sub').attr('font-size', `${18 / k}px`);
-        g.selectAll('.region-label').attr('font-size', `${16 / k}px`);
-        
-        // Escalar inversamente los contenedores para que mantengan su tamaño real en pantalla
-        g.selectAll('.icon-scaler').attr('transform', `scale(${1 / k})`);
-        g.selectAll('.label-scaler').attr('transform', `scale(${1 / k})`);
+        if (mapGroupRef.current) {
+          d3.select(mapGroupRef.current).attr('transform', event.transform.toString());
+          // Usar una variable CSS evita re-renderizados y querySelectors carísimos a 60fps
+          mapGroupRef.current.style.setProperty('--zoom-inv', (1 / k).toString());
+        }
       });
 
     zoomBehaviorRef.current = zoom;
@@ -82,12 +76,18 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
 
   const isDesktop = dimensions.width > 768;
   const mapCenterX = isDesktop ? dimensions.width / 2 - 150 : dimensions.width / 2;
+  
+  // Escala adaptativa para móviles (usando la altura para asegurar que encaje verticalmente)
+  const baseScale = isDesktop ? dimensions.width * 2.8 : dimensions.height * 4.5;
 
   // Centro movido a [23.5, 38.0] y escala ajustada para ver desde Siracusa hasta Turquía
-  const projection = dimensions.width > 0 ? d3.geoMercator()
-    .center([23.5, 38.0])
-    .translate([mapCenterX, dimensions.height / 2])
-    .scale(dimensions.width * 2.8) : null; 
+  const projection = useMemo(() => {
+    if (dimensions.width === 0) return null;
+    return d3.geoMercator()
+      .center([23.5, 38.0])
+      .translate([mapCenterX, dimensions.height / 2])
+      .scale(baseScale);
+  }, [dimensions.width, dimensions.height, mapCenterX, baseScale]);
 
   const centerOnKingdom = (kingdom: Kingdom) => {
     onSelectKingdom(kingdom);
@@ -113,16 +113,11 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
       .call(zoomBehaviorRef.current.transform, d3.zoomIdentity.translate(tx, ty).scale(targetScale));
   };
     
-  // Re-aplicar la escala inversa cuando React re-renderiza los nodos (ej. al clickar un reino)
-  useEffect(() => {
-    if (!mapGroupRef.current) return;
-    const k = currentZoomRef.current.k;
-    const g = d3.select(mapGroupRef.current);
-    g.selectAll('.icon-scaler').attr('transform', `scale(${1 / k})`);
-    g.selectAll('.label-scaler').attr('transform', `scale(${1 / k})`);
-  }, [activeKingdom, era]);
+  // No necesitamos el useEffect para escalar nodos, CSS `var(--zoom-inv)` lo maneja en tiempo real.
     
-  const pathGenerator = projection ? d3.geoPath().projection(projection) : null;
+  const pathGenerator = useMemo(() => {
+    return projection ? d3.geoPath().projection(projection) : null;
+  }, [projection]);
 
   // Union of all land for clipping territories (so kingdoms expand into Asia Minor, but not Africa)
   const landClipPathDef = useMemo(() => {
@@ -139,7 +134,43 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
       .filter((f: any) => validCountries.includes(f.properties.ADMIN))
       .map((f: any) => pathGenerator(f) || '');
     return paths.join(' ');
-  }, [pathGenerator, era]);
+  }, [pathGenerator, era.kingdoms]);
+
+  // Memoizar el mapa base para evitar mapear miles de coordenadas de países cada vez que se selecciona un reino
+  const baseMapElements = useMemo(() => {
+    if (!pathGenerator || !medGeoDataHighRes) return null;
+    
+    return medGeoDataHighRes.features.map((feature: any, i: number) => {
+      const hasItalianColonies = era.kingdoms.some(k => k.coordinates[0] < 19);
+      const isGreeceOrCoast = ['Greece', 'Turkey', 'Albania', 'Macedonia', 'Bulgaria', 'Cyprus'].includes(feature.properties.ADMIN) || (hasItalianColonies && feature.properties.ADMIN === 'Italy');
+      const centroid = pathGenerator.centroid(feature);
+      
+      return (
+        <g key={`base-${i}`}>
+          <path
+            d={pathGenerator(feature) || ''}
+            fill={isGreeceOrCoast ? "rgba(25, 30, 40, 0.9)" : "rgba(12, 15, 20, 0.6)"}
+            stroke={isGreeceOrCoast ? "rgba(212, 175, 55, 0.15)" : "rgba(212, 175, 55, 0.05)"}
+            style={{ strokeWidth: isGreeceOrCoast ? 'calc(1.5px * var(--zoom-inv, 1))' : 'calc(1px * var(--zoom-inv, 1))' }}
+            className="pointer-events-none"
+          />
+          {!isGreeceOrCoast && !isNaN(centroid[0]) && (
+            <text
+              x={centroid[0]}
+              y={centroid[1]}
+              textAnchor="middle"
+              fill="rgba(255,255,255,0.15)"
+              className="country-label font-display tracking-[0.2em] uppercase pointer-events-none select-none"
+              style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.8)', fontSize: 'calc(14px * var(--zoom-inv, 1))' }}
+            >
+              {feature.properties.ADMIN === 'Egypt' ? 'Egipto' : 
+               feature.properties.ADMIN === 'Libya' ? 'Libia' : feature.properties.ADMIN}
+            </text>
+          )}
+        </g>
+      );
+    });
+  }, [pathGenerator, era.kingdoms]);
 
   // Calculate clustered Voronoi territories
   const territoryPaths = useMemo(() => {
@@ -251,11 +282,11 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
         </div>
       ) : (
         <>
-          <div className="absolute bottom-6 left-6 z-10 text-text-muted text-xs font-display tracking-widest pointer-events-none opacity-50">
+          <div className="absolute bottom-6 left-6 z-10 text-text-muted text-[10px] md:text-xs font-display tracking-widest pointer-events-none opacity-50">
             Usa el ratón para mover y hacer zoom
           </div>
 
-          <div className="absolute top-20 left-4 z-20 bg-black/70 backdrop-blur-md border border-gold/20 rounded-xl p-3 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gold/30 scrollbar-track-transparent" style={{ minWidth: '180px', maxWidth: '240px' }}>
+          <div className="hidden lg:block absolute top-36 left-4 z-20 bg-black/70 backdrop-blur-md border border-gold/20 rounded-xl p-3 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gold/30 scrollbar-track-transparent" style={{ minWidth: '180px', maxWidth: '240px' }}>
             <h3 className="text-gold font-display text-xs tracking-[0.2em] uppercase mb-2 border-b border-gold/20 pb-1">Leyenda</h3>
             <div className="flex flex-col gap-1">
               {era.kingdoms.map((kingdom) => (
@@ -306,38 +337,7 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
 
             <g ref={mapGroupRef} style={{ willChange: 'transform' }}>
               {/* Base Map - Mediterranean Context */}
-              {medGeoDataHighRes.features.map((feature: any, i: number) => {
-                const hasItalianColonies = era.kingdoms.some(k => k.coordinates[0] < 19);
-                const isGreeceOrCoast = ['Greece', 'Turkey', 'Albania', 'Macedonia', 'Bulgaria', 'Cyprus'].includes(feature.properties.ADMIN) || (hasItalianColonies && feature.properties.ADMIN === 'Italy');
-                const centroid = pathGenerator.centroid(feature);
-                
-                return (
-                  <g key={`base-${i}`}>
-                    <path
-                      d={pathGenerator(feature) || ''}
-                      fill={isGreeceOrCoast ? "rgba(25, 30, 40, 0.9)" : "rgba(12, 15, 20, 0.6)"}
-                      stroke={isGreeceOrCoast ? "rgba(212, 175, 55, 0.15)" : "rgba(212, 175, 55, 0.05)"}
-                      strokeWidth={isGreeceOrCoast ? 1.5 : 1}
-                      vectorEffect="non-scaling-stroke"
-                      className="pointer-events-none"
-                    />
-                    {!isGreeceOrCoast && !isNaN(centroid[0]) && (
-                      <text
-                        x={centroid[0]}
-                        y={centroid[1]}
-                        textAnchor="middle"
-                        fill="rgba(255,255,255,0.15)"
-                        fontSize="14px"
-                        className="country-label font-display tracking-[0.2em] uppercase pointer-events-none select-none"
-                        style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.8)' }}
-                      >
-                        {feature.properties.ADMIN === 'Egypt' ? 'Egipto' : 
-                         feature.properties.ADMIN === 'Libya' ? 'Libia' : feature.properties.ADMIN}
-                      </text>
-                    )}
-                  </g>
-                );
-              })}
+              {baseMapElements}
 
               {/* Voronoi Territories Clipped to all Land */}
               <g clipPath="url(#all-land-clip)">
@@ -353,9 +353,8 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                       opacity={isActive ? 0.6 : (isDimmed ? 0.05 : 0.35)}
                       className="transition-all duration-700 ease-in-out cursor-pointer hover:opacity-50"
                       stroke={kingdom.color}
-                      strokeWidth={2} // Using thick stroke of same color to hide internal voronoi lines
+                      style={{ strokeWidth: 'calc(2px * var(--zoom-inv, 1))' }}
                       strokeOpacity={0.8}
-                      vectorEffect="non-scaling-stroke"
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectKingdom(kingdom);
@@ -366,10 +365,10 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
               </g>
 
               {/* Sea Labels */}
-              <text x={projection([19, 35])?.[0]} y={projection([19, 35])?.[1]} textAnchor="middle" fill="rgba(100,150,255,0.1)" fontSize="24px" className="sea-label-main font-display italic tracking-[0.3em] pointer-events-none select-none">
+              <text x={projection([19, 35])?.[0]} y={projection([19, 35])?.[1]} textAnchor="middle" fill="rgba(100,150,255,0.1)" className="sea-label-main font-display italic tracking-[0.3em] pointer-events-none select-none" style={{ fontSize: 'calc(24px * var(--zoom-inv, 1))' }}>
                 MAR MEDITERRÁNEO
               </text>
-              <text x={projection([25.5, 37.5])?.[0]} y={projection([25.5, 37.5])?.[1]} textAnchor="middle" fill="rgba(100,150,255,0.15)" fontSize="18px" className="sea-label-sub font-display italic tracking-[0.3em] pointer-events-none select-none">
+              <text x={projection([25.5, 37.5])?.[0]} y={projection([25.5, 37.5])?.[1]} textAnchor="middle" fill="rgba(100,150,255,0.15)" className="sea-label-sub font-display italic tracking-[0.3em] pointer-events-none select-none" style={{ fontSize: 'calc(18px * var(--zoom-inv, 1))' }}>
                 MAR EGEO
               </text>
 
@@ -384,9 +383,8 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                     y={pos[1]}
                     textAnchor="middle"
                     fill="rgba(255,255,255,0.2)"
-                    fontSize="16px"
                     className="region-label font-display tracking-[0.4em] uppercase pointer-events-none select-none"
-                    style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.8)' }}
+                    style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.8)', fontSize: 'calc(16px * var(--zoom-inv, 1))' }}
                   >
                     {region.name}
                   </text>
@@ -412,8 +410,8 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                           centerOnKingdom(kingdom);
                         }}
                       >
-                        {/* Escalar dinámicamente para mantener tamaño constante */}
-                        <g className="icon-scaler">
+                        {/* Escalar dinámicamente para mantener tamaño constante usando variables CSS */}
+                        <g className="icon-scaler" style={{ transform: 'scale(var(--zoom-inv, 1))' }}>
                           {/* Área de impacto invisible para facilitar el click (20px fijos en pantalla) */}
                           <circle r={20} fill="transparent" />
                           
@@ -426,14 +424,13 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
                             fill="none"
                             stroke="rgba(212, 175, 55, 0.5)"
                             strokeWidth={1}
-                            vectorEffect="non-scaling-stroke"
                             className={`kingdom-hover transition-all duration-300 ${isSelected ? 'scale-150 opacity-0' : 'group-hover:scale-150 group-hover:opacity-0'}`}
                           />
 
                           {renderIcon(kingdom.type, isSelected)}
                         </g>
                         
-                        <g className="label-scaler">
+                        <g className="label-scaler" style={{ transform: 'scale(var(--zoom-inv, 1))' }}>
                           <text
                             y={-18}
                             textAnchor="middle"
@@ -455,7 +452,7 @@ export default function MapaInteractivo({ era, activeKingdom, onSelectKingdom }:
           </svg>
 
           {/* Sombra superior para contraste de la UI externa (Selector de Época) - Colocado después del SVG para garantizar que renderice por encima de los reinos */}
-          <div className="absolute top-0 left-0 right-0 h-56 bg-gradient-to-b from-[#04060A] via-[#04060A]/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 right-0 h-32 md:h-56 bg-gradient-to-b from-[#04060A] via-[#04060A]/80 to-transparent z-10 pointer-events-none"></div>
         </>
       )}
     </div>

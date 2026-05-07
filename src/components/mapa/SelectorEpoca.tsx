@@ -10,11 +10,13 @@ interface SelectorEpocaProps {
 }
 
 export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorEpocaProps) {
-  const activeIndex = eras.findIndex(e => e.id === activeEraId);
+  const foundIndex = eras.findIndex(e => e.id === activeEraId);
+  const activeIndex = foundIndex >= 0 ? foundIndex : 0;
 
   return (
-    <>
-      <div className="relative w-full max-w-5xl mx-auto px-6 md:px-12 h-28 flex flex-col justify-end z-20">
+    <div className="w-full px-4 xl:px-0">
+      {/* Desktop Timeline (Línea Completa) */}
+      <div className="hidden xl:flex relative w-full max-w-4xl mx-auto px-8 h-28 flex-col justify-end z-20">
         
         {/* Contenedor del Timeline (Línea + Nodos) */}
         <div className="relative w-full h-8 mb-4">
@@ -51,10 +53,10 @@ export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorE
                         : 'opacity-0 scale-90 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}
                     `}
                   >
-                    <div className={`flex flex-col items-center font-display tracking-[0.2em] text-[8px] md:text-[10px] uppercase drop-shadow-md transition-colors duration-300 ${isActive ? 'text-gold' : 'text-white'} max-w-[80px] md:max-w-[100px] leading-tight`}>
+                    <div className={`flex flex-col items-center font-display tracking-[0.2em] text-[10px] uppercase drop-shadow-md transition-colors duration-300 ${isActive ? 'text-gold' : 'text-white'} max-w-[100px] leading-tight`}>
                       <span className="whitespace-normal">{era.name.split(' (')[0]}</span>
                     </div>
-                    <span className={`font-light text-[8px] md:text-[9px] mt-1 whitespace-nowrap transition-colors duration-300 ${isActive ? 'text-gold-light/70' : 'text-white/40'}`}>
+                    <span className={`font-light text-[9px] mt-1 whitespace-nowrap transition-colors duration-300 ${isActive ? 'text-gold-light/70' : 'text-white/40'}`}>
                       {era.period}
                     </span>
                   </div>
@@ -85,6 +87,36 @@ export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorE
           </div>
         </div>
       </div>
-    </>
+
+      {/* Mobile Timeline (Carrusel Compacto) */}
+      <div className="xl:hidden flex items-center justify-between w-full max-w-sm mx-auto h-14 pointer-events-auto bg-[rgba(15,15,20,0.85)] backdrop-blur-md rounded-full border border-gold/30 shadow-[0_5px_15px_rgba(0,0,0,0.5)] px-2 z-20">
+        <button 
+          onClick={() => activeIndex > 0 && onChange(eras[activeIndex - 1]!.id)}
+          className={`p-2 flex items-center justify-center rounded-full transition-colors ${activeIndex > 0 ? 'text-gold hover:bg-white/5 active:bg-white/10' : 'text-white/20 cursor-not-allowed'}`}
+          disabled={activeIndex === 0}
+          aria-label="Época anterior"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+        </button>
+
+        <div className="flex flex-col items-center justify-center flex-1 text-center overflow-hidden px-2">
+          <span className="text-gold font-display text-[9px] tracking-[0.2em] uppercase mb-0.5 whitespace-nowrap">
+            {eras[activeIndex]!.period}
+          </span>
+          <span className="text-white font-display text-xs tracking-wider uppercase truncate w-full">
+            {eras[activeIndex]!.name.split(' (')[0]}
+          </span>
+        </div>
+
+        <button 
+          onClick={() => activeIndex < eras.length - 1 && onChange(eras[activeIndex + 1]!.id)}
+          className={`p-2 flex items-center justify-center rounded-full transition-colors ${activeIndex < eras.length - 1 ? 'text-gold hover:bg-white/5 active:bg-white/10' : 'text-white/20 cursor-not-allowed'}`}
+          disabled={activeIndex === eras.length - 1}
+          aria-label="Siguiente época"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
   );
 }

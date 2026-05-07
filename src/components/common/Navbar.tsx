@@ -15,6 +15,7 @@ export default function Navbar() {
     { href: '/glosario', label: 'Glosario' },
     { href: '/linea-temporal', label: 'Línea Temporal' },
     { href: '/mapa', label: 'Mapa' },
+    { href: '/quiz', label: 'Desafío' },
   ];
 
   const isActive = (href: string, exact?: boolean) => {
@@ -46,23 +47,16 @@ export default function Navbar() {
           <span className={`block w-6 h-0.5 bg-gold transition-all duration-250 ease origin-center ${menuOpen ? '-rotate-45 translate-x-[5px] -translate-y-[5px]' : ''}`}></span>
         </button>
 
-        <ul className={`
-          list-none flex items-center gap-8
-          max-lg:fixed max-lg:top-16 max-lg:left-0 max-lg:right-0
-          max-lg:flex-col max-lg:bg-[rgba(10,10,15,0.98)] max-lg:backdrop-blur-[12px]
-          max-lg:p-8 max-lg:gap-6 max-lg:border-b max-lg:border-border-base
-          max-lg:transition-all max-lg:duration-250 max-lg:ease
-          ${menuOpen ? 'max-lg:translate-y-0 max-lg:opacity-100 max-lg:pointer-events-auto' : 'max-lg:-translate-y-full max-lg:opacity-0 max-lg:pointer-events-none'}
-        `}>
+        {/* Menú de Escritorio */}
+        <ul className="hidden lg:flex list-none items-center gap-8">
           {links.map(link => {
             const active = isActive(link.href, link.exact);
             return (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  onClick={() => setMenuOpen(false)}
                   className={`
-                    font-display text-[0.85rem] max-lg:text-base font-medium tracking-[0.15em] uppercase
+                    font-display text-[0.85rem] font-medium tracking-[0.15em] uppercase
                     py-1 relative no-underline transition-colors duration-250
                     after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:bg-gold after:transition-[width] after:duration-250
                     ${active ? 'text-gold-light after:w-full' : 'text-text-secondary after:w-0 hover:text-gold-light hover:after:w-full'}
@@ -74,6 +68,37 @@ export default function Navbar() {
             );
           })}
         </ul>
+
+        {/* Menú Móvil */}
+        <div className={`
+          lg:hidden fixed top-16 left-0 right-0 -z-10
+          bg-[rgba(10,10,15,0.98)] backdrop-blur-[12px]
+          border-b border-border-base
+          transition-all duration-300 ease-in-out
+          ${menuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}
+        `}>
+          <ul className="flex flex-col p-8 gap-6 list-none m-0">
+            {links.map(link => {
+              const active = isActive(link.href, link.exact);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`
+                      font-display text-base font-medium tracking-[0.15em] uppercase
+                      py-1 relative no-underline transition-colors duration-250 block w-full text-center
+                      after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:-translate-x-1/2 after:h-0.5 after:bg-gold after:transition-[width] after:duration-250
+                      ${active ? 'text-gold-light after:w-1/2' : 'text-text-secondary after:w-0 hover:text-gold-light hover:after:w-1/2'}
+                    `}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </nav>
   );
