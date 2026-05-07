@@ -15,6 +15,7 @@ export default function Navbar() {
     { href: '/glosario', label: 'Glosario' },
     { href: '/linea-temporal', label: 'Línea Temporal' },
     { href: '/mapa', label: 'Mapa' },
+    { href: '/quiz', label: 'Desafío' },
   ];
 
   const isActive = (href: string, exact?: boolean) => {
