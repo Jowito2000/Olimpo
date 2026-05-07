@@ -10,7 +10,8 @@ interface SelectorEpocaProps {
 }
 
 export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorEpocaProps) {
-  const activeIndex = eras.findIndex(e => e.id === activeEraId);
+  const foundIndex = eras.findIndex(e => e.id === activeEraId);
+  const activeIndex = foundIndex >= 0 ? foundIndex : 0;
 
   return (
     <div className="w-full px-4 xl:px-0">
@@ -90,7 +91,7 @@ export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorE
       {/* Mobile Timeline (Carrusel Compacto) */}
       <div className="xl:hidden flex items-center justify-between w-full max-w-sm mx-auto h-14 pointer-events-auto bg-[rgba(15,15,20,0.85)] backdrop-blur-md rounded-full border border-gold/30 shadow-[0_5px_15px_rgba(0,0,0,0.5)] px-2 z-20">
         <button 
-          onClick={() => activeIndex > 0 && onChange(eras[activeIndex - 1].id)}
+          onClick={() => activeIndex > 0 && onChange(eras[activeIndex - 1]!.id)}
           className={`p-2 flex items-center justify-center rounded-full transition-colors ${activeIndex > 0 ? 'text-gold hover:bg-white/5 active:bg-white/10' : 'text-white/20 cursor-not-allowed'}`}
           disabled={activeIndex === 0}
           aria-label="Época anterior"
@@ -108,7 +109,7 @@ export default function SelectorEpoca({ eras, activeEraId, onChange }: SelectorE
         </div>
 
         <button 
-          onClick={() => activeIndex < eras.length - 1 && onChange(eras[activeIndex + 1].id)}
+          onClick={() => activeIndex < eras.length - 1 && onChange(eras[activeIndex + 1]!.id)}
           className={`p-2 flex items-center justify-center rounded-full transition-colors ${activeIndex < eras.length - 1 ? 'text-gold hover:bg-white/5 active:bg-white/10' : 'text-white/20 cursor-not-allowed'}`}
           disabled={activeIndex === eras.length - 1}
           aria-label="Siguiente época"
