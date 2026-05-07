@@ -32,7 +32,7 @@ export default function QuizPage() {
     }
 
     const randomQ = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-    return getShuffledQuestion(randomQ);
+    return getShuffledQuestion(randomQ!);
   }, []);
 
   const startGame = (selectedDiff: Difficulty) => {
