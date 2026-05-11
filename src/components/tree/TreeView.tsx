@@ -863,7 +863,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
 
       unionSym.exit()
         .transition()
-        .delay(d => exitCascadeDelay(d.target as HNode))
+        .delay((d: any) => exitCascadeDelay(d.target as HNode))
         .duration(250)
         .attr('font-size', '0px')
         .style('opacity', 0)
