@@ -780,7 +780,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .duration(LINK_DRAW_MS)
         .ease(d3.easeLinear)
         .style('stroke-dashoffset', '0')
-        .on('end', function (d) {
+        .on('end', function () {
           // Remove inline overrides → CSS class styles take effect again
           d3.select(this)
             .style('stroke-dasharray', null)
