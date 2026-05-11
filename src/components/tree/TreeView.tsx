@@ -822,7 +822,8 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           const len = (this as SVGPathElement).getTotalLength() || 600;
           d3.select(this).style('stroke-dasharray', `${len}`);
           // Animating from 0 to len un-draws the line from end to start
-          return d3.interpolateNumber(0, len);
+          const i = d3.interpolateNumber(0, len);
+          return function(t) { return i(t).toString(); };
         })
         .remove();
 
