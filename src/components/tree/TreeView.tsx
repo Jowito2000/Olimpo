@@ -207,6 +207,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
   const router = useRouter();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const hasRenderedFirstTree = useRef(false);
 
   const metaMap = React.useMemo(() => {
     const map = new Map<string, { name?: string; category?: string }>();
@@ -341,7 +342,9 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         return ((w(a) + w(b)) / 2) * (a.parent === b.parent ? 1.0 : 1.5);
       });
 
+    let isFirstRender = !hasRenderedFirstTree.current;
     update(root);
+    hasRenderedFirstTree.current = true;
 
     function nodeKey(d: HNode): string {
       return `${d.data.id}-${d.depth}-${d.parent?.data.id ?? 'root'}`;
@@ -398,11 +401,36 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
       );
       const tx = svgW / 2 - cx * scale;
       const ty = svgH / 2 - cy * scale;
-      svg.transition().duration(duration)
+      
+      const cameraDelay = !expanding ? 700 : 0;
+      svg.transition().delay(cameraDelay).duration(400)
         .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
     }
 
     function update(source: HNode, focus?: 'expand' | 'collapse') {
+      /* ─── Cascade animation timing ───────────────────────────────────── */
+      const GEN_STAGGER = isFirstRender ? 450 : 200;   // ms between generations
+      const LINK_DRAW_MS = isFirstRender ? 800 : 500;  // how long a link takes to draw
+      const NODE_POP_MS  = isFirstRender ? 600 : 400;   // node pop-in duration
+      const BASE_DURATION = 400;                         // fallback / repositioning
+      
+      const isCollapse = focus === 'collapse';
+      // Wait for exit animations (un-drawing and shrinking) before moving the remaining tree
+      const COLLAPSE_DELAY = isCollapse ? 700 : 0;
+
+      // Calculate the minimum generation visible for delay offset
+      const sourceGen = source._gen ?? 0;
+
+      function cascadeDelay(d: HNode): number {
+        const gen = d._gen ?? 0;
+        const relGen = Math.max(0, gen - sourceGen);
+        return relGen * GEN_STAGGER;
+      }
+
+      function linkCascadeDelay(link: d3.HierarchyPointLink<LayoutNode>): number {
+        return cascadeDelay(link.target as HNode);
+      }
+
       treeLayout(root);
 
       // Assign generations and fix Y positions
@@ -728,33 +756,75 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           const isMarriage = t.data.isUnionHeader;
           return isMarriage ? 'tree-link tree-link--marriage' : 'tree-link';
         })
-        .attr('d', () => {
-          const o = { x: source.x0 ?? 0, y: source.y0 ?? 0 };
-          return angularLink(o, o);
-        });
-
-      linkEnter.merge(link)
-        .transition().duration(duration)
+        // Set the FINAL path shape immediately (but invisible via dashoffset)
         .attr('d', d => {
           const s = linkSource(d);
           const t = linkTarget(d);
-          if ((d.target as HNode).data.isCreatedChild) {
-            return creationLinkPath(s, t);
-          }
-          if ((d.target as HNode).data.isUnionHeader) {
-            return marriageLink(s, t);
-          }
+          if ((d.target as HNode).data.isCreatedChild) return creationLinkPath(s, t);
+          if ((d.target as HNode).data.isUnionHeader) return marriageLink(s, t);
+          return angularLink(s, t);
+        })
+        .each(function () {
+          // Hide the line completely via inline style (overrides CSS class dasharray)
+          const el = this as SVGPathElement;
+          const len = el.getTotalLength() || 600;
+          d3.select(el)
+            .style('stroke-dasharray', `${len}`)
+            .style('stroke-dashoffset', `${len}`);
+        });
+
+      // Enter: draw the line progressively (ONLY animating dashoffset)
+      linkEnter
+        .transition()
+        .delay(d => linkCascadeDelay(d))
+        .duration(LINK_DRAW_MS)
+        .ease(d3.easeLinear)
+        .style('stroke-dashoffset', '0')
+        .on('end', function (d) {
+          // Remove inline overrides → CSS class styles take effect again
+          d3.select(this)
+            .style('stroke-dasharray', null)
+            .style('stroke-dashoffset', null);
+        });
+
+      // Update existing links: smooth repositioning (no dash tricks)
+      link
+        .transition()
+        .delay(COLLAPSE_DELAY)
+        .duration(BASE_DURATION)
+        .attr('d', d => {
+          const s = linkSource(d);
+          const t = linkTarget(d);
+          if ((d.target as HNode).data.isCreatedChild) return creationLinkPath(s, t);
+          if ((d.target as HNode).data.isUnionHeader) return marriageLink(s, t);
           return angularLink(s, t);
         });
 
-      link.exit<d3.HierarchyPointLink<LayoutNode>>().transition().duration(duration)
-        .attr('d', d => {
-          const o = { x: source.x ?? 0, y: source.y ?? 0 };
-          if ((d.target as HNode).data.isUnionHeader) {
-            return marriageLink(o, o);
-          }
-          return angularLink(o, o);
-        }).remove();
+      // Calculate max generation among exiting links for reverse cascade delay
+      let maxExitGen = sourceGen;
+      link.exit().each(function (d: any) {
+        const t = d.target as HNode;
+        if (t._gen && t._gen > maxExitGen) maxExitGen = t._gen;
+      });
+
+      function exitCascadeDelay(d: HNode): number {
+        const gen = d._gen ?? 0;
+        return Math.max(0, maxExitGen - gen) * (GEN_STAGGER * 0.4); // Faster on exit
+      }
+
+      // Exit: un-draw progressively from child back to parent without moving
+      link.exit<d3.HierarchyPointLink<LayoutNode>>()
+        .transition()
+        .delay(d => exitCascadeDelay(d.target as HNode))
+        .duration(LINK_DRAW_MS * 0.7)
+        .ease(d3.easeLinear)
+        .styleTween('stroke-dashoffset', function () {
+          const len = (this as SVGPathElement).getTotalLength() || 600;
+          d3.select(this).style('stroke-dasharray', `${len}`);
+          // Animating from 0 to len un-draws the line from end to start
+          return d3.interpolateNumber(0, len);
+        })
+        .remove();
 
       // ─── UNION SYMBOLS (∞) on marriage links (skip junctions — they use cross-link ∞)
       const marriageData = links.filter(l => {
@@ -768,7 +838,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .append('text')
         .attr('class', 'tree-union-sym')
         .attr('text-anchor', 'middle')
-        .attr('font-size', '15px')
+        .attr('font-size', '0px')
         .attr('fill', 'rgba(212,168,67,0.75)')
         .attr('filter', 'url(#glow-union)')
         .attr('pointer-events', 'none')
@@ -776,13 +846,27 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .attr('x', d => ((d.source as HNode).x + (d.target as HNode).x) / 2)
         .attr('y', d => ((d.source as HNode).y + (d.target as HNode).y) / 2 - 4)
         .style('opacity', 0)
-        .merge(unionSym)
-        .transition().duration(duration)
-        .attr('x', d => ((d.source as HNode).x + (d.target as HNode).x) / 2)
-        .attr('y', d => ((d.source as HNode).y + (d.target as HNode).y) / 2 - 4)
-        .style('opacity', 1);
+        .transition()
+        .delay(d => linkCascadeDelay(d) + LINK_DRAW_MS * 0.5)
+        .duration(350)
+        .ease(d3.easeBackOut.overshoot(2.5))
+        .style('opacity', 1)
+        .attr('font-size', '15px');
 
-      unionSym.exit().transition().duration(duration).style('opacity', 0).remove();
+      unionSym
+        .transition()
+        .delay(COLLAPSE_DELAY)
+        .duration(BASE_DURATION)
+        .attr('x', d => ((d.source as HNode).x + (d.target as HNode).x) / 2)
+        .attr('y', d => ((d.source as HNode).y + (d.target as HNode).y) / 2 - 4);
+
+      unionSym.exit()
+        .transition()
+        .delay(d => exitCascadeDelay(d.target as HNode))
+        .duration(250)
+        .attr('font-size', '0px')
+        .style('opacity', 0)
+        .remove();
 
       // ─── CROSS-LINK LINES (sibling partnerships) ────────────────────
       const crossLink = g.selectAll<SVGPathElement, CrossLinkInfo>('path.tree-cross-link')
@@ -792,13 +876,53 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .append('path')
         .attr('class', 'tree-cross-link')
         .attr('d', d => crossLinkPath(d))
-        .style('opacity', 0)
-        .merge(crossLink)
-        .transition().duration(duration)
-        .attr('d', d => crossLinkPath(d))
-        .style('opacity', 1);
+        .each(function () {
+          // Esconder inicialmente la línea usando estilos inline (para que CSS no lo sobreescriba)
+          // El patrón "0, gran numero" hace que sea un hueco gigante (invisible)
+          d3.select(this).style('stroke-dasharray', '0, 10000');
+        })
+        .transition()
+        .delay(isFirstRender ? GEN_STAGGER * 2 : 100)
+        .duration(isFirstRender ? 800 : 500)
+        .ease(d3.easeLinear)
+        .styleTween('stroke-dasharray', function () {
+          const el = this as SVGPathElement;
+          const len = el.getTotalLength() || 400;
+          return function(t) {
+            // Dibuja desde ambos extremos hacia el centro
+            const val = (len / 2) * t;
+            const gap = len - 2 * val;
+            return `${val}, ${gap}, ${val}`;
+          };
+        })
+        .on('end', function () {
+          // Limpiar estilos inline para que recupere su dasharray CSS de "8, 4"
+          d3.select(this)
+            .style('stroke-dasharray', null)
+            .style('stroke-dashoffset', null);
+        });
 
-      crossLink.exit().transition().duration(duration).style('opacity', 0).remove();
+      crossLink
+        .transition()
+        .delay(COLLAPSE_DELAY)
+        .duration(BASE_DURATION)
+        .attr('d', d => crossLinkPath(d));
+
+      crossLink.exit()
+        .transition()
+        .duration(400)
+        .ease(d3.easeLinear)
+        .styleTween('stroke-dasharray', function () {
+          const el = this as SVGPathElement;
+          const len = el.getTotalLength() || 400;
+          return function(t) {
+            // Anima en reversa: empieza con val = len/2 (completo) y va a 0 (vacío en el centro)
+            const val = (len / 2) * (1 - t);
+            const gap = len - 2 * val;
+            return `${val}, ${gap}, ${val}`;
+          };
+        })
+        .remove();
 
       // ∞ symbols on cross-links
       const crossSym = g.selectAll<SVGTextElement, CrossLinkInfo>('text.tree-cross-sym')
@@ -808,19 +932,14 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .append('text')
         .attr('class', 'tree-cross-sym')
         .attr('text-anchor', 'middle')
-        .attr('font-size', '15px')
+        .attr('font-size', '0px')
         .attr('fill', 'rgba(212,168,67,0.75)')
         .attr('filter', 'url(#glow-union)')
         .attr('pointer-events', 'none')
         .text('∞')
         .style('opacity', 0)
-        .merge(crossSym)
-        .transition().duration(duration)
         .attr('x', d => {
-          if (Math.abs(d.sy - d.ty) < 20) {
-            return (d.sx + d.tx) / 2;
-          }
-          // Same Bezier midpoint logic as the crossLinkPath
+          if (Math.abs(d.sy - d.ty) < 20) return (d.sx + d.tx) / 2;
           const absDx = Math.abs(d.sx - d.tx);
           const isLeft = d.tx < d.sx;
           const offset = isLeft ? -NODE_RADIUS : NODE_RADIUS;
@@ -833,14 +952,46 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           if (Math.abs(d.sy - d.ty) < 20) {
             const dist = Math.abs(d.tx - d.sx) - NODE_RADIUS * 2;
             const arcH = Math.min(45, Math.max(dist, 0) * 0.3 + 10);
-            // Midpoint of quadratic bezier Q
             return d.sy - arcH / 2 - 4;
           }
           return (d.sy + d.ty) / 2 - 4;
         })
-        .style('opacity', 1);
+        .transition()
+        .delay(isFirstRender ? GEN_STAGGER * 2 + 250 : 200)
+        .duration(300)
+        .ease(d3.easeBackOut.overshoot(2.5))
+        .style('opacity', 1)
+        .attr('font-size', '15px');
 
-      crossSym.exit().transition().duration(duration).style('opacity', 0).remove();
+      crossSym
+        .transition()
+        .delay(COLLAPSE_DELAY)
+        .duration(BASE_DURATION)
+        .attr('x', d => {
+          if (Math.abs(d.sy - d.ty) < 20) return (d.sx + d.tx) / 2;
+          const absDx = Math.abs(d.sx - d.tx);
+          const isLeft = d.tx < d.sx;
+          const offset = isLeft ? -NODE_RADIUS : NODE_RADIUS;
+          const bulgeDir = isLeft ? -1 : 1;
+          const bulgeAmount = Math.max(180, absDx * 0.45 + 90);
+          const bulge = offset + bulgeDir * bulgeAmount;
+          return (d.sx + d.tx) / 2 + 0.25 * offset + 0.75 * bulge;
+        })
+        .attr('y', d => {
+          if (Math.abs(d.sy - d.ty) < 20) {
+            const dist = Math.abs(d.tx - d.sx) - NODE_RADIUS * 2;
+            const arcH = Math.min(45, Math.max(dist, 0) * 0.3 + 10);
+            return d.sy - arcH / 2 - 4;
+          }
+          return (d.sy + d.ty) / 2 - 4;
+        });
+
+      crossSym.exit()
+        .transition()
+        .duration(300)
+        .attr('font-size', '0px')
+        .style('opacity', 0)
+        .remove();
 
       // ─── NODES ───────────────────────────────────────────────────────
       // Exclude virtual root from rendering (it's invisible and off-screen)
@@ -858,10 +1009,8 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           if (isJunction(d)) c += ' tree-node--junction';
           return c;
         })
-        .attr('transform', d => {
-          const p = d.parent || source;
-          return `translate(${p.x0 ?? source.x0 ?? 0},${p.y0 ?? source.y0 ?? 0})`;
-        });
+        .attr('transform', d => `translate(${d.x},${d.y}) scale(0)`)
+        .style('opacity', 0);
 
       /* PRIMARY CIRCLE (all nodes) */
       const pCx = (d: HNode) => personCx(d);
@@ -1245,28 +1394,57 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
       /* ─── UPDATE transitions ────────────────────────────────────────── */
       const nodeUpdate = nodeEnter.merge(node);
 
-      nodeUpdate.transition().duration(duration)
-        .attr('transform', d => `translate(${d.x},${d.y})`);
+      // Entering nodes: scale up in-place with cascading delay
+      nodeEnter
+        .transition()
+        .delay(d => cascadeDelay(d) + LINK_DRAW_MS * 0.6)
+        .duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.8))
+        .attr('transform', d => `translate(${d.x},${d.y}) scale(1)`)
+        .style('opacity', 1);
+
+      // Existing nodes: smooth repositioning
+      node
+        .transition()
+        .delay(COLLAPSE_DELAY)
+        .duration(BASE_DURATION)
+        .attr('transform', d => `translate(${d.x},${d.y}) scale(1)`)
+        .style('opacity', 1);
 
       nodeUpdate.select<SVGCircleElement>('.tree-node__bg')
-        .transition().duration(duration)
+        .transition()
+        .duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
         .attr('r', d => nodeRadius(d));
       nodeUpdate.select<SVGCircleElement>('.tree-node__clip')
-        .transition().duration(duration)
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
         .attr('r', d => nodeRadius(d) - 3);
 
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-bg')
-        .transition().duration(duration).attr('r', NODE_RADIUS);
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
+        .attr('r', NODE_RADIUS);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-clip')
-        .transition().duration(duration).attr('r', NODE_RADIUS - 3);
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
+        .attr('r', NODE_RADIUS - 3);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-bg--left')
-        .transition().duration(duration).attr('r', NODE_RADIUS);
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
+        .attr('r', NODE_RADIUS);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-clip--left')
-        .transition().duration(duration).attr('r', NODE_RADIUS - 3);
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
+        .attr('r', NODE_RADIUS - 3);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-bg--right')
-        .transition().duration(duration).attr('r', NODE_RADIUS);
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
+        .attr('r', NODE_RADIUS);
       nodeUpdate.select<SVGCircleElement>('.tree-node__partner-clip--right')
-        .transition().duration(duration).attr('r', NODE_RADIUS - 3);
+        .transition().duration(NODE_POP_MS)
+        .ease(d3.easeBackOut.overshoot(1.7))
+        .attr('r', NODE_RADIUS - 3);
 
       nodeUpdate.select('.tree-node__expand')
         .style('display', d => hasHiddenChildren(d) ? 'block' : 'none');
@@ -1286,11 +1464,13 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         });
 
       /* ─── EXIT ──────────────────────────────────────────────────────── */
-      const nodeExit = node.exit().transition().duration(duration)
-        .attr('transform', (d: any) => {
-          const p = d.parent || source;
-          return `translate(${p.x ?? source.x ?? 0},${p.y ?? source.y ?? 0})`;
-        })
+      const nodeExit = node.exit()
+        .transition()
+        .delay(d => exitCascadeDelay(d as HNode) + LINK_DRAW_MS * 0.3)
+        .duration(NODE_POP_MS * 0.8)
+        .ease(d3.easeBackIn.overshoot(1.5))
+        .attr('transform', (d: any) => `translate(${d.x},${d.y}) scale(0)`)
+        .style('opacity', 0)
         .remove();
       nodeExit.select('.tree-node__bg').attr('r', 0);
       nodeExit.select('.tree-node__clip').attr('r', 0);
@@ -1303,6 +1483,9 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
 
       // Save positions
       nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+
+      // After first render, switch to interactive mode for subsequent updates
+      isFirstRender = false;
 
       // Auto-focus on expand/collapse
       if (focus) {
@@ -1581,7 +1764,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
     // Wait for D3 to finish the initial render + collapse animation
     const timer = setTimeout(() => {
       actionsRef.current?.focusNode(focusId);
-    }, 550);
+    }, 900);
     return () => clearTimeout(timer);
   }, [focusId, tree]);
 

@@ -32,12 +32,13 @@
   letter-spacing: 0.04em;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color 0.25s ease, color 0.15s, box-shadow 0.25s ease;
 }
 
 .tree-search__input:focus {
   border-color: rgba(212, 175, 55, 0.5);
   color: #e8e8ec;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.12);
 }
 
 .tree-search__input::placeholder {
@@ -141,13 +142,19 @@
   letter-spacing: 0.04em;
   padding: 5px 10px;
   cursor: pointer;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
   pointer-events: auto;
 }
 
 .tree-view__btn:hover {
   color: var(--color-gold-light);
   border-color: var(--color-border-hover);
+  box-shadow: 0 0 10px rgba(212, 168, 67, 0.15);
+  transform: translateY(-1px);
+}
+
+.tree-view__btn:active {
+  transform: translateY(0);
 }
 
 .tree-view__btn--icon {
@@ -172,6 +179,18 @@
   border-radius: var(--radius-sm);
   padding: var(--space-sm) var(--space-md);
   max-width: 280px;
+  animation: infoSlideIn 0.3s ease-out;
+}
+
+@keyframes infoSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .tree-view__info-hint {
@@ -238,6 +257,7 @@
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: stroke 0.3s ease;
 }
 
 .tree-link--marriage {
@@ -275,16 +295,25 @@
   cursor: pointer;
 }
 
+/* ─── Ambient node breathing ─────────────────────────────────────── */
+@keyframes nodeBreath {
+  0%, 100% { stroke-opacity: 0.7; filter: none; }
+  50%      { stroke-opacity: 0.85; filter: drop-shadow(0 0 4px currentColor); }
+}
+
 .tree-node__bg {
   fill-opacity: 0.15;
   stroke-width: 2.5;
   stroke-opacity: 0.7;
-  transition: stroke-opacity 0.2s, filter 0.2s;
+  transition: stroke-opacity 0.3s ease, filter 0.3s ease;
+  animation: nodeBreath 4s ease-in-out infinite;
+  animation-play-state: running;
 }
 
 .tree-node:hover .tree-node__bg {
   stroke-opacity: 1;
-  filter: drop-shadow(0 0 10px currentColor);
+  filter: drop-shadow(0 0 14px currentColor);
+  animation-play-state: paused;
 }
 
 /* ─── Group dotted border ──────────────────────────────────────────── */
@@ -314,12 +343,19 @@
   font-weight: 600;
   pointer-events: none;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  transition: fill 0.2s ease;
+}
+
+.tree-node:hover .tree-node__name,
+.tree-node:hover .tree-node__partner-name {
+  fill: var(--color-gold-light, #f0d060);
 }
 
 /* ─── Single-partner union bar & symbol ─────────────────────────────── */
 .tree-node__union-bar {
   stroke: rgba(212, 168, 67, 0.45);
   stroke-width: 2;
+  transition: stroke 0.2s ease;
 }
 
 .tree-node--union:hover .tree-node__union-bar {
@@ -330,6 +366,7 @@
   fill: rgba(212, 168, 67, 0.75);
   font-size: 15px;
   pointer-events: none;
+  transition: fill 0.2s ease;
 }
 
 .tree-node--union:hover .tree-node__union-symbol {
@@ -341,12 +378,15 @@
   fill-opacity: 0.15;
   stroke-width: 2.5;
   stroke-opacity: 0.7;
-  transition: stroke-opacity 0.2s, filter 0.2s;
+  transition: stroke-opacity 0.3s ease, filter 0.3s ease;
+  animation: nodeBreath 4s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
 .tree-node:hover .tree-node__partner-bg {
   stroke-opacity: 1;
-  filter: drop-shadow(0 0 10px currentColor);
+  filter: drop-shadow(0 0 14px currentColor);
+  animation-play-state: paused;
 }
 
 /* ─── Union header nodes (short dashes) ─────────────────────────────── */
@@ -384,6 +424,7 @@
   fill: var(--color-gold);
   font-family: 'Cinzel', serif;
   font-weight: 500;
+  transition: fill 0.15s ease;
 }
 
 .tree-node__link:hover {
@@ -453,4 +494,16 @@
 .tree-node__cross-click:hover ~ .tree-node__cross-badge,
 .tree-node__cross-click:hover + .tree-node__cross-badge {
   fill: #38c9b5;
+}
+
+/* ─── Expand indicator pulse when hovering node ────────────────────── */
+@keyframes expandPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.2); }
+}
+
+.tree-node:hover .tree-node__expand {
+  animation: expandPulse 0.8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
