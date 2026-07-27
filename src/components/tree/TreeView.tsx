@@ -27,6 +27,8 @@ interface LayoutNode {
   crossLinkPartnerId?: string;
   /** This node was "created" by its parent (divine creation, not biological child) */
   isCreatedChild?: boolean;
+  /** Tag text for the creation link */
+  creationLabel?: string;
   isGroup?: boolean;
   groupName?: string;
   groupImage?: string;
@@ -84,6 +86,8 @@ function flattenToLayout(
   placedDepths: Map<string, number>,
   depth: number,
   fromPartner?: string,
+  isCreation?: boolean,
+  creationLabel?: string,
 ): LayoutNode {
   placedIds.add(node.id);
   placedDepths.set(node.id, depth);
@@ -92,6 +96,8 @@ function flattenToLayout(
     id: node.id,
     personId: node.id,
     fromUnionPartnerId: fromPartner,
+    isCreatedChild: isCreation,
+    creationLabel: creationLabel,
     isGroup: node.isGroup,
     groupName: node.groupName,
     groupImage: node.groupImage,
@@ -115,12 +121,10 @@ function flattenToLayout(
   const solo = node.unions.filter(u => !u.partnerId);
 
   // Helper to build children with correct siblingIds
-  const buildChildren = (children: TreeNode[], partnerId?: string, isCreation?: boolean) => {
+  const buildChildren = (children: TreeNode[], partnerId?: string, isCreation?: boolean, creationLabel?: string) => {
     const childIds = new Set(children.map(c => c.id));
     return children.map(c => {
-      const layoutNode = flattenToLayout(c, allNodeIds, childIds, placedIds, placedDepths, depth + 1, partnerId);
-      if (isCreation) layoutNode.isCreatedChild = true;
-      return layoutNode;
+      return flattenToLayout(c, allNodeIds, childIds, placedIds, placedDepths, depth + 1, partnerId, isCreation, creationLabel);
     });
   };
 
@@ -163,13 +167,13 @@ function flattenToLayout(
       };
     });
   } else if (partnered.length === 0 && solo.length === 1) {
-    const ch = buildChildren(solo[0]?.children ?? [], undefined, solo[0]?.isCreation);
+    const ch = buildChildren(solo[0]?.children ?? [], undefined, solo[0]?.isCreation, solo[0]?.label);
     result.children = ch.length > 0 ? ch : undefined;
   } else {
     const children: LayoutNode[] = [];
     for (const union of node.unions ?? []) {
       if (!union.partnerId) {
-        children.push(...buildChildren(union.children ?? [], undefined, union.isCreation));
+        children.push(...buildChildren(union.children ?? [], undefined, union.isCreation, union.label));
       } else {
         const unionChildren = buildChildren(union.children ?? [], union.partnerId);
         const isCrossLink = isPartnerNearby(union.partnerId);
@@ -786,6 +790,41 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
             .style('stroke-dasharray', null)
             .style('stroke-dashoffset', null);
         });
+
+      // Draw creation labels
+      const linkLabel = g.selectAll<SVGTextElement, d3.HierarchyPointLink<LayoutNode>>('text.tree-link-label')
+        .data(links.filter(d => !!(d.target as HNode).data.creationLabel), d => nodeKey(d.target as HNode) + '_label');
+
+      const linkLabelEnter = linkLabel.enter()
+        .append('text')
+        .attr('class', 'tree-link-label')
+        .style('fill', 'rgba(147, 51, 234, 0.85)')
+        .style('font-size', '10px')
+        .style('font-weight', '600')
+        .attr('text-anchor', 'middle')
+        .style('opacity', 0)
+        .style('pointer-events', 'none')
+        .text(d => (d.target as HNode).data.creationLabel!);
+
+      linkLabelEnter.merge(linkLabel)
+        .attr('x', d => {
+          const s = linkSource(d);
+          const t = linkTarget(d);
+          return (s.x + t.x) / 2;
+        })
+        .attr('y', d => {
+          const s = linkSource(d);
+          const t = linkTarget(d);
+          return ((s.y + t.y) / 2) - 8;
+        });
+
+      linkLabelEnter
+        .transition()
+        .delay(d => linkCascadeDelay(d) + (LINK_DRAW_MS / 2))
+        .duration(300)
+        .style('opacity', 1);
+
+      linkLabel.exit().remove();
 
       // Update existing links: smooth repositioning (no dash tricks)
       link

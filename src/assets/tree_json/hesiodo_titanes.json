@@ -138,12 +138,12 @@
     { "source": "hecatonquiros", "target": "briareo", "type": "membership" },
     { "source": "hecatonquiros", "target": "giges", "type": "membership" },
     
-    { "source": "urano", "target": "union_urano_sangre_gea", "type": "partner" },
+    { "source": "urano", "target": "union_urano_sangre_gea", "type": "creation" },
     { "source": "union_urano_sangre_gea", "target": "erinias", "type": "child" },
     { "source": "union_urano_sangre_gea", "target": "gigantes", "type": "child" },
     { "source": "union_urano_sangre_gea", "target": "ninfas_melias", "type": "child" },
     
-    { "source": "urano", "target": "union_urano_genitales", "type": "partner" },
+    { "source": "urano", "target": "union_urano_genitales", "type": "creation" },
     { "source": "union_urano_genitales", "target": "afrodita", "type": "child" },
     
     { "source": "nix", "target": "union_nix_erebo", "type": "partner" },

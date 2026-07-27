@@ -112,9 +112,11 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
     interface UnionInfo {
       partnerId: string | undefined;
       childIds: string[];
+      label?: string;
     }
     interface CreationInfo {
       childIds: string[];
+      label?: string;
     }
     const unionInfos: UnionInfo[] = [];
     const creationInfos: CreationInfo[] = [];
@@ -147,7 +149,7 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
         .filter(e => e.type === 'child')
         .map(e => e.target);
 
-      unionInfos.push({ partnerId, childIds });
+      unionInfos.push({ partnerId, childIds, label: unionNode?.name || unionNode?.label });
     }
 
     // ── Creation unions ──────────────────────────────────────────────────
@@ -156,11 +158,12 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
       if (visitedUnions.has(creationUnionId)) continue;
       visitedUnions.add(creationUnionId);
 
+      const creationNode = nodeMap.get(creationUnionId);
       const childIds = (edgesBySource.get(creationUnionId) ?? [])
         .filter(e => e.type === 'child')
         .map(e => e.target);
 
-      creationInfos.push({ childIds });
+      creationInfos.push({ childIds, label: creationNode?.name || creationNode?.label });
     }
 
     if (unionInfos.length === 0 && creationInfos.length === 0) {
@@ -171,9 +174,11 @@ export function graphToTree(graph: GraphData, rootId: string, meta: TreeMeta): T
     const unions: TreeUnion[] = [
       ...unionInfos.map(info => ({
         partnerId: info.partnerId,
+        label: info.label,
         children: info.childIds.map(cid => buildNode(cid)),
       })),
       ...creationInfos.map(info => ({
+        label: info.label,
         children: info.childIds.map(cid => buildNode(cid)),
         isCreation: true as const,
       })),
