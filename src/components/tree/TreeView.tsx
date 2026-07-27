@@ -176,7 +176,8 @@ function flattenToLayout(
         children.push(...buildChildren(union.children ?? [], undefined, union.isCreation, union.label));
       } else {
         const unionChildren = buildChildren(union.children ?? [], union.partnerId);
-        const isCrossLink = isPartnerNearby(union.partnerId);
+        // Force inline pill for Ponto + Gea union because the user prefers it
+        const isCrossLink = (node.id === 'ponto' && union.partnerId === 'gea') ? false : isPartnerNearby(union.partnerId);
         children.push({
           id: `${node.id}_x_${union.partnerId}`,
           isUnionHeader: true,
@@ -1762,7 +1763,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           if (realChild) clusterRoots.push(realChild);
         }
         if (clusterRoots.length > 0) {
-          const pad = 250;
+          const pad = 180;
           const minX = Math.min(...clusterRoots.map(n => n.x)) - pad;
           const maxX = Math.max(...clusterRoots.map(n => n.x)) + pad;
           const minY = Math.min(...clusterRoots.map(n => n.y)) - pad;
@@ -1776,8 +1777,8 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
             (height - pad * 2) / Math.max(bh, 1),
             2.0,
           );
-          // Shift left by 150px so Urano and Gea's right side is well visible
-          const tx = svgW / 2 - cx * scale - 150;
+          // Shift left by 80px so Urano and Gea's right side is well visible
+          const tx = svgW / 2 - cx * scale - 80;
           const ty = height / 2 - cy * scale;
           svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
         } else {
