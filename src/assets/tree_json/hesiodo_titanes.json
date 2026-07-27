@@ -117,7 +117,6 @@
     { "source": "union_gea_solo", "target": "urano", "type": "child" },
     
     { "source": "ponto", "target": "union_gea_ponto", "type": "partner" },
-    { "source": "gea", "target": "union_gea_ponto", "type": "partner" },
     { "source": "union_gea_ponto", "target": "ceto", "type": "child" },
     { "source": "union_gea_ponto", "target": "taumante", "type": "child" },
     { "source": "union_gea_ponto", "target": "forcis", "type": "child" },
