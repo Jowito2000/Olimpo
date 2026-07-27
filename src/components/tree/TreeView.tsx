@@ -789,40 +789,68 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
             .style('stroke-dashoffset', null);
         });
 
-      // Draw creation labels
-      const linkLabel = g.selectAll<SVGTextElement, d3.HierarchyPointLink<LayoutNode>>('text.tree-link-label')
-        .data(links.filter(d => !!(d.target as HNode).data.creationLabel), d => nodeKey(d.target as HNode) + '_label');
+      // Draw creation labels — deduplicated: one badge per unique (sourceId, label) pair
+      const seenLabelKeys = new Set<string>();
+      const deduplicatedLabelLinks = links.filter(d => {
+        const label = (d.target as HNode).data.creationLabel;
+        if (!label) return false;
+        const srcId = (d.source as HNode).data.id;
+        const key = `${srcId}::${label}`;
+        if (seenLabelKeys.has(key)) return false;
+        seenLabelKeys.add(key);
+        return true;
+      });
 
-      const linkLabelEnter = linkLabel.enter()
-        .append('text')
-        .attr('class', 'tree-link-label')
-        .style('fill', 'rgba(147, 51, 234, 0.85)')
-        .style('font-size', '10px')
-        .style('font-weight', '600')
-        .attr('text-anchor', 'middle')
-        .style('opacity', 0)
+      // Remove old label groups
+      g.selectAll<SVGGElement, d3.HierarchyPointLink<LayoutNode>>('g.tree-link-label-group').remove();
+
+      const linkLabelGroups = g.selectAll<SVGGElement, d3.HierarchyPointLink<LayoutNode>>('g.tree-link-label-group')
+        .data(deduplicatedLabelLinks, d => nodeKey(d.target as HNode) + '_label')
+        .enter()
+        .append('g')
+        .attr('class', 'tree-link-label-group')
         .style('pointer-events', 'none')
-        .text(d => (d.target as HNode).data.creationLabel!);
+        .style('opacity', 0);
 
-      linkLabelEnter.merge(linkLabel)
-        .attr('x', d => {
-          const s = linkSource(d);
-          const t = linkTarget(d);
-          return s.x + (t.x - s.x) * 0.7;
-        })
-        .attr('y', d => {
-          const s = linkSource(d);
-          const t = linkTarget(d);
-          return s.y + (t.y - s.y) * 0.7 - 8;
-        });
+      // Place each badge at 60% along the link
+      linkLabelGroups.each(function(d) {
+        const s = linkSource(d);
+        const t = linkTarget(d);
+        const bx = s.x + (t.x - s.x) * 0.6;
+        const by = s.y + (t.y - s.y) * 0.6;
+        const label = (d.target as HNode).data.creationLabel!;
+        const g2 = d3.select(this);
+        const PADDING = { x: 8, y: 4 };
+        // Measure approximate width (chars × 6)
+        const approxW = label.length * 6.2 + PADDING.x * 2;
+        const approxH = 16 + PADDING.y * 2;
+        g2.append('rect')
+          .attr('x', bx - approxW / 2)
+          .attr('y', by - approxH / 2)
+          .attr('width', approxW)
+          .attr('height', approxH)
+          .attr('rx', approxH / 2)
+          .attr('ry', approxH / 2)
+          .style('fill', 'rgba(88, 28, 135, 0.85)')
+          .style('stroke', 'rgba(167, 139, 250, 0.6)')
+          .style('stroke-width', '1px');
+        g2.append('text')
+          .attr('x', bx)
+          .attr('y', by + 1)
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'middle')
+          .style('fill', '#e9d5ff')
+          .style('font-size', '9px')
+          .style('font-weight', '700')
+          .style('letter-spacing', '0.02em')
+          .text(label);
+      });
 
-      linkLabelEnter
+      linkLabelGroups
         .transition()
-        .delay(d => linkCascadeDelay(d) + (LINK_DRAW_MS / 2))
+        .delay(d => linkCascadeDelay(d) + LINK_DRAW_MS)
         .duration(300)
         .style('opacity', 1);
-
-      linkLabel.exit().remove();
 
       // Update existing links: smooth repositioning (no dash tricks)
       link

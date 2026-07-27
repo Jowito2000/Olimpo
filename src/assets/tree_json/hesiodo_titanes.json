@@ -107,14 +107,14 @@
     { "source": "union_caos_solo", "target": "erebo", "type": "child" },
     { "source": "union_caos_solo", "target": "nix", "type": "child" },
     
+    { "source": "gea", "target": "union_gea_tartaro", "type": "partner" },
+    { "source": "tartaro", "target": "union_gea_tartaro", "type": "partner" },
+    { "source": "union_gea_tartaro", "target": "tifon", "type": "child" },
+    
     { "source": "gea", "target": "union_gea_solo", "type": "partner" },
     { "source": "union_gea_solo", "target": "montanas", "type": "child" },
     { "source": "union_gea_solo", "target": "ponto", "type": "child" },
     { "source": "union_gea_solo", "target": "urano", "type": "child" },
-    
-    { "source": "gea", "target": "union_gea_tartaro", "type": "partner" },
-    { "source": "tartaro", "target": "union_gea_tartaro", "type": "partner" },
-    { "source": "union_gea_tartaro", "target": "tifon", "type": "child" },
     
     { "source": "ponto", "target": "union_gea_ponto", "type": "partner" },
     { "source": "gea", "target": "union_gea_ponto", "type": "partner" },
