@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {
+      "id": "zeus",
+      "type": "individuo",
+      "label": "Zeus (Olímpicos - Hesíodo)",
+      "category": "olimpico",
+      "gender": "male"
+    }
+  ],
+  "edges": []
+}

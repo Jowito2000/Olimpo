@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {
+      "id": "eolo",
+      "type": "individuo",
+      "label": "Eolo (Sísifo - Hesíodo)",
+      "category": "mortal",
+      "gender": "male"
+    }
+  ],
+  "edges": []
+}

@@ -34,6 +34,8 @@ export interface CategoryInfo {
 }
 
 export type TreeId = 'titanes' | 'olimpicos' | 'heroes' | 'sisifo';
+export type TreeVersion = 'actual' | 'hesiodo' | 'ovidio';
+
 
 /** Unión entre dos personajes (o un solo progenitor) que produce descendencia */
 export interface TreeUnion {

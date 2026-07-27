@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {
+      "id": "perseo",
+      "type": "individuo",
+      "label": "Perseo (Héroes - Hesíodo)",
+      "category": "heroe",
+      "gender": "male"
+    }
+  ],
+  "edges": []
+}

@@ -1,12 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { treeList } from '@/data';
 
 export default function TreeTabs() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const activeTreeId = pathname?.split('/arboles/')[1] || 'titanes';
+  
+  const versionParam = searchParams?.get('version');
+  const queryString = versionParam ? `?version=${versionParam}` : '';
 
   return (
     <nav
@@ -16,7 +20,7 @@ export default function TreeTabs() {
       {treeList.map(t => (
         <Link
           key={t.id}
-          href={`/arboles/${t.id}`}
+          href={`/arboles/${t.id}${queryString}`}
           className={`
             flex items-center gap-2 px-6 py-1 rounded-lg font-display text-[0.8rem] tracking-[0.05em] no-underline transition-all duration-250
             ${t.id === activeTreeId
