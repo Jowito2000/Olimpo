@@ -13,6 +13,11 @@
     { "id": "ponto", "name": "Ponto", "type": "individuo", "category": "primordial", "gender": "male" },
     { "id": "urano", "name": "Urano", "type": "individuo", "category": "primordial", "gender": "male" },
     
+    { "id": "ceto", "name": "Ceto", "type": "individuo", "category": "primordial", "gender": "female" },
+    { "id": "taumante", "name": "Taumante", "type": "individuo", "category": "primordial", "gender": "male" },
+    { "id": "forcis", "name": "Forcis", "type": "individuo", "category": "primordial", "gender": "male" },
+    { "id": "euribia", "name": "Euribia", "type": "individuo", "category": "primordial", "gender": "female" },
+    
     { "id": "tifon", "name": "Tifón", "type": "individuo", "category": "primordial", "gender": "male" },
     
     { "id": "tea", "name": "Tea", "type": "individuo", "category": "titan", "gender": "female" },
@@ -87,9 +92,10 @@
 
     { "id": "union_caos_solo", "name": "", "type": "union" },
     { "id": "union_gea_solo", "name": "", "type": "union" },
-    { "id": "union_gea_tartaro", "name": "", "type": "union" },
+    { "id": "union_gea_tartaro", "name": "", "type": "union", "claimedBy": "gea" },
     { "id": "union_gea_urano", "name": "", "type": "union" },
     { "id": "union_gea_urano_link", "name": "", "type": "union" },
+    { "id": "union_gea_ponto", "name": "", "type": "union", "claimedBy": "gea" },
     { "id": "union_urano_sangre_gea", "name": "Sangre de Urano en Gea", "type": "union" },
     { "id": "union_urano_genitales", "name": "Genitales de Urano", "type": "union" },
     { "id": "union_nix_erebo", "name": "", "type": "union" },
@@ -109,6 +115,13 @@
     { "source": "gea", "target": "union_gea_tartaro", "type": "partner" },
     { "source": "tartaro", "target": "union_gea_tartaro", "type": "partner" },
     { "source": "union_gea_tartaro", "target": "tifon", "type": "child" },
+    
+    { "source": "gea", "target": "union_gea_ponto", "type": "partner" },
+    { "source": "ponto", "target": "union_gea_ponto", "type": "partner" },
+    { "source": "union_gea_ponto", "target": "ceto", "type": "child" },
+    { "source": "union_gea_ponto", "target": "taumante", "type": "child" },
+    { "source": "union_gea_ponto", "target": "forcis", "type": "child" },
+    { "source": "union_gea_ponto", "target": "euribia", "type": "child" },
     
     { "source": "urano", "target": "union_gea_urano", "type": "partner" },
     

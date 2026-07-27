@@ -228,10 +228,9 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
   }, [tree]);
 
   const getCategoryColor = useCallback((id: string): string => {
-    // Strip suffixes like _dup, _2, etc.
     const baseId = id.split(/(_dup|:|_2)/)[0] ?? id;
     const char = getCharacter(baseId);
-    const cat = char?.category ?? tree.nodeMeta?.[baseId]?.category ?? metaMap.get(baseId)?.category;
+    const cat = tree.nodeMeta?.[baseId]?.category ?? char?.category ?? metaMap.get(baseId)?.category;
     if (!cat) return '#9a9a9a';
     const map: Record<string, string> = {
       primordial: '#6b21a8', titan: '#b45309', olimpico: '#ca8a04',
@@ -810,12 +809,12 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         .attr('x', d => {
           const s = linkSource(d);
           const t = linkTarget(d);
-          return (s.x + t.x) / 2;
+          return s.x + (t.x - s.x) * 0.7;
         })
         .attr('y', d => {
           const s = linkSource(d);
           const t = linkTarget(d);
-          return ((s.y + t.y) / 2) - 8;
+          return s.y + (t.y - s.y) * 0.7 - 8;
         });
 
       linkLabelEnter
