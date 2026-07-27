@@ -10,7 +10,7 @@ interface VersionOption {
 }
 
 const VERSIONS: VersionOption[] = [
-  { id: 'actual',  label: 'Canon Mítico' },
+  { id: 'actual',  label: 'Consensus' },
   { id: 'hesiodo', label: 'Hesíodo' },
   { id: 'ovidio',  label: 'Ovidio' },
 ];
