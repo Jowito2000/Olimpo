@@ -789,68 +789,8 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
             .style('stroke-dashoffset', null);
         });
 
-      // Draw creation labels — deduplicated: one badge per unique (sourceId, label) pair
-      const seenLabelKeys = new Set<string>();
-      const deduplicatedLabelLinks = links.filter(d => {
-        const label = (d.target as HNode).data.creationLabel;
-        if (!label) return false;
-        const srcId = (d.source as HNode).data.id;
-        const key = `${srcId}::${label}`;
-        if (seenLabelKeys.has(key)) return false;
-        seenLabelKeys.add(key);
-        return true;
-      });
-
       // Remove old label groups
       g.selectAll<SVGGElement, d3.HierarchyPointLink<LayoutNode>>('g.tree-link-label-group').remove();
-
-      const linkLabelGroups = g.selectAll<SVGGElement, d3.HierarchyPointLink<LayoutNode>>('g.tree-link-label-group')
-        .data(deduplicatedLabelLinks, d => nodeKey(d.target as HNode) + '_label')
-        .enter()
-        .append('g')
-        .attr('class', 'tree-link-label-group')
-        .style('pointer-events', 'none')
-        .style('opacity', 0);
-
-      // Place each badge at 60% along the link
-      linkLabelGroups.each(function(d) {
-        const s = linkSource(d);
-        const t = linkTarget(d);
-        const bx = s.x + (t.x - s.x) * 0.6;
-        const by = s.y + (t.y - s.y) * 0.6;
-        const label = (d.target as HNode).data.creationLabel!;
-        const g2 = d3.select(this);
-        const PADDING = { x: 8, y: 4 };
-        // Measure approximate width (chars × 6)
-        const approxW = label.length * 6.2 + PADDING.x * 2;
-        const approxH = 16 + PADDING.y * 2;
-        g2.append('rect')
-          .attr('x', bx - approxW / 2)
-          .attr('y', by - approxH / 2)
-          .attr('width', approxW)
-          .attr('height', approxH)
-          .attr('rx', approxH / 2)
-          .attr('ry', approxH / 2)
-          .style('fill', 'rgba(88, 28, 135, 0.85)')
-          .style('stroke', 'rgba(167, 139, 250, 0.6)')
-          .style('stroke-width', '1px');
-        g2.append('text')
-          .attr('x', bx)
-          .attr('y', by + 1)
-          .attr('text-anchor', 'middle')
-          .attr('dominant-baseline', 'middle')
-          .style('fill', '#e9d5ff')
-          .style('font-size', '9px')
-          .style('font-weight', '700')
-          .style('letter-spacing', '0.02em')
-          .text(label);
-      });
-
-      linkLabelGroups
-        .transition()
-        .delay(d => linkCascadeDelay(d) + LINK_DRAW_MS)
-        .duration(300)
-        .style('opacity', 1);
 
       // Update existing links: smooth repositioning (no dash tricks)
       link
@@ -1822,7 +1762,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           if (realChild) clusterRoots.push(realChild);
         }
         if (clusterRoots.length > 0) {
-          const pad = 150;
+          const pad = 250;
           const minX = Math.min(...clusterRoots.map(n => n.x)) - pad;
           const maxX = Math.max(...clusterRoots.map(n => n.x)) + pad;
           const minY = Math.min(...clusterRoots.map(n => n.y)) - pad;
@@ -1836,7 +1776,8 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
             (height - pad * 2) / Math.max(bh, 1),
             2.0,
           );
-          const tx = svgW / 2 - cx * scale;
+          // Shift left by 150px so Urano and Gea's right side is well visible
+          const tx = svgW / 2 - cx * scale - 150;
           const ty = height / 2 - cy * scale;
           svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
         } else {
@@ -1959,7 +1900,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
                 <span className="tree-view__legend-line tree-view__legend-line--union" /> Union
               </span>
               <span className="tree-view__info-item">
-                <span className="tree-view__legend-line tree-view__legend-line--creation" /> Creación
+                <span className="tree-view__legend-line tree-view__legend-line--creation" /> Creación divina (Ej. Sangre / Genitales de Urano)
               </span>
             </div>
           </div>
