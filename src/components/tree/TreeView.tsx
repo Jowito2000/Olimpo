@@ -1760,35 +1760,65 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
     };
 
     // Center tree — per-tree zoom so initial nodes fill nicely
-    const initialZoom: Record<string, number> = {
-      titanes: 1.5,
-      olimpicos: 0.7,
-      heroes: 0.65,
-      sisifo: 1.05,
-    };
     const height = svgRef.current.clientHeight;
-    const sc = initialZoom[tree.id] ?? 1.0;
+    const svgW = svgRef.current.clientWidth;
 
     if (tree.id === 'heroes') {
+      const sc = 0.65;
       const zeusNode = (root.descendants() as HNode[]).find(n => n.data.id === 'zeus' && !n.data.isUnionHeader);
       if (zeusNode) {
-        const tx = width / 2 - zeusNode.x * sc;
+        const tx = svgW / 2 - zeusNode.x * sc;
         const ty = height / 5 - zeusNode.y * sc;
         svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(sc));
       } else {
-        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+        svg.call(zoom.transform, d3.zoomIdentity.translate(svgW / 2, height * 0.25).scale(sc));
       }
     } else if (tree.id === 'sisifo') {
+      const sc = 1.05;
       const deucalionNode = (root.descendants() as HNode[]).find(n => n.data.id === 'deucalion' && !n.data.isUnionHeader);
       if (deucalionNode) {
-        const tx = width / 2 - deucalionNode.x * sc;
+        const tx = svgW / 2 - deucalionNode.x * sc;
         const ty = height / 5 - deucalionNode.y * sc;
         svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(sc));
       } else {
-        svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+        svg.call(zoom.transform, d3.zoomIdentity.translate(svgW / 2, height * 0.25).scale(sc));
       }
     } else {
-      svg.call(zoom.transform, d3.zoomIdentity.translate(width / 2, height * 0.25).scale(sc));
+      // For any tree: fit the top-generation nodes (depth-0 children of virtual root) into view
+      const topNodes = (root.children ?? []) as HNode[];
+      if (topNodes.length > 1) {
+        // Multi-root: calculate bbox of the root-level real nodes and fit them
+        const realRoots = topNodes.filter(n => !n.data.isUnionHeader);
+        if (realRoots.length > 0) {
+          const pad = 120;
+          const minX = Math.min(...realRoots.map(n => n.x)) - pad;
+          const maxX = Math.max(...realRoots.map(n => n.x)) + pad;
+          const minY = Math.min(...realRoots.map(n => n.y)) - pad;
+          const maxY = Math.max(...realRoots.map(n => n.y)) + pad;
+          const bw = maxX - minX;
+          const bh = maxY - minY;
+          const cx = (minX + maxX) / 2;
+          const cy = (minY + maxY) / 2;
+          const scale = Math.min(
+            Math.max((svgW - pad * 2) / Math.max(bw, 1), 0.3),
+            Math.max((height - pad * 2) / Math.max(bh, 1), 0.3),
+            2.0,
+          );
+          const tx = svgW / 2 - cx * scale;
+          const ty = height * 0.3 - cy * scale;
+          svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+        } else {
+          svg.call(zoom.transform, d3.zoomIdentity.translate(svgW / 2, height * 0.25).scale(1.5));
+        }
+      } else {
+        // Single root: original zoom
+        const initialZoom: Record<string, number> = {
+          titanes: 1.5,
+          olimpicos: 0.7,
+        };
+        const sc = initialZoom[tree.id] ?? 1.0;
+        svg.call(zoom.transform, d3.zoomIdentity.translate(svgW / 2, height * 0.25).scale(sc));
+      }
     }
 
   }, [tree, router, getCategoryColor, getImage, getName, optimizeImage]);
