@@ -263,7 +263,6 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
     if (!svgRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
-    const width = svgRef.current.clientWidth;
     const duration = 400;
 
     // Defs
