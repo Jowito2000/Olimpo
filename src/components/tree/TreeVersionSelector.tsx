@@ -16,7 +16,7 @@ const VERSIONS: VersionOption[] = [
 ];
 
 export default function TreeVersionSelector() {
-  const pathname   = usePathname();
+  const pathname     = usePathname();
   const searchParams = useSearchParams();
   const currentVersion = (searchParams?.get('version') as TreeVersion) || 'actual';
 
@@ -30,7 +30,7 @@ export default function TreeVersionSelector() {
 
   return (
     <nav
-      className="flex gap-1 justify-center mb-4"
+      className="flex gap-2 justify-center flex-wrap mb-5"
       aria-label="Seleccionar fuente mitológica"
     >
       {VERSIONS.map(v => {
@@ -40,11 +40,11 @@ export default function TreeVersionSelector() {
             key={v.id}
             href={buildHref(v.id)}
             className={`
-              px-5 py-1 rounded-full text-[0.72rem] font-display tracking-widest uppercase
-              no-underline transition-all duration-250
+              px-7 py-2.5 rounded-full font-display tracking-widest uppercase no-underline
+              transition-all duration-250 text-sm sm:text-base
               ${isActive
-                ? 'bg-gold-muted border border-gold text-gold-light'
-                : 'border border-border-base text-text-muted hover:border-border-hover hover:text-gold-light'
+                ? 'bg-gold-muted border border-gold text-gold-light shadow-[0_0_18px_rgba(212,168,67,0.18)]'
+                : 'border border-border-base text-text-muted hover:border-border-hover hover:text-gold-light hover:bg-bg-hover'
               }
             `}
             aria-current={isActive ? 'page' : undefined}
