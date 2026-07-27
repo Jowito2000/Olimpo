@@ -10,9 +10,9 @@ interface VersionOption {
 }
 
 const VERSIONS: VersionOption[] = [
-  { id: 'actual',  label: 'Consensus' },
-  { id: 'hesiodo', label: 'Hesíodo' },
-  { id: 'ovidio',  label: 'Ovidio' },
+  { id: 'actual',  label: 'Olimpo (Síntesis de versiones)' },
+  { id: 'hesiodo', label: 'Hesíodo (Teogonía)' },
+  { id: 'ovidio',  label: 'Ovidio (Metamorfosis)' },
 ];
 
 export default function TreeVersionSelector() {
