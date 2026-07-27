@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    {
+      "id": "caos",
+      "type": "individuo",
+      "label": "Caos (Titanes - Ovidio)",
+      "category": "primordial",
+      "gender": "unknown"
+    }
+  ],
+  "edges": []
+}

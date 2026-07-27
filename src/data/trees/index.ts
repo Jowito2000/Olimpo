@@ -4,7 +4,10 @@ import hesiodoTitanesJson from '../../assets/tree_json/hesiodo_titanes.json';
 import hesiodoOlimpicosJson from '../../assets/tree_json/hesiodo_olimpicos.json';
 import hesiodoHeroesJson from '../../assets/tree_json/hesiodo_heroes.json';
 import hesiodoSisifoJson from '../../assets/tree_json/hesiodo_sisifo.json';
-import ovidioJson from '../../assets/tree_json/ovidio.json';
+import ovidioTitanesJson from '../../assets/tree_json/ovidio_titanes.json';
+import ovidioOlimpicosJson from '../../assets/tree_json/ovidio_olimpicos.json';
+import ovidioHeroesJson from '../../assets/tree_json/ovidio_heroes.json';
+import ovidioSisifoJson from '../../assets/tree_json/ovidio_sisifo.json';
 import titanTree from './titans';
 import olympianTree from './olympians';
 import heroTree from './heroes';
@@ -22,7 +25,10 @@ const hesiodoOlimpicosTree = graphToTree(hesiodoOlimpicosJson as GraphData, 'zeu
 const hesiodoHeroesTree = graphToTree(hesiodoHeroesJson as GraphData, 'perseo', { id: 'heroes', name: 'Hesíodo (Héroes)', description: 'Versión según Hesíodo' });
 const hesiodoSisifoTree = graphToTree(hesiodoSisifoJson as GraphData, 'eolo', { id: 'sisifo', name: 'Hesíodo (Sísifo)', description: 'Versión según Hesíodo' });
 
-const ovidioTree = graphToTree(ovidioJson as GraphData, 'caos', { id: 'titanes', name: 'Ovidio (Metamorfosis)', description: 'Versión según Ovidio' });
+const ovidioTitanesTree = graphToTree(ovidioTitanesJson as GraphData, 'caos', { id: 'titanes', name: 'Ovidio (Titanes)', description: 'Versión según Ovidio' });
+const ovidioOlimpicosTree = graphToTree(ovidioOlimpicosJson as GraphData, 'zeus', { id: 'olimpicos', name: 'Ovidio (Olímpicos)', description: 'Versión según Ovidio' });
+const ovidioHeroesTree = graphToTree(ovidioHeroesJson as GraphData, 'perseo', { id: 'heroes', name: 'Ovidio (Héroes)', description: 'Versión según Ovidio' });
+const ovidioSisifoTree = graphToTree(ovidioSisifoJson as GraphData, 'eolo', { id: 'sisifo', name: 'Ovidio (Sísifo)', description: 'Versión según Ovidio' });
 
 export const versionTrees: Record<TreeVersion, Record<TreeId, TreeData>> = {
   actual: trees,
@@ -33,10 +39,10 @@ export const versionTrees: Record<TreeVersion, Record<TreeId, TreeData>> = {
     sisifo: hesiodoSisifoTree
   },
   ovidio: {
-    titanes: ovidioTree,
-    olimpicos: { ...ovidioTree, id: 'olimpicos' },
-    heroes: { ...ovidioTree, id: 'heroes' },
-    sisifo: { ...ovidioTree, id: 'sisifo' }
+    titanes: ovidioTitanesTree,
+    olimpicos: ovidioOlimpicosTree,
+    heroes: ovidioHeroesTree,
+    sisifo: ovidioSisifoTree
   }
 };
 
