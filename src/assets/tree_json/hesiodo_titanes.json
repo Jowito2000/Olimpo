@@ -1,5 +1,5 @@
 {
-  "roots": ["caos", "gea", "eros", "tartaro"],
+  "roots": ["caos", "eros", "tartaro", "gea"],
   "nodes": [
     { "id": "caos", "name": "Caos", "type": "individuo", "category": "primordial", "gender": "unknown" },
     { "id": "gea", "name": "Gea", "type": "individuo", "category": "primordial", "gender": "female" },
@@ -89,6 +89,7 @@
     { "id": "union_gea_solo", "name": "", "type": "union" },
     { "id": "union_gea_tartaro", "name": "", "type": "union" },
     { "id": "union_gea_urano", "name": "", "type": "union" },
+    { "id": "union_gea_urano_link", "name": "", "type": "union" },
     { "id": "union_urano_sangre_gea", "name": "Sangre de Urano en Gea", "type": "union" },
     { "id": "union_urano_genitales", "name": "Genitales de Urano", "type": "union" },
     { "id": "union_nix_erebo", "name": "", "type": "union" },
@@ -109,8 +110,11 @@
     { "source": "tartaro", "target": "union_gea_tartaro", "type": "partner" },
     { "source": "union_gea_tartaro", "target": "tifon", "type": "child" },
     
-    { "source": "gea", "target": "union_gea_urano", "type": "partner" },
     { "source": "urano", "target": "union_gea_urano", "type": "partner" },
+    
+    { "source": "gea", "target": "union_gea_urano_link", "type": "partner" },
+    { "source": "urano", "target": "union_gea_urano_link", "type": "partner" },
+
     { "source": "union_gea_urano", "target": "tea", "type": "child" },
     { "source": "union_gea_urano", "target": "japeto", "type": "child" },
     { "source": "union_gea_urano", "target": "oceano", "type": "child" },
@@ -134,7 +138,6 @@
     { "source": "hecatonquiros", "target": "briareo", "type": "membership" },
     { "source": "hecatonquiros", "target": "giges", "type": "membership" },
     
-    { "source": "gea", "target": "union_urano_sangre_gea", "type": "partner" },
     { "source": "urano", "target": "union_urano_sangre_gea", "type": "partner" },
     { "source": "union_urano_sangre_gea", "target": "erinias", "type": "child" },
     { "source": "union_urano_sangre_gea", "target": "gigantes", "type": "child" },
