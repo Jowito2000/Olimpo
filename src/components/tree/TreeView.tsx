@@ -1783,28 +1783,33 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         svg.call(zoom.transform, d3.zoomIdentity.translate(svgW / 2, height * 0.25).scale(sc));
       }
     } else {
-      // For any tree: fit the top-generation nodes (depth-0 children of virtual root) into view
-      const topNodes = (root.children ?? []) as HNode[];
-      if (topNodes.length > 1) {
-        // Multi-root: calculate bbox of the root-level real nodes and fit them
-        const realRoots = topNodes.filter(n => !n.data.isUnionHeader);
-        if (realRoots.length > 0) {
-          const pad = 120;
-          const minX = Math.min(...realRoots.map(n => n.x)) - pad;
-          const maxX = Math.max(...realRoots.map(n => n.x)) + pad;
-          const minY = Math.min(...realRoots.map(n => n.y)) - pad;
-          const maxY = Math.max(...realRoots.map(n => n.y)) + pad;
+      // Check if this is a multi-root tree (virtual root __virtual_root__)
+      const isMultiRoot = root.data.id === '__virtual_root__';
+      if (isMultiRoot) {
+        // The real cluster roots are grandchildren of the virtual root
+        // (virtual root → union header → real root node)
+        const clusterRoots: HNode[] = [];
+        for (const child of (root.children ?? []) as HNode[]) {
+          const realChild = ((child.children ?? []) as HNode[]).find(n => !n.data.isUnionHeader);
+          if (realChild) clusterRoots.push(realChild);
+        }
+        if (clusterRoots.length > 0) {
+          const pad = 150;
+          const minX = Math.min(...clusterRoots.map(n => n.x)) - pad;
+          const maxX = Math.max(...clusterRoots.map(n => n.x)) + pad;
+          const minY = Math.min(...clusterRoots.map(n => n.y)) - pad;
+          const maxY = Math.max(...clusterRoots.map(n => n.y)) + pad;
           const bw = maxX - minX;
           const bh = maxY - minY;
           const cx = (minX + maxX) / 2;
           const cy = (minY + maxY) / 2;
           const scale = Math.min(
-            Math.max((svgW - pad * 2) / Math.max(bw, 1), 0.3),
-            Math.max((height - pad * 2) / Math.max(bh, 1), 0.3),
+            (svgW - pad * 2) / Math.max(bw, 1),
+            (height - pad * 2) / Math.max(bh, 1),
             2.0,
           );
           const tx = svgW / 2 - cx * scale;
-          const ty = height * 0.3 - cy * scale;
+          const ty = height / 2 - cy * scale;
           svg.call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
         } else {
           svg.call(zoom.transform, d3.zoomIdentity.translate(svgW / 2, height * 0.25).scale(1.5));
