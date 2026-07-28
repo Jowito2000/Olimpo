@@ -552,11 +552,6 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           const [nextLo] = subtreeExtent(nextKid);
           
           let requiredGap = MIN_GAP;
-          // Apply a significant push to the right for Erebo's children
-          if (nextKid.data.unionPartnerId === 'erebo') {
-            requiredGap = 200;
-          }
-          
           const overlap = prevHi + requiredGap - nextLo;
           
           if (overlap > 0) {
@@ -730,6 +725,13 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           if (partner) {
             return { x: (s.x + partner.x) / 2, y: (s.y + partner.y) / 2 + 12 };
           }
+        }
+
+        // Child from single inline partner: midpoint of the visual marriage line
+        if (s.data.isSinglePartner) {
+          const isLeft = s.data.id === 'ponto' && s.data.singlePartner === 'gea';
+          const midX = isLeft ? -(NODE_RADIUS + 20) : (NODE_RADIUS + 20);
+          return { x: s.x + midX, y: s.y + 12 };
         }
 
         // Regular link: from bottom of circle
