@@ -574,19 +574,15 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         }
       });
 
-      // Snap junctions to final midpoints after overlap resolution
-      // We shift children here to keep them perfectly centered under the marriage link
+      // Snap junctions to final midpoints after overlap resolution.
+      // Do NOT shift children here — they were already spread by the pre-layout pass and
+      // repositioned by resolveOverlaps. Shifting again would break collision resolution.
       nodes.forEach(d => {
         if (!isJunction(d)) return;
         const parent = d.parent as HNode;
         const partner = primaryNodeMap.get(d.data.crossLinkPartnerId!);
         if (!parent || !partner) return;
-        const targetX = (parent.x + partner.x) / 2;
-        const dx = targetX - d.x;
-        d.x = targetX;
-        if (d.children) {
-          d.children.forEach(c => shiftSubtree(c as HNode, dx));
-        }
+        d.x = (parent.x + partner.x) / 2;
       });
 
       // Snap dual-headers to exact ±UNION_GAP so visual partner nodes align with link sources.
@@ -596,15 +592,6 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           const parent = d.parent as HNode;
           const isLeft = d.data.unionPartnerId === parent.data.partnerLeftId;
           d.x = parent.x + (isLeft ? -UNION_GAP : UNION_GAP);
-        }
-      });
-
-      // Adjust singlePartner children so they center under the marriage link (midpoint between node and pill)
-      nodes.forEach(d => {
-        if (d.data.singlePartner && !d.data.isUnionHeader && d.children) {
-          const isLeft = d.data.id === 'ponto' && d.data.singlePartner === 'gea';
-          const shiftDx = isLeft ? -(NODE_RADIUS + 20) : (NODE_RADIUS + 20);
-          d.children.forEach(c => shiftSubtree(c as HNode, shiftDx));
         }
       });
 
@@ -723,12 +710,14 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           return { x: s.x, y: s.y + NODE_RADIUS + 6 };
         }
 
-        // Child from junction (cross-link union header): midpoint of parent↔partner line
+        // Child from junction (cross-link union header):
+        // The junction node s.x is already snapped to the midpoint of the marriage line.
+        // The marriage link is drawn at the PARENT's Y level, so children should originate there.
         if (s.data.isUnionHeader && s.data.crossLinkPartnerId) {
-          const partner = primaryNodeMap.get(s.data.crossLinkPartnerId);
           const parent = s.parent as HNode;
-          if (partner && parent) {
-            return { x: (parent.x + partner.x) / 2, y: (parent.y + partner.y) / 2 };
+          if (parent) {
+            // x = junction midpoint, y = parent's y so line starts right on the marriage link
+            return { x: s.x, y: parent.y };
           }
         }
 
@@ -746,11 +735,16 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           }
         }
 
-        // Child from single inline partner: midpoint of the visual marriage line
+        // Child from single inline partner (e.g. Ponto + Gea pill):
+        // Children emerge from the bottom-center of the inline marriage line.
+        // The pill for Ponto+Gea is on the LEFT (-NODE_RADIUS offset), midpoint at -NODE_RADIUS-20.
+        // We do NOT shift children laterally — we let angularLink bend from the pill midpoint
+        // down to where the children actually are (resolved by resolveOverlaps).
         if (!!s.data.singlePartner && !s.data.isUnionHeader) {
           const isLeft = s.data.id === 'ponto' && s.data.singlePartner === 'gea';
+          // midX = midpoint of the horizontal marriage line (NODE_RADIUS to NODE_RADIUS+40)
           const midX = isLeft ? -(NODE_RADIUS + 20) : (NODE_RADIUS + 20);
-          return { x: s.x + midX, y: s.y };
+          return { x: s.x + midX, y: s.y + 2 };
         }
 
         // Regular link: from bottom of circle
