@@ -147,6 +147,14 @@ function flattenToLayout(
       // not from the bottom of this node. The junction is positioned at the midpoint
       // of the dashed marriage line and children hang from it.
       const ch = buildChildren(partnered[0]?.children ?? [], pId);
+      
+      // If the node is collapsed (no children), we must put the crossLink marker
+      // on the parent itself so the dashed line remains visible.
+      if (ch.length === 0) {
+        result.crossLinkPartnerId = pId;
+      }
+      
+      // junction
       result.children = ch.length > 0 ? [{
         id: `${node.id}_x_${pId}`,
         isUnionHeader: true,
@@ -1552,7 +1560,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
     }
 
     function angularLink(s: { x: number; y: number }, t: { x: number; y: number }): string {
-      const midY = s.y + (t.y - s.y) * 0.45;
+      const midY = s.y + (t.y - s.y) * 0.55;
       const dx = t.x - s.x;
       const dir = dx >= 0 ? 1 : -1;
       const r = Math.abs(dx) < 1 ? 0 : Math.min(CORNER_RADIUS, Math.abs(dx) / 2, Math.abs(midY - s.y) / 2, Math.abs(t.y - midY) / 2);
