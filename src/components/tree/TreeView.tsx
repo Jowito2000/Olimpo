@@ -570,9 +570,10 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         const realKids = kids.filter(k => !isJunction(k));
         if (realKids.length > 0) {
           n.x = ((realKids[0] as HNode).x + (realKids[realKids.length - 1] as HNode).x) / 2;
-        } else {
-          n.x = ((kids[0] as HNode).x + (kids[kids.length - 1] as HNode).x) / 2;
         }
+        // If there are no real kids (e.g. only a junction child), we DO NOT center the node
+        // over the junction. The node should stay in its natural sibling position, and the
+        // junction will be independently snapped to the midpoint of the marriage line.
       })(root);
 
       // ─── Post-layout adjustments ─────────────────────────────────────────
@@ -583,15 +584,29 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         }
       });
 
-      // Snap junctions to final midpoints after overlap resolution.
-      // Do NOT shift children here — they were already spread by the pre-layout pass and
-      // repositioned by resolveOverlaps. Shifting again would break collision resolution.
+      // Snap junctions to exactly the midpoint of the dashed cross-link path.
+      // The crossLink path uses a quadratic curve for same-level, or cubic bezier with bulge for cross-level.
       nodes.forEach(d => {
         if (!isJunction(d)) return;
         const parent = d.parent as HNode;
         const partner = primaryNodeMap.get(d.data.crossLinkPartnerId!);
         if (!parent || !partner) return;
-        d.x = (parent.x + partner.x) / 2;
+        
+        if (Math.abs(parent.y - partner.y) < 20) {
+          // Same-level (Nix + Érebo): the curve is a symmetrical Q-bezier, midpoint is exact average X.
+          d.x = (parent.x + partner.x) / 2;
+        } else {
+          // Cross-generation (Ponto + Gea): the curve is a C-bezier that detours (bulges) to the side.
+          const absDx = Math.abs(parent.x - partner.x);
+          const isLeft = partner.x < parent.x;
+          const offset = isLeft ? -NODE_RADIUS : NODE_RADIUS;
+          const bulgeDir = isLeft ? -1 : 1;
+          const bulgeAmount = Math.max(180, absDx * 0.45 + 90);
+          const bulge = offset + bulgeDir * bulgeAmount;
+          
+          // Exact X at t=0.5 of cubic bezier (parent.x+offset, parent.x+bulge, partner.x+bulge, partner.x+offset)
+          d.x = (parent.x + partner.x) / 2 + offset / 4 + (3 * bulge) / 4;
+        }
       });
 
       // Snap dual-headers to exact ±UNION_GAP so visual partner nodes align with link sources.
@@ -720,13 +735,15 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         }
 
         // Child from junction (cross-link union header):
-        // The junction node s.x is already snapped to the midpoint of the marriage line.
-        // The marriage link is drawn at the PARENT's Y level, so children should originate there.
+        // The junction node s.x is already snapped to the bezier curve of the marriage line.
+        // The dashed marriage link curve passes through midY of the two partners, so children
+        // should originate precisely there.
         if (s.data.isUnionHeader && s.data.crossLinkPartnerId) {
           const parent = s.parent as HNode;
-          if (parent) {
-            // x = junction midpoint, y = parent's y so line starts right on the marriage link
-            return { x: s.x, y: parent.y };
+          const partner = primaryNodeMap.get(s.data.crossLinkPartnerId);
+          if (parent && partner) {
+            // x = junction bezier midpoint, y = vertical midpoint of the curved line
+            return { x: s.x, y: (parent.y + partner.y) / 2 };
           }
         }
 
