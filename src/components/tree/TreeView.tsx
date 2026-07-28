@@ -560,7 +560,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         }
         const realKids = kids.filter(k => !isJunction(k));
         if (realKids.length > 0) {
-          n.x = (realKids[0].x + realKids[realKids.length - 1].x) / 2;
+          n.x = ((realKids[0] as HNode).x + (realKids[realKids.length - 1] as HNode).x) / 2;
         } else {
           n.x = ((kids[0] as HNode).x + (kids[kids.length - 1] as HNode).x) / 2;
         }
