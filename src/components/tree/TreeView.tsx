@@ -148,12 +148,6 @@ function flattenToLayout(
       // of the dashed marriage line and children hang from it.
       const ch = buildChildren(partnered[0]?.children ?? [], pId);
       
-      // If the node is collapsed (no children), we must put the crossLink marker
-      // on the parent itself so the dashed line remains visible.
-      if (ch.length === 0) {
-        result.crossLinkPartnerId = pId;
-      }
-      
       // junction
       result.children = ch.length > 0 ? [{
         id: `${node.id}_x_${pId}`,
@@ -694,26 +688,47 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
       const crossLinks: CrossLinkInfo[] = [];
 
       nodes.forEach(d => {
-        if (!d.data.crossLinkPartnerId) return;
-        const target = primaryNodeMap.get(d.data.crossLinkPartnerId);
-        if (!target) return;
-
-        if (d.data.isUnionHeader) {
-          // Junction: cross-link from PARENT node to the existing partner
-          const parent = d.parent as HNode;
-          if (parent) {
-            crossLinks.push({
-              key: `cross-${d.data.id}`,
-              sx: parent.x, sy: parent.y,
-              tx: target.x, ty: target.y,
-            });
+        // Draw cross-links for this node if it has one
+        if (d.data.crossLinkPartnerId) {
+          const target = primaryNodeMap.get(d.data.crossLinkPartnerId);
+          if (target) {
+            if (d.data.isUnionHeader) {
+              // Junction: cross-link from PARENT node to the existing partner
+              const parent = d.parent as HNode;
+              if (parent) {
+                crossLinks.push({
+                  key: `cross-${d.data.id}`,
+                  sx: parent.x, sy: parent.y,
+                  tx: target.x, ty: target.y,
+                });
+              }
+            } else {
+              // Single-partner cross-link: from this node to the sibling partner
+              crossLinks.push({
+                key: `cross-${d.data.id}-${d.data.crossLinkPartnerId}`,
+                sx: d.x, sy: d.y,
+                tx: target.x, ty: target.y,
+              });
+            }
           }
-        } else {
-          // Single-partner cross-link: from this node to the sibling partner
-          crossLinks.push({
-            key: `cross-${d.data.id}-${d.data.crossLinkPartnerId}`,
-            sx: d.x, sy: d.y,
-            tx: target.x, ty: target.y,
+        }
+        
+        // If this node is collapsed, its junction children are hidden in _children.
+        // We still want to draw their dashed lines from this node to the partner.
+        if (d._children) {
+          d._children.forEach(child => {
+            const hc = child as HNode;
+            if (hc.data.isUnionHeader && hc.data.crossLinkPartnerId) {
+              const target = primaryNodeMap.get(hc.data.crossLinkPartnerId);
+              if (target) {
+                crossLinks.push({
+                  // Add a suffix to ensure unique key even if we accidentally push it twice
+                  key: `cross-hidden-${hc.data.id}`,
+                  sx: d.x, sy: d.y,
+                  tx: target.x, ty: target.y,
+                });
+              }
+            }
           });
         }
       });
