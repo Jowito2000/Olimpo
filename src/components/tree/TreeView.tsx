@@ -728,7 +728,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         }
 
         // Child from single inline partner: midpoint of the visual marriage line
-        if (s.data.isSinglePartner) {
+        if (!!s.data.singlePartner && !s.data.isUnionHeader) {
           const isLeft = s.data.id === 'ponto' && s.data.singlePartner === 'gea';
           const midX = isLeft ? -(NODE_RADIUS + 20) : (NODE_RADIUS + 20);
           return { x: s.x + midX, y: s.y + 12 };
