@@ -558,7 +558,12 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
             for (let j = i; j < kids.length; j++) shiftSubtree(kids[j] as HNode, overlap);
           }
         }
-        n.x = ((kids[0] as HNode).x + (kids[kids.length - 1] as HNode).x) / 2;
+        const realKids = kids.filter(k => !isJunction(k));
+        if (realKids.length > 0) {
+          n.x = (realKids[0].x + realKids[realKids.length - 1].x) / 2;
+        } else {
+          n.x = ((kids[0] as HNode).x + (kids[kids.length - 1] as HNode).x) / 2;
+        }
       })(root);
 
       // ─── Post-layout adjustments ─────────────────────────────────────────
@@ -570,13 +575,18 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
       });
 
       // Snap junctions to final midpoints after overlap resolution
-      // We do NOT shift children here, so they remain safely separated by resolveOverlaps
+      // We shift children here to keep them perfectly centered under the marriage link
       nodes.forEach(d => {
         if (!isJunction(d)) return;
         const parent = d.parent as HNode;
         const partner = primaryNodeMap.get(d.data.crossLinkPartnerId!);
         if (!parent || !partner) return;
-        d.x = (parent.x + partner.x) / 2;
+        const targetX = (parent.x + partner.x) / 2;
+        const dx = targetX - d.x;
+        d.x = targetX;
+        if (d.children) {
+          d.children.forEach(c => shiftSubtree(c as HNode, dx));
+        }
       });
 
       // Snap dual-headers to exact ±UNION_GAP so visual partner nodes align with link sources.
@@ -586,6 +596,15 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           const parent = d.parent as HNode;
           const isLeft = d.data.unionPartnerId === parent.data.partnerLeftId;
           d.x = parent.x + (isLeft ? -UNION_GAP : UNION_GAP);
+        }
+      });
+
+      // Adjust singlePartner children so they center under the marriage link (midpoint between node and pill)
+      nodes.forEach(d => {
+        if (d.data.singlePartner && !d.data.isUnionHeader && d.children) {
+          const isLeft = d.data.id === 'ponto' && d.data.singlePartner === 'gea';
+          const shiftDx = isLeft ? -(NODE_RADIUS + 20) : (NODE_RADIUS + 20);
+          d.children.forEach(c => shiftSubtree(c as HNode, shiftDx));
         }
       });
 
@@ -709,7 +728,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
           const partner = primaryNodeMap.get(s.data.crossLinkPartnerId);
           const parent = s.parent as HNode;
           if (partner && parent) {
-            return { x: (parent.x + partner.x) / 2, y: (parent.y + partner.y) / 2 + 12 };
+            return { x: (parent.x + partner.x) / 2, y: (parent.y + partner.y) / 2 };
           }
         }
 
@@ -731,7 +750,7 @@ const TreeView = forwardRef<TreeViewHandle, Props>(function TreeView({ tree, foc
         if (!!s.data.singlePartner && !s.data.isUnionHeader) {
           const isLeft = s.data.id === 'ponto' && s.data.singlePartner === 'gea';
           const midX = isLeft ? -(NODE_RADIUS + 20) : (NODE_RADIUS + 20);
-          return { x: s.x + midX, y: s.y + 12 };
+          return { x: s.x + midX, y: s.y };
         }
 
         // Regular link: from bottom of circle
