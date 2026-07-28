@@ -143,9 +143,18 @@ function flattenToLayout(
   if (partnered.length === 1 && solo.length === 0) {
     const pId = partnered[0]?.partnerId;
     if (pId && isPartnerNearby(pId)) {
-      result.crossLinkPartnerId = pId;
+      // Use a junction header so children visually emerge FROM the marriage link,
+      // not from the bottom of this node. The junction is positioned at the midpoint
+      // of the dashed marriage line and children hang from it.
       const ch = buildChildren(partnered[0]?.children ?? [], pId);
-      result.children = ch.length > 0 ? ch : undefined;
+      result.children = ch.length > 0 ? [{
+        id: `${node.id}_x_${pId}`,
+        isUnionHeader: true,
+        unionParentId: node.id,
+        unionPartnerId: pId,
+        crossLinkPartnerId: pId,
+        children: ch,
+      }] : undefined;
     } else {
       result.singlePartner = partnered[0]?.partnerId;
       const ch = buildChildren(partnered[0]?.children ?? [], partnered[0]?.partnerId);
